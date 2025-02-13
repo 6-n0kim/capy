@@ -1,16 +1,17 @@
 // header.js
-const availablePages = ["test_01.html", "test_02.html", "example_02.html", "demo_03.html"]; //사용가능한 파일 목록
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     fetch('common/header.html')
+//         .then(response => response.text())
+//         .then(data => {
+//             const headerElement = document.getElementById('header');
+//             if (headerElement) {
+//                 headerElement.innerHTML = data;
+//             }
+//         });
+// });
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    fetch('common/header.html')
-        .then(response => response.text())
-        .then(data => {
-            const headerElement = document.getElementById('header');
-            if (headerElement) {
-                headerElement.innerHTML = data;
-            }
-        });
-});
+//btn
+const availablePages = ["test_01.html", "test_02.html", "example_02.html", "demo_03.html"]; //사용가능한 파일 목록
 
 function navigateToPage(buttonId) {
     let match = buttonId.match(/_(\d+)$/);
