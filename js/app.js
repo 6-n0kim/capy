@@ -8,12 +8,12 @@ const navContents = {
     ]
     ,
     img: [
-        "img/thumb1.jpg",
-        "img/thumb2.jpg",
-        "img/thumb3.jpg",
-        "img/thumb4.jpg",
-        "img/thumb5.jpg",
-        "img/thumb6.jpg",
+        "images/thumb1.jpg",
+        "images/thumb2.jpg",
+        "images/thumb3.jpg",
+        "images/thumb4.jpg",
+        "images/thumb5.jpg",
+        "images/thumb6.jpg",
     ],
     subMenu: 'menu item',
 };
@@ -30,7 +30,7 @@ navContents.title.map((content, index) => {
                             <div>
                                 <h2>${content}</h2>
                                 <p><img src="${navContents.img[index]}" alt="Thumb Image"></p>
-                                <!--<p><img src="img/thumb${index + 1}.jpg" alt="Thumb Image"></p>-->
+                                <!--<p><img src="images/thumb${index + 1}.jpg" alt="Thumb Image"></p>-->
                                 <ul>
                                     <li><a href="#">${navContents.subMenu}</a></li>
                                     <li><a href="#">${navContents.subMenu}</a></li>
@@ -50,7 +50,7 @@ let imgList = '';
 
 // 200장 이미지 반복문으로 추가
 for (let i = 0; i < 200; i++) {
-    imgList += `<img src="img/pic${i}.jpg" alt="Image Frames">`;
+    imgList += `<img src="images/pic${i}.jpg" alt="Image Frames">`;
 }
 
 images.insertAdjacentHTML('afterbegin', imgList);
