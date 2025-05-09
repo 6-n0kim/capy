@@ -1,6 +1,6 @@
 // 네비게이션 요소 객체 작성
 const navContents = {
-    title: ["collection",
+    title: ["todolist",
         "store location",
         "online store",
         "contact",
@@ -15,7 +15,7 @@ const navContents = {
         "images/thumb5.jpg",
         "images/thumb6.jpg",
     ],
-    subMenu: 'menu item',
+    subMenu: 'todoList',
 };
 
 // 요소 삽입을 위한 DOM 변수
@@ -32,8 +32,8 @@ navContents.title.map((content, index) => {
                                 <p><img src="${navContents.img[index]}" alt="Thumb Image"></p>
                                 <!--<p><img src="images/thumb${index + 1}.jpg" alt="Thumb Image"></p>-->
                                 <ul>
-                                    <li><a href="#">${navContents.subMenu}</a></li>
-                                    <li><a href="#">${navContents.subMenu}</a></li>
+                                    <li><a href="${navContents.subMenu}.html">${navContents.subMenu}</a></li>
+                                    <li><a href="todoList.html">${navContents.subMenu}</a></li>
                                     <li><a href="#">${navContents.subMenu}</a></li>
                                     <li><a href="#">${navContents.subMenu}</a></li>
                                 </ul>
