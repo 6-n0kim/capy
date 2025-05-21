@@ -1,48 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
-
     <!-- Remix icon Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
         integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
+        crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="./style/style.css">
 
+    <title>JY BLOG</title>
 </head>
-
 <body>
-    <div style="position: fixed; top: 10px; left: 100px; font-size: 50px; color: white; z-index: 999;">
-        X : <span class="x">00</span>
-    </div>
-    <div class="wrapper">
-        <div class="main-section">
-            <div class="bg"></div>
-            <header>
-                <h1><a href="#"><img src="./images/logo.png" alt=""></a></h1>
-                <ul class="sns">
-                    <li><a href="#"><i class="ri-facebook-box-fill"></i></a></li>
-                    <li><a href="#"><i class="ri-instagram-fill"></i></a></li>
-                    <li><a href="#"><i class="ri-youtube-fill"></i></a></li>
-                </ul>
-            </header>
-            <div class="main-img">
-                <!-- <img src="images/pic50.jpg" alt="Image Frames"> -->
-                <nav>
-                    <ul>
-
-                    </ul>
-                </nav>
-
-            </div>
+    <div class="container">
+        <div class="header">
+            <h1>JY BLOG</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </div>
-    <script src="./js/app.js"></script>
-</body>
+    <main>
+        <section id="home" class="section">
+            <h2>JY BLOG</h2>
+            <p>안녕하세요 0000 하는 개발자 김준영입니다.</p>
+        </section>
 
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <div class="profile">
+                <img src="" alt="Profile Picture">
+                <!-- <img src="./images/profile.jpg" alt="Profile Picture"> -->
+                <div class="about-content">
+                    <h3>자기소개</h3>
+                    <p>여기에 자기소개를 작성해주세요.</p>
+                </div>
+                <div class="about-content">
+                    <h3>자기소개</h3>
+                    <p>여기에 자기소개를 작성해주세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul>
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <ul>
+                        <li>Git</li>
+                        <li>VS Code</li>
+                        <li>React</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Education</h3>
+                    <p>학력 정보를 입력해주세요.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Work Experience</h3>
+                    <p>직장 경력을 입력해주세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <h3>Project 1</h3>
+                    <p>프로젝트 설명을 입력해주세요.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>Project 2</h3>
+                    <p>프로젝트 설명을 입력해주세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="section">
+            <h2>Blog</h2>
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <h3>Blog Post Title</h3>
+                    <p>블로그 포스트 내용을 입력해주세요.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Email: your.email@example.com</p>
+                <div class="social-links">
+                    <a href="#" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
 </html>
