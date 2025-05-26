@@ -64,13 +64,13 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
 
 .section h2 {
     color: #2c3e50;
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    text-align: center;
 }
 
 /* About section */
