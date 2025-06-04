@@ -18,9 +18,9 @@ const navContents = {
     subMenu: 'todoList',
 };
 
-const projectContents = {
-    title: ["국비교육 프로젝트 1. 맵 기반 sns 서비스 (on spot)",
-        "국비교육 프로젝트 2. 헬스 케어 서비스 (body manager)",
+const PortfolioContents = {
+    title: ["1. 맵 기반 sns 서비스 (on spot)",
+        "2. 헬스 케어 서비스 (body manager)",
         "(주)아던트 프로젝트 1. 내부감사 시스템 (IBK기업은행 연계)",
         "(주)아던트 프로젝트 2. 구인구직 웹 서비스 (ORP연구소 연계)"
     ],
@@ -38,10 +38,10 @@ const projectContents = {
         ["java, javascript, JSP, spring, mariadb"]
     ],
     period: [
-        "2023.01 - 2023.03",
-        "2023.04 - 2023.06",
-        "2023.07 - 2023.09",
-        "2023.10 - 2023.12"
+        "2022.07 - 2022.09",
+        "2022.09 - 2022.12",
+        "2023.01 - 2023.06",
+        "2023.07 - 2023.10"
     ],
     achievements: [
         {
@@ -79,75 +79,107 @@ const projectContents = {
         {
             role: "백엔드",
             tasks: [
-                "DB 마이그레이션",
-                "기존 코드 리팩토링으로 기능 개선 및 오류 수정"
-                
+                "데이터 최적화 : DB 마이그레이션 및 불필요한 쿼리 제거",
+                "기존 코드 분석 및 리팩토링, 테스트 진행",
+                "파일 첨부 기능 개발: 파일 업로드 지원 및 성능 개선"
             ],
-            results: "서비스 신규 가입자 200% 증가 및 사용자 이탈률 40% 감소"
+            results: "기존 코드 분석 및 테스트 진행 오류 80% 이상 해결"
         }
     ]
 }
-// 요소 삽입을 위한 DOM 변수
-const nav = document.querySelector('nav ul');
+// // 요소 삽입을 위한 DOM 변수
+// const nav = document.querySelector('nav ul');
 
-// 삽입될 요소 초기화 변수
-let navList = "";
+// // 삽입될 요소 초기화 변수
+// let navList = "";
 
-navContents.title.map((content, index) => {
-    navList = `<li>
-                            <a href="#">${content}</a>
-                            <div>
-                                <h2>${content}</h2>
-                                <p><img src="${navContents.img[index]}" alt="Thumb Image"></p>
-                                <!--<p><img src="images/thumb${index + 1}.jpg" alt="Thumb Image"></p>-->
-                                <ul>
-                                    <li><a href="${navContents.subMenu}.html">${navContents.subMenu}</a></li>
-                                    <li><a href="todoList.html">${navContents.subMenu}</a></li>
-                                    <li><a href="#">${navContents.subMenu}</a></li>
-                                    <li><a href="#">${navContents.subMenu}</a></li>
-                                </ul>
-                            </div>
-                        </li>`;
-    nav.insertAdjacentHTML("beforeend", navList);
+// navContents.title.map((content, index) => {
+//     navList = `<li>
+//                             <a href="#">${content}</a>
+//                             <div>
+//                                 <h2>${content}</h2>
+//                                 <p><img src="${navContents.img[index]}" alt="Thumb Image"></p>
+//                                 <!--<p><img src="images/thumb${index + 1}.jpg" alt="Thumb Image"></p>-->
+//                                 <ul>
+//                                     <li><a href="${navContents.subMenu}.html">${navContents.subMenu}</a></li>
+//                                     <li><a href="todoList.html">${navContents.subMenu}</a></li>
+//                                     <li><a href="#">${navContents.subMenu}</a></li>
+//                                     <li><a href="#">${navContents.subMenu}</a></li>
+//                                 </ul>
+//                             </div>
+//                         </li>`;
+//     nav.insertAdjacentHTML("beforeend", navList);
+// });
+
+// // 200장 이미지가 삽입될 요소
+// const images = document.querySelector('.main-img');
+
+// // 이미지 요소 초기화
+// let imgList = '';
+
+// // 200장 이미지 반복문으로 추가
+// for (let i = 0; i < 200; i++) {
+//     imgList += `<img src="images/pic${i}.jpg" alt="Image Frames">`;
+// }
+
+// images.insertAdjacentHTML('afterbegin', imgList);
+
+// // 마우스 이동 시 이미지 전환
+// // 1. 좌표 계산
+// // 2. 계산된 자표를 200으로비율 분할
+// // 3. 마우스 이동 시 전체 이미지 가림
+// // 4. 분할된 자표 위지치의 이미지를 보여준다.
+
+// const x = document.querySelector(".x");
+
+
+// window.addEventListener("mousemove", function (e) {
+
+//     // 1. 좌표 계산
+//     const clx = e.clientX; // 커서 위치 좌표
+//     const screenW = this.document.body.offsetWidth; // 화면 사이즈
+
+//     // Math.floor() -- 소수점 날림
+//     const percent = Math.floor((clx / screenW) * 200); // 200 비율로 분할된 커서 위치
+//     x.textContent = percent;
+
+//     //2. 마우스 이동 시 전체 이미지 가림
+//     const imgElements = document.querySelectorAll(".main-img > img");
+//     imgElements.forEach((element) => {
+//         element.style.display = 'none';
+//     });
+
+//     imgElements[percent].style.display = 'block';
+// });
+
+// Portfolio section population
+const portfolioGrid = document.getElementById('portfolioGrid');
+console.log('Portfolio Grid Element:', portfolioGrid);
+
+let portfolioHTML = '';
+
+console.log('Portfolio Contents:', PortfolioContents);
+
+PortfolioContents.title.forEach((title, index) => {
+    console.log('Processing project:', title);
+    portfolioHTML += `
+        <div class="portfolio-item">
+            <h3>${title}</h3>
+            <p>${PortfolioContents.description[index]}</p>
+            <div class="portfolio-details">
+                <p><strong>기간:</strong> ${PortfolioContents.period[index]}</p>
+                <p><strong>팀 규모:</strong> ${PortfolioContents.teamSize[index]}명</p>
+                <p><strong>사용 기술:</strong> ${PortfolioContents.pnl[index].join(', ')}</p>
+                <p><strong>역할:</strong> ${PortfolioContents.achievements[index].role}</p>
+                <p><strong>주요 업무:</strong></p>
+                <ul>
+                    ${PortfolioContents.achievements[index].tasks.map(task => `<li>${task}</li>`).join('')}
+                </ul>
+                <p><strong>성과:</strong> ${PortfolioContents.achievements[index].results}</p>
+            </div>
+        </div>
+    `;
 });
 
-// 200장 이미지가 삽입될 요소
-const images = document.querySelector('.main-img');
-
-// 이미지 요소 초기화
-let imgList = '';
-
-// 200장 이미지 반복문으로 추가
-for (let i = 0; i < 200; i++) {
-    imgList += `<img src="images/pic${i}.jpg" alt="Image Frames">`;
-}
-
-images.insertAdjacentHTML('afterbegin', imgList);
-
-// 마우스 이동 시 이미지 전환
-// 1. 좌표 계산
-// 2. 계산된 자표를 200으로비율 분할
-// 3. 마우스 이동 시 전체 이미지 가림
-// 4. 분할된 자표 위지치의 이미지를 보여준다.
-
-const x = document.querySelector(".x");
-
-
-window.addEventListener("mousemove", function (e) {
-
-    // 1. 좌표 계산
-    const clx = e.clientX; // 커서 위치 좌표
-    const screenW = this.document.body.offsetWidth; // 화면 사이즈
-
-    // Math.floor() -- 소수점 날림
-    const percent = Math.floor((clx / screenW) * 200); // 200 비율로 분할된 커서 위치
-    x.textContent = percent;
-
-    //2. 마우스 이동 시 전체 이미지 가림
-    const imgElements = document.querySelectorAll(".main-img > img");
-    imgElements.forEach((element) => {
-        element.style.display = 'none';
-    });
-
-    imgElements[percent].style.display = 'block';
-});
+console.log('Generated HTML:', portfolioHTML);
+portfolioGrid.innerHTML = portfolioHTML;
