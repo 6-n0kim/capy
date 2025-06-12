@@ -12,6 +12,10 @@ body {
     background-color: #f8f9fa;
 }
 
+.no-dot {
+    list-style-type: none;
+}
+
 /* Container and layout */
 .container {
     max-width: 1200px;
@@ -120,12 +124,16 @@ main {
 
 .skill-category ul {
     list-style: none;
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
 }
 
 .skill-category li {
     margin-bottom: 0.5rem;
     padding-left: 1.5rem;
     position: relative;
+    width: 100%;
 }
 
 .skill-category li::before {

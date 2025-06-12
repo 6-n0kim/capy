@@ -1,23 +1,3 @@
-// 네비게이션 요소 객체 작성
-const navContents = {
-    title: ["todolist",
-        "store location",
-        "online store",
-        "contact",
-        "corporate"
-    ]
-    ,
-    img: [
-        "images/thumb1.jpg",
-        "images/thumb2.jpg",
-        "images/thumb3.jpg",
-        "images/thumb4.jpg",
-        "images/thumb5.jpg",
-        "images/thumb6.jpg",
-    ],
-    subMenu: 'todoList',
-};
-
 const PortfolioContents = {
     title: ["1. 맵 기반 sns 서비스 (on spot)",
         "2. 헬스 케어 서비스 (body manager)",
@@ -152,6 +132,27 @@ const PortfolioContents = {
 //     imgElements[percent].style.display = 'block';
 // });
 
+// // 네비게이션 요소 객체 작성
+// const navContents = {
+//     title: ["todolist",
+//         "store location",
+//         "online store",
+//         "contact",
+//         "corporate"
+//     ]
+//     ,
+//     img: [
+//         "images/thumb1.jpg",
+//         "images/thumb2.jpg",
+//         "images/thumb3.jpg",
+//         "images/thumb4.jpg",
+//         "images/thumb5.jpg",
+//         "images/thumb6.jpg",
+//     ],
+//     subMenu: 'todoList',
+// };
+
+
 // Portfolio section population
 const portfolioGrid = document.getElementById('portfolioGrid');
 console.log('Portfolio Grid Element:', portfolioGrid);
@@ -172,7 +173,7 @@ PortfolioContents.title.forEach((title, index) => {
                 <p><strong>사용 기술:</strong> ${PortfolioContents.pnl[index].join(', ')}</p>
                 <p><strong>역할:</strong> ${PortfolioContents.achievements[index].role}</p>
                 <p><strong>주요 업무:</strong></p>
-                <ul>
+                <ul class = "no-dot">
                     ${PortfolioContents.achievements[index].tasks.map(task => `<li>${task}</li>`).join('')}
                 </ul>
                 <p><strong>성과:</strong> ${PortfolioContents.achievements[index].results}</p>
