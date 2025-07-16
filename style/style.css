@@ -62,6 +62,9 @@ main {
     margin-top: 100px;
 }
 
+.top-pd{
+    padding-top: 2rem;
+}
 .section {
     padding: 4rem 0;
     min-height: 100vh;
@@ -215,6 +218,51 @@ main {
     margin-bottom: 8px;
     border: none !important;
     box-shadow: none !important;
+}
+
+/* Timeline Legend */
+.timeline-legend {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timeline-legend h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.legend-items {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-dot.normal {
+    background: #222;
+}
+
+.legend-dot.project {
+    background: #28a745;
 }
 
 .timeline-item:hover .dot {
