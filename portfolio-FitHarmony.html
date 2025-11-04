@@ -105,44 +105,120 @@
           <div class="row justify-content-between gy-4 mt-4">
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
-                <h2>Fit Harmony - 식단 및 인바디 관리 서비스</h2>
+                <h2>FIT HARMONY — 헬스장 통합 운영 및 회원 관리 플랫폼</h2>
                 <p>
-                  Fit Harmony는 AI 기술을 활용한 스마트 헬스케어 플랫폼으로, 사용자의 식단과 인바디
-                  데이터를 종합적으로 관리하고 분석합니다. OCR 기술을 통한 음식 인식과 LLM을 활용한
-                  맞춤형 식단 추천 기능을 제공합니다.
+                  <strong>트레이너와 회원, 그리고 헬스장을 하나로 연결하는 통합 플랫폼</strong>
                 </p>
                 <p>
-                  KDT AI 교육 과정의 첫 번째 프로젝트로, Node.js와 React를 활용한 풀스택 개발 경험을
-                  쌓았습니다. 특히 AI 기술(LLM, OCR)을 실제 서비스에 통합하여 실용적인 AI
-                  애플리케이션 개발 경험을 획득했습니다.
+                  FIT HARMONY는 헬스장 회원·트레이너·운영자를 연결하여 인바디 관리, 일정 조율,
+                  커뮤니티, 상품 결제까지 한 플랫폼에서 해결하는 통합 운영 시스템입니다. AI 기반
+                  인바디 분석(OCR + GPT)을 통해 자동화된 건강 관리 서비스를 제공합니다.
                 </p>
+
+                <h4>문제 정의</h4>
+                <p>헬스장 운영에서 다음과 같은 비효율을 해결했습니다:</p>
+                <ul>
+                  <li>트레이너와 회원 간 일정 조율 및 인바디 관리가 수기로 이루어짐</li>
+                  <li>회원 관리 시스템과 커뮤니티가 분리되어 있어 소통이 단절</li>
+                  <li>트레이너별 고객 데이터를 효율적으로 추적할 수 없음</li>
+                </ul>
+                <p>
+                  👉 이를 해결하기 위해
+                  <strong>운영·소통·데이터를 통합한 플랫폼 "FIT HARMONY"</strong>를 개발하였습니다.
+                </p>
+
                 <h4>주요 기능</h4>
                 <ul>
-                  <li>OCR 기반 음식 사진 인식 및 칼로리 자동 입력</li>
-                  <li>LLM을 활용한 맞춤형 식단 추천</li>
-                  <li>인바디 데이터 기록 및 추이 분석</li>
-                  <li>목표 달성률 및 통계 시각화</li>
-                  <li>회원 관리 및 프로필 설정</li>
-                  <li>식단 일지 작성 및 관리</li>
+                  <li>
+                    <strong>회원 관리:</strong> 로그인, 회원가입, 프로필 수정 (Local/Google OAuth
+                    인증, SHA-512 암호화)
+                  </li>
+                  <li>
+                    <strong>트레이너 기능:</strong> 회원 관리, 일정, 상품 등록/판매 (역할 기반 권한
+                    부여)
+                  </li>
+                  <li>
+                    <strong>인바디 분석:</strong> OCR + GPT 분석 리포트 (PaddleOCR + OpenAI API
+                    연동)
+                  </li>
+                  <li>
+                    <strong>일정 관리:</strong> FullCalendar 일정 뷰, 식단 관리 (Redux 상태관리 +
+                    date-fns)
+                  </li>
+                  <li>
+                    <strong>커뮤니티:</strong> 게시글·댓글 CRUD, 관리자 기능 (React Router + API
+                    CRUD 통합)
+                  </li>
+                  <li>
+                    <strong>상품 관리:</strong> 트레이너별 상품 등록·구매 기능 (RESTful 설계 기반
+                    API)
+                  </li>
                 </ul>
+
                 <h4>기술 스택</h4>
+                <p><strong>Frontend</strong></p>
                 <ul>
-                  <li><strong>Backend:</strong> Node.js, Express.js, PostgreSQL</li>
-                  <li><strong>Frontend:</strong> React, JavaScript</li>
-                  <li><strong>AI:</strong> LLM(OpenAI), OCR(Tesseract)</li>
-                  <li><strong>기타:</strong> RESTful API, JWT 인증</li>
+                  <li><strong>Core:</strong> React (Vite), Redux Toolkit, Tailwind CSS</li>
+                  <li><strong>Visualization:</strong> Recharts, FullCalendar</li>
+                  <li><strong>State Management:</strong> Redux Toolkit + Context API</li>
                 </ul>
+                <p><strong>Backend</strong></p>
+                <ul>
+                  <li><strong>Core:</strong> Node.js (Express), PostgreSQL</li>
+                  <li>
+                    <strong>Auth:</strong> Passport.js (Local + Google OAuth2.0), express-session
+                  </li>
+                  <li><strong>Security:</strong> Helmet, SHA-512 암호화</li>
+                </ul>
+                <p><strong>AI/OCR</strong></p>
+                <ul>
+                  <li><strong>OCR:</strong> Python + PaddleOCR</li>
+                  <li><strong>AI Analysis:</strong> OpenAI API</li>
+                  <li>
+                    <strong>Integration:</strong> Node.js에서 Python subprocess 호출하여 OCR/GPT
+                    결과 JSON 반환
+                  </li>
+                </ul>
+                <p><strong>Infrastructure</strong></p>
+                <ul>
+                  <li>Vite Build + Tomcat/Express 배포 (프론트-백 분리형 배포 구조)</li>
+                </ul>
+
+                <h4>시스템 아키텍처</h4>
+                <p>
+                  사용자 → React SPA (Vite, Redux) → Axios 통신 → Express.js API 서버 → PostgreSQL
+                  (RDB) → Python (OCR, GPT 분석)
+                </p>
+                <ul>
+                  <li>세션 기반 인증 구조: Passport.js + connect-pg-simple</li>
+                  <li>역할별 접근 제어 (RBAC): ADMIN / TRAINER / MEMBER</li>
+                  <li>AI 연동: Node.js에서 Python 스크립트를 호출하여 인바디 데이터 자동 분석</li>
+                </ul>
+
                 <h4>AI 기술 적용</h4>
                 <p>
-                  OCR 기술을 통해 사용자가 촬영한 음식 사진에서 텍스트를 추출하고, 이를 기반으로
-                  음식 정보와 칼로리를 자동으로 입력합니다. 또한 OpenAI의 LLM을 활용하여 사용자의
-                  목표와 식습관에 맞는 개인화된 식단 추천을 제공합니다.
+                  <strong>인바디 이미지 분석 자동화:</strong> PaddleOCR을 통해 인바디 측정 결과
+                  이미지에서 텍스트를 추출하고, OpenAI API를 활용하여 GPT 기반 건강 피드백 리포트를
+                  자동 생성합니다.
                 </p>
-                <h4>배포</h4>
+
+                <h4>협업 방식</h4>
+                <ul>
+                  <li>모든 팀원 (4명): 프론트엔드·백엔드 전 영역을 Full-stack 역할로 수행</li>
+                  <li>GitHub Flow 기반 브랜치 전략 (main / feature)</li>
+                  <li>Notion으로 일정 및 API 명세 공유</li>
+                  <li>회의 주기: 주 2회 (스프린트 리뷰 + 코드 리뷰)</li>
+                </ul>
+
+                <h4>프로젝트 경험</h4>
                 <p>
-                  <a href="https://fitharmony.wa4b.site" target="_blank" class="btn-visit"
-                    >프로젝트 사이트 방문</a
-                  >
+                  풀스택 개발자로서 프론트엔드와 백엔드 모두를 담당하여 개발 경험을 쌓았습니다.
+                  Node.js와 Express를 활용한 RESTful API 서버 구축, Passport.js를 통한 세션 기반
+                  인증 및 Google OAuth2.0 연동, PostgreSQL 데이터베이스 설계 및 최적화 경험을
+                  쌓았습니다. 특히 Python과 Node.js를 연동하여 PaddleOCR과 OpenAI API를 활용한 AI
+                  기능 구현 경험을 얻었습니다. 프론트엔드에서는 React와 Vite를 활용한 빠른 개발 환경
+                  구축, Redux Toolkit을 통한 상태 관리, Tailwind CSS를 활용한 반응형 디자인,
+                  Recharts와 FullCalendar를 활용한 데이터 시각화 경험을 쌓았습니다.
                 </p>
               </div>
             </div>
@@ -151,20 +227,29 @@
               <div class="portfolio-info">
                 <h3>Project information</h3>
                 <ul>
-                  <li><strong>Category</strong> AI 웹 애플리케이션</li>
-                  <li><strong>Client</strong> 교육 프로젝트</li>
-                  <li><strong>Project date</strong> 2025.05 - 2025.07</li>
-                  <li><strong>교육 기관</strong> 가산 codelab 아카데미 (KDT)</li>
+                  <li><strong>Category</strong> AI 웹 애플리케이션 (풀스택)</li>
+                  <li><strong>Client</strong> 팀 프로젝트</li>
+                  <li><strong>Project date</strong> 2025.06 – 2025.07 (약 2개월)</li>
+                  <li><strong>팀 구성</strong> 총 4인 (모두 Backend + Frontend 개발 참여)</li>
+                  <li><strong>역할</strong> 백엔드 API 설계 및 구현 / 프론트엔드 개발 / DB 설계</li>
                   <li>
                     <strong>GitHub Project URL</strong>
                     <p>
                       <a href="https://github.com/6-n0kim/FIT_HARMONY_BACK" target="_blank"
-                        >Backend</a
+                        >Backend Repository</a
                       >
                     </p>
                     <p>
                       <a href="https://github.com/6-n0kim/FIT_HARMONY_FRONT" target="_blank"
-                        >Frontend</a
+                        >Frontend Repository</a
+                      >
+                    </p>
+                  </li>
+                  <li>
+                    <strong>배포 사이트</strong>
+                    <p>
+                      <a href="https://fitharmony.wa4b.site" target="_blank" class="btn-visit"
+                        >프로젝트 사이트 방문</a
                       >
                     </p>
                   </li>

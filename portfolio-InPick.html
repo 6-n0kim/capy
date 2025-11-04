@@ -105,61 +105,240 @@
           <div class="row justify-content-between gy-4 mt-4">
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
-                <h2>InPick - 인스타그램 데이터를 통한 여행 추천 서비스</h2>
+                <h2>InPick — AI 기반 여행 일정 생성 및 추천 시스템</h2>
                 <p>
-                  InPick은 인스타그램의 여행 관련 게시물을 분석하여 개인화된 여행지 추천을 제공하는
-                  AI 기반 추천 시스템입니다. RAG(Retrieval-Augmented Generation) 기술과 협업 필터링
-                  알고리즘을 결합하여 정확하고 개인화된 여행지 추천을 구현했습니다.
+                  <strong
+                    >사용자의 여행지, 동행자, 테마, 위치 정보를 기반으로 개인화된 일정을 생성하고
+                    다양한 AI 추천 알고리즘을 활용한 장소 추천 서비스</strong
+                  >
                 </p>
                 <p>
-                  KDT AI 교육 과정의 최종 프로젝트로, 머신러닝과 딥러닝 기법을 실제 서비스에
-                  적용했습니다. 인스타그램 데이터를 크롤링하고 처리하며, 벡터 데이터베이스(FAISS)를
-                  활용한 유사도 검색과 추천 알고리즘을 구현했습니다.
+                  InPick은 AI 기반 여행 일정 생성 및 추천 시스템으로, 사용자의 여행 선호도를
+                  분석하여 개인화된 여행 일정을 자동 생성합니다. 콘텐츠 기반 추천, 협업 필터링,
+                  시퀀스 기반 Next-POI, RAG(Vector DB)를 활용한 다양한 추천 방식을 제공합니다.
                 </p>
-                <h4>주요 기능</h4>
+
+                <h4>시스템 아키텍처</h4>
+                <p>
+                  InPick은 <strong>Backend (FastAPI)</strong>와 <strong>Frontend (React)</strong>로
+                  구성된 풀스택 애플리케이션입니다:
+                </p>
                 <ul>
-                  <li>인스타그램 여행 게시물 크롤링 및 전처리</li>
-                  <li>RAG 기반 여행지 정보 검색 및 추천</li>
-                  <li>협업 필터링(CBF, ALS) 기반 맞춤형 추천</li>
-                  <li>딥러닝 모델을 통한 이미지 및 텍스트 분석</li>
-                  <li>사용자 선호도 기반 개인화 추천</li>
-                  <li>여행지 상세 정보 및 리뷰 제공</li>
-                </ul>
-                <h4>기술 스택</h4>
-                <ul>
-                  <li><strong>Backend:</strong> Python, FastAPI, PostgreSQL, MongoDB, FAISS</li>
-                  <li><strong>Frontend:</strong> React, TypeScript</li>
                   <li>
-                    <strong>AI/ML:</strong> RAG(OpenAI), ML - Implicit [CBF, ALS], DL - PyTorch
+                    <strong>Backend (FastAPI):</strong> 여행 일정 관리, AI 추천 시스템, OAuth 인증,
+                    지도 API 연동
                   </li>
-                  <li><strong>기타:</strong> 데이터 크롤링, 벡터 검색, 추천 시스템</li>
+                  <li>
+                    <strong>Frontend (React):</strong> 사용자 인터페이스, 4단계 여행 계획 마법사,
+                    지도 시각화
+                  </li>
                 </ul>
-                <h4>AI/ML 기술 적용</h4>
+
+                <h4>주요 기능</h4>
+                <p><strong>인증 시스템</strong></p>
+                <ul>
+                  <li>소셜 로그인: Google / Naver / Kakao OAuth 2.0 인증</li>
+                  <li>쿠키 기반 세션 관리 (MongoDB, TTL: 1800초)</li>
+                  <li>세션 자동 재활성화 (매 요청마다 갱신)</li>
+                  <li>계정 삭제 (soft delete 지원)</li>
+                </ul>
+                <p><strong>여행 일정 관리</strong></p>
+                <ul>
+                  <li>4단계 마법사로 일정 생성 (기본 정보 → 장소 선택 → 숙소 선택 → 최종 확인)</li>
+                  <li>일정 CRUD 작업 (생성, 조회, 수정, 삭제)</li>
+                  <li>일정 내 세부 장소 관리 (itinerary_item)</li>
+                  <li>Kakao Map 기반 경로 시각화</li>
+                </ul>
+                <p><strong>AI 추천 시스템</strong></p>
+                <ul>
+                  <li>
+                    <strong>CBF (Content-Based Filtering):</strong> 카테고리, 테마, 설명 기반 코사인
+                    유사도 추천
+                  </li>
+                  <li>
+                    <strong>CF (Collaborative Filtering):</strong> ALS 알고리즘 기반 사용자-아이템
+                    행렬 분해
+                  </li>
+                  <li>
+                    <strong>Next-POI 추천:</strong> GRU4Rec, SASRec 모델을 활용한 시퀀스 기반 다음
+                    장소 예측
+                  </li>
+                  <li>
+                    <strong>RAG 기반 추천:</strong> FAISS 벡터 DB를 활용한 위치·테마·동행자 조건
+                    검색
+                  </li>
+                  <li>
+                    <strong>GPT 추천:</strong> OpenAI, Claude를 활용한 자연어 기반 맞춤형 일정 추천
+                  </li>
+                </ul>
+                <p><strong>지도 기능</strong></p>
+                <ul>
+                  <li>Kakao Maps SDK 통합 (지도 렌더링, 마커, 인포윈도우)</li>
+                  <li>TMAP API (자동차 경로 탐색)</li>
+                  <li>장소 타입별 마커 아이콘 (음식점, 카페, 관광지 등)</li>
+                </ul>
+                <p><strong>관리자 기능</strong></p>
+                <ul>
+                  <li>대시보드 통계 (Recharts)</li>
+                  <li>사용자 관리, 카테고리 관리, 숙소 관리, SNS 계정 관리</li>
+                  <li>활동 로그 관리 (모든 주요 이벤트 로깅)</li>
+                </ul>
+
+                <h4>기술 스택</h4>
+                <p><strong>Backend (FastAPI)</strong></p>
+                <ul>
+                  <li><strong>Language:</strong> Python</li>
+                  <li><strong>Framework:</strong> FastAPI</li>
+                  <li><strong>Database:</strong> PostgreSQL, MongoDB</li>
+                  <li><strong>Vector DB:</strong> FAISS</li>
+                  <li><strong>Machine Learning:</strong> PyTorch, Implicit (ALS)</li>
+                  <li><strong>LLM/AI:</strong> OpenAI, Claude (via LangChain)</li>
+                  <li><strong>Auth:</strong> OAuth 2.0 (Google, Naver, Kakao)</li>
+                  <li><strong>Map API:</strong> Kakao Map, TMAP API</li>
+                  <li><strong>Infra:</strong> Docker, Jenkins, Gunicorn</li>
+                  <li><strong>Env:</strong> Conda (environment.yml)</li>
+                </ul>
+                <p><strong>Frontend</strong></p>
+                <ul>
+                  <li><strong>Language:</strong> TypeScript</li>
+                  <li><strong>Framework:</strong> React 19</li>
+                  <li><strong>Build Tool:</strong> Vite 7</li>
+                  <li><strong>Routing:</strong> React Router DOM 7</li>
+                  <li><strong>State Management:</strong> React Hooks (useState, useEffect)</li>
+                  <li><strong>UI Library:</strong> Radix UI, shadcn/ui</li>
+                  <li><strong>Styling:</strong> Tailwind CSS 4</li>
+                  <li><strong>Forms:</strong> React Hook Form, Zod</li>
+                  <li><strong>HTTP Client:</strong> Axios</li>
+                  <li><strong>Maps:</strong> Kakao Maps SDK</li>
+                  <li><strong>Charts:</strong> Recharts</li>
+                  <li><strong>Notifications:</strong> React Toastify</li>
+                  <li><strong>Infra:</strong> Docker, Jenkins, Nginx</li>
+                </ul>
+
+                <h4>추천 시스템 상세</h4>
+                <p><strong>1. 콘텐츠 기반 추천 (CBF)</strong></p>
+                <ul>
+                  <li>경로: app/ml/content_based_filtering/main.py</li>
+                  <li>카테고리, 테마, 설명 기반 코사인 유사도 계산</li>
+                  <li>장소 간 유사도 기반 추천</li>
+                </ul>
+                <p><strong>2. 협업 필터링 (CF - ALS)</strong></p>
+                <ul>
+                  <li>경로: app/ml/collaborative_filtering/main.py</li>
+                  <li>사용자-아이템 행렬 분해를 통한 잠재 요인 추출</li>
+                  <li>Implicit 라이브러리를 활용한 ALS 알고리즘 구현</li>
+                </ul>
+                <p><strong>3. 시퀀스 기반 Next-POI 추천</strong></p>
+                <ul>
+                  <li>GRU4Rec: app/ml/next_poi_gru4rec.py</li>
+                  <li>SASRec: app/ml/next_poi_sas_rec.py</li>
+                  <li>PyTorch 기반 딥러닝 모델로 사용자 방문 시퀀스 학습</li>
+                  <li>다음 방문할 장소 예측</li>
+                </ul>
+                <p><strong>4. RAG 기반 장소 검색</strong></p>
+                <ul>
+                  <li>경로: app/rag/faiss_store/</li>
+                  <li>FAISS 벡터 DB를 활용한 유사도 검색</li>
+                  <li>위치, 테마, 동행자 조건을 자연어로 검색</li>
+                  <li>LangChain을 통한 LLM 연동</li>
+                </ul>
+
+                <h4>인증 플로우</h4>
                 <p>
-                  <strong>RAG (Retrieval-Augmented Generation):</strong>
-                  여행지에 대한 최신 정보를 검색하고, 이를 기반으로 개인화된 추천 설명을 생성합니다.
+                  사용자 → /auth/{provider}/login → OAuth Provider 인증 → /auth/{provider}/callback
+                  → 사용자 정보 검증 → MongoDB 세션 생성 (TTL: 1800초) → app_user 테이블 등록/갱신 →
+                  쿠키 기반 세션 관리
                 </p>
-                <p>
-                  <strong>협업 필터링:</strong>
-                  콘텐츠 기반 필터링(CBF)과 행렬 분해 알고리즘(ALS)을 활용하여 사용자의 선호도와
-                  유사한 여행지에 관심이 있는 다른 사용자들의 패턴을 분석합니다.
-                </p>
-                <p>
-                  <strong>딥러닝:</strong>
-                  PyTorch를 사용하여 이미지와 텍스트를 분석하고, 여행지의 특징을 추출하여 추천
-                  품질을 향상시킵니다.
-                </p>
+                <ul>
+                  <li><strong>세션 재활성화:</strong> 매 요청마다 자동 갱신 (UserLogMiddleware)</li>
+                  <li><strong>로그아웃:</strong> GET /auth/logout (세션 삭제)</li>
+                  <li><strong>계정 삭제:</strong> DELETE /auth/user (soft delete)</li>
+                </ul>
+
+                <h4>여행 계획 마법사 (4단계)</h4>
+                <ul>
+                  <li><strong>Step 1: 기본 정보 입력</strong> - 지역, 기간, 동반자, 테마 선택</li>
+                  <li>
+                    <strong>Step 2: 장소 선택 및 추천</strong> - AI 추천 모델 선택, 장소 검색 및
+                    선택
+                  </li>
+                  <li><strong>Step 3: 숙소 선택</strong> - 숙소 검색 및 선택</li>
+                  <li><strong>Step 4: 최종 확인</strong> - 일정 최종 확인 및 저장</li>
+                </ul>
+
+                <h4>데이터베이스 구조</h4>
+                <p><strong>PostgreSQL</strong></p>
+                <ul>
+                  <li>app_user (유저 계정, 소셜 로그인, soft delete 지원)</li>
+                  <li>place (장소: 관광지, 음식점, 카페 등)</li>
+                  <li>accommodation (숙소 정보)</li>
+                  <li>itinerary (여행 일정: 시작/종료일, 구성원, 테마 등)</li>
+                  <li>itinerary_item (일정 내 세부 장소)</li>
+                  <li>category (장소 카테고리)</li>
+                  <li>region (지역 정보, 위경도 포함)</li>
+                  <li>place_category (장소-카테고리 연결, 다대다)</li>
+                  <li>place_registrar (사용자 등록 장소, 다대다)</li>
+                </ul>
+                <p><strong>MongoDB</strong></p>
+                <ul>
+                  <li>세션 저장소 (TTL: 1800초)</li>
+                  <li>활동 로그 저장</li>
+                </ul>
+
+                <h4>프론트엔드 주요 기능</h4>
+                <ul>
+                  <li>
+                    <strong>상태 관리:</strong> React Hooks 기반 (useState, useEffect),
+                    localStorage로 사용자 정보 캐싱
+                  </li>
+                  <li>
+                    <strong>UI 컴포넌트:</strong> shadcn/ui 기반 커스텀 컴포넌트 (Card, Dialog,
+                    Badge, Button, Input, Switch)
+                  </li>
+                  <li>
+                    <strong>지도 통합:</strong> Kakao Maps SDK를 통한 지도 렌더링, 마커, 경로 표시
+                  </li>
+                  <li>
+                    <strong>폼 관리:</strong> React Hook Form + Zod를 통한 폼 검증 및 데이터 처리
+                  </li>
+                  <li>
+                    <strong>API 클라이언트:</strong> Axios를 통한 백엔드 API 통신, 쿠키 기반 세션
+                    관리
+                  </li>
+                </ul>
+
                 <h4>프로젝트 특징</h4>
+                <ul>
+                  <li>
+                    <strong>다양한 추천 알고리즘:</strong> CBF, CF, 시퀀스 기반, RAG 등 5가지 추천
+                    방식 제공
+                  </li>
+                  <li>
+                    <strong>하이브리드 데이터베이스:</strong> PostgreSQL (정형 데이터) + MongoDB
+                    (세션, 로그)
+                  </li>
+                  <li><strong>벡터 검색:</strong> FAISS를 활용한 고속 유사도 검색으로 RAG 구현</li>
+                  <li>
+                    <strong>딥러닝 모델:</strong> PyTorch 기반 GRU4Rec, SASRec 모델로 시퀀스 기반
+                    추천
+                  </li>
+                  <li><strong>소셜 로그인:</strong> Google, Naver, Kakao OAuth 2.0 통합 인증</li>
+                  <li>
+                    <strong>지도 API 통합:</strong> Kakao Maps, Naver Directions, TMAP API 연동
+                  </li>
+                  <li><strong>타입 안정성:</strong> TypeScript를 전면 적용하여 타입 안전성 확보</li>
+                </ul>
+
+                <h4>프로젝트 경험</h4>
                 <p>
-                  FAISS 벡터 데이터베이스를 활용하여 대규모 이미지 및 텍스트 데이터에서 유사도를
-                  빠르게 검색할 수 있도록 구현했습니다. PostgreSQL과 MongoDB를 혼합하여 정형/비정형
-                  데이터를 효율적으로 관리하며, FastAPI를 통해 고성능 API 서버를 구축했습니다.
-                </p>
-                <h4>데이터 처리</h4>
-                <p>
-                  인스타그램에서 여행 관련 게시물을 수집하고, 이미지와 텍스트를 전처리하여 머신러닝
-                  모델에 적합한 형태로 변환합니다. 벡터화된 데이터는 FAISS에 저장되어 실시간 유사도
-                  검색이 가능합니다.
+                  팀장으로서 전체 일정과 개발 방향을 총괄하며 팀원 간 협업을 조율했습니다. 데이터
+                  구조의 일관성과 효율성을 확보하기 위해 데이터베이스를 직접 설계하고 서비스 전반의
+                  데이터 흐름을 관리했습니다. 또한 추천 시스템의 핵심인 **콘텐츠 기반
+                  필터링(Content-Based Filtering)**과 협업 필터링(ALS) 모델을 구현하여 사용자 맞춤형
+                  여행지 추천 기능을 완성했습니다. 모델 성능을 개선하기 위해 다양한 하이퍼파라미터를
+                  실험했으나, 기대한 수준의 평가 점수를 달성하지 못한 점은 아쉬움으로 남습니다. 이번
+                  프로젝트를 통해 문제 해결 능력과 팀 리딩 역량을 강화했으며, 다양한 AI 모델을 실제
+                  서비스에 적용하며 실무형 개발 역량을 한층 향상시킬 수 있었습니다.
                 </p>
               </div>
             </div>
@@ -168,21 +347,17 @@
               <div class="portfolio-info">
                 <h3>Project information</h3>
                 <ul>
-                  <li><strong>Category</strong> AI 추천 시스템</li>
-                  <li><strong>Client</strong> 교육 프로젝트</li>
-                  <li><strong>Project date</strong> 2025.09 - 2025.11</li>
-                  <li><strong>교육 기관</strong> 가산 codelab 아카데미 (KDT)</li>
+                  <li><strong>Category</strong> AI 웹 애플리케이션 (풀스택)</li>
+                  <li><strong>Client</strong> 팀 프로젝트</li>
+                  <li><strong>Project date</strong> 2025.09 – 2025.11 (약 3개월)</li>
+                  <li><strong>팀 구성</strong> AICC6-Maenggler-3rd Team</li>
                   <li>
                     <strong>GitHub Project URL</strong>
                     <p>
-                      <a href="https://github.com/6-n0kim/InPick_BACKEND" target="_blank"
-                        >Backend</a
-                      >
+                      <a href="#" target="_blank">Backend Repository</a>
                     </p>
                     <p>
-                      <a href="https://github.com/6-n0kim/InPick_FRONTEND" target="_blank"
-                        >Frontend</a
-                      >
+                      <a href="#" target="_blank">Frontend Repository</a>
                     </p>
                   </li>
                 </ul>

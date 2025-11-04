@@ -105,46 +105,225 @@
           <div class="row justify-content-between gy-4 mt-4">
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
-                <h2>Docgen - AI 기반 프로젝트 문서 자동 생성 서비스</h2>
+                <h2>DocGen — AI 기반 프로젝트 문서 자동 생성 및 관리 플랫폼</h2>
                 <p>
-                  Docgen은 개발 프로젝트의 문서화 작업을 자동화하는 AI 기반 서비스입니다. 프로젝트
-                  코드와 요구사항을 분석하여 API 문서, 사용자 가이드, 기술 문서 등을 자동으로
-                  생성합니다.
+                  <strong
+                    >프로젝트 관리, 타임라인 추적, 요구사항 문서 생성, 공지사항 관리 등을 통합한
+                    문서 자동화 플랫폼</strong
+                  >
                 </p>
                 <p>
-                  LangChain과 CrewAI를 활용한 멀티 에이전트 시스템을 구현하여, 복잡한 문서 생성
-                  프로세스를 여러 AI 에이전트가 협업하여 처리하도록 설계했습니다. TypeScript를
-                  사용하여 타입 안정성을 확보하고, MongoDB를 통해 비정형 데이터를 효율적으로
-                  관리했습니다.
+                  DocGen은 프로젝트 문서 자동 생성 및 관리 플랫폼으로, 프로젝트 관리, 타임라인 추적,
+                  요구사항 문서 생성, 공지사항 관리 등의 기능을 제공합니다. AI 기반 문서 자동 생성
+                  시스템을 통해 개발 프로세스의 문서화 작업을 효율화합니다.
                 </p>
+
+                <h4>시스템 아키텍처</h4>
+                <p>
+                  DocGen은 <strong>3개의 독립적인 서버</strong>로 구성된 마이크로서비스
+                  아키텍처입니다:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Backend (NestJS):</strong> 프로젝트 관리, 회원 관리, 타임라인, 공지사항
+                    등 메인 비즈니스 로직
+                  </li>
+                  <li>
+                    <strong>FastAPI (Python):</strong> AI 기반 문서 자동 생성 (요구사항 정의서, 기능
+                    명세서, 정책 정의서)
+                  </li>
+                  <li><strong>Frontend (React):</strong> 사용자 인터페이스 및 상태 관리</li>
+                </ul>
+
                 <h4>주요 기능</h4>
+                <p><strong>프로젝트 관리</strong></p>
                 <ul>
-                  <li>코드 기반 API 문서 자동 생성</li>
-                  <li>프로젝트 요구사항 분석 및 문서화</li>
-                  <li>멀티 에이전트 협업 시스템 (CrewAI)</li>
-                  <li>문서 템플릿 관리 및 커스터마이징</li>
-                  <li>문서 버전 관리 및 히스토리 추적</li>
-                  <li>실시간 문서 생성 진행 상황 모니터링</li>
+                  <li>프로젝트 CRUD 작업</li>
+                  <li>해시태그 기반 프로젝트 분류</li>
+                  <li>프로젝트별 문서 및 타임라인 관리</li>
+                  <li>프로젝트 열람 권한 부여</li>
                 </ul>
+                <p><strong>AI 문서 자동 생성</strong></p>
+                <ul>
+                  <li>
+                    <strong>요구사항 정의서 (PRD):</strong> 질문 생성 → 목록 생성 → 상세 내용 생성 →
+                    요약 생성
+                  </li>
+                  <li><strong>기능 명세서 (FSD):</strong> 기능 목록 생성 → 상세 기능 명세 생성</li>
+                  <li>
+                    <strong>정책 정의서 (SPD):</strong> 역할 정의 → 목록 생성 → 상세 내용 생성
+                  </li>
+                  <li>Excel 파일 자동 생성 및 다운로드</li>
+                  <li>비동기 문서 생성 (백그라운드 태스크)</li>
+                </ul>
+                <p><strong>타임라인 관리</strong></p>
+                <ul>
+                  <li>프로젝트별 타임라인 생성 및 관리</li>
+                  <li>이벤트 기반 프로젝트 진행 추적</li>
+                </ul>
+                <p><strong>회원 관리</strong></p>
+                <ul>
+                  <li>회원가입, 로그인, 로그아웃 (JWT 기반 인증)</li>
+                  <li>Access Token (10분) + Refresh Token (6시간)</li>
+                  <li>역할 기반 접근 제어 (RBAC): ADMIN / USER</li>
+                  <li>비밀번호 변경, 회원 탈퇴</li>
+                </ul>
+                <p><strong>공지사항 관리</strong></p>
+                <ul>
+                  <li>공지사항 CRUD 작업</li>
+                  <li>페이지네이션 지원</li>
+                </ul>
+
                 <h4>기술 스택</h4>
+                <p><strong>Backend (NestJS)</strong></p>
                 <ul>
-                  <li><strong>Backend:</strong> Node.js, Python, FastAPI, PostgreSQL, MongoDB</li>
-                  <li><strong>Frontend:</strong> React, TypeScript</li>
-                  <li><strong>AI:</strong> LLM(OpenAI), LangChain, CrewAI</li>
-                  <li><strong>기타:</strong> RESTful API, WebSocket, 멀티 에이전트 시스템</li>
+                  <li><strong>Core:</strong> Node.js, NestJS v11.0.1, TypeScript v5.7.3</li>
+                  <li><strong>Database:</strong> PostgreSQL v8.16.3, TypeORM v0.3.26</li>
+                  <li>
+                    <strong>Authentication:</strong> Passport.js, JWT, bcryptjs, class-validator
+                  </li>
+                  <li><strong>API Documentation:</strong> Swagger v11.2.0</li>
+                  <li><strong>Utilities:</strong> exceljs, axios, class-transformer</li>
                 </ul>
-                <h4>AI 기술 적용</h4>
+                <p><strong>FastAPI (AI 문서 생성)</strong></p>
+                <ul>
+                  <li><strong>Core:</strong> Python v3.11, FastAPI v0.104.1, Uvicorn v0.24.0</li>
+                  <li><strong>AI/ML:</strong> LangChain v0.1.0, CrewAI v0.28.8, OpenAI v1.3.0</li>
+                  <li>
+                    <strong>LLM Models:</strong> GPT-3.5/GPT-4o, Gemini 2.0/2.5 Flash, Claude 3
+                    Haiku/Sonnet
+                  </li>
+                  <li><strong>Database:</strong> MongoDB, Motor v3.3.2 (비동기 드라이버)</li>
+                  <li><strong>File Processing:</strong> openpyxl v3.1.2, python-multipart</li>
+                </ul>
+                <p><strong>Frontend</strong></p>
+                <ul>
+                  <li><strong>Core:</strong> React v19.1.1, TypeScript v5.8.3, Vite v7.1.2</li>
+                  <li><strong>Routing:</strong> React Router DOM v7.8.2</li>
+                  <li>
+                    <strong>State Management:</strong> Zustand v5.0.8, Redux Toolkit v2.8.2 (레거시)
+                  </li>
+                  <li><strong>UI/Styling:</strong> Tailwind CSS v3.4.0</li>
+                  <li><strong>Data Table:</strong> Handsontable v16.0.1</li>
+                  <li><strong>HTTP Client:</strong> Axios v1.11.0</li>
+                  <li><strong>File Processing:</strong> ExcelJS v4.4.0, XLSX v0.18.5</li>
+                </ul>
+
+                <h4>AI 문서 생성 시스템</h4>
+                <p><strong>멀티 에이전트 아키텍처 (CrewAI)</strong></p>
+                <ul>
+                  <li><strong>QuestionGenerator:</strong> 초기 질문 생성 에이전트</li>
+                  <li><strong>ListGenerator:</strong> 요구사항/기능 목록 생성 에이전트</li>
+                  <li><strong>DetailGenerator:</strong> 상세 내용 생성 에이전트</li>
+                  <li><strong>SummaryGenerator:</strong> 요약 생성 에이전트</li>
+                  <li><strong>RoleGenerator:</strong> 역할 정의 에이전트 (정책 문서용)</li>
+                </ul>
+                <p><strong>지원하는 LLM 모델</strong></p>
+                <ul>
+                  <li><strong>OpenAI:</strong> GPT-3.5 Turbo, GPT-4o</li>
+                  <li>
+                    <strong>Google Gemini:</strong> Gemini 2.0 Flash Lite, Gemini 2.5 Flash, Gemini
+                    2.5 Flash Lite
+                  </li>
+                  <li><strong>Anthropic Claude:</strong> Claude 3 Haiku, Claude 3.7 Sonnet</li>
+                </ul>
+                <p><strong>문서 생성 플로우</strong></p>
                 <p>
-                  LangChain을 활용하여 코드 분석, 문서 생성, 품질 검증 등의 여러 단계를 체인으로
-                  연결하고, CrewAI의 멀티 에이전트 시스템을 통해 각 단계를 전문 에이전트가
-                  처리하도록 구현했습니다. 이를 통해 정확하고 일관성 있는 문서를 자동으로 생성할 수
-                  있습니다.
+                  사용자 요구사항 입력 → QuestionGenerator (초기 질문 생성) → ListGenerator (목록
+                  생성) → DetailGenerator (상세 내용 생성) → SummaryGenerator (요약 생성) →
+                  RoleGenerator (역할 정의) → 최종 문서 생성 및 저장 → Excel 파일 생성 (선택사항)
                 </p>
+
+                <h4>인증 시스템</h4>
+                <ul>
+                  <li>
+                    <strong>JWT 기반 인증:</strong> Access Token (10분) + Refresh Token (6시간)
+                  </li>
+                  <li><strong>토큰 갱신:</strong> Refresh Token을 통한 자동 토큰 갱신</li>
+                  <li>
+                    <strong>역할 기반 접근 제어:</strong> ADMIN (전체 관리) / USER (개인 프로젝트,
+                    문서 생성)
+                  </li>
+                  <li>
+                    <strong>보안:</strong> bcryptjs 비밀번호 해싱, CORS 정책, class-validator 입력
+                    검증
+                  </li>
+                </ul>
+
+                <h4>데이터베이스 구조</h4>
+                <p><strong>PostgreSQL (NestJS Backend)</strong></p>
+                <ul>
+                  <li>
+                    member, project, timeline, document, notice, hashtag, project_hashtag,
+                    refresh_token
+                  </li>
+                </ul>
+                <p><strong>MongoDB (FastAPI AI 서버)</strong></p>
+                <ul>
+                  <li>requirement_document, functional_document, policy_document</li>
+                </ul>
+
+                <h4>프론트엔드 주요 기능</h4>
+                <ul>
+                  <li>
+                    <strong>상태 관리:</strong> Zustand를 활용한 도메인별 상태 분리 (인증, 프로젝트,
+                    타임라인, 공지사항, 모달)
+                  </li>
+                  <li>
+                    <strong>인증 보호 라우트:</strong> ProtectedRoute 컴포넌트를 통한 인증 필요
+                    페이지 접근 제어
+                  </li>
+                  <li>
+                    <strong>문서 뷰어:</strong> Handsontable을 활용한 스프레드시트 형태 문서 편집 및
+                    조회
+                  </li>
+                  <li><strong>Excel 처리:</strong> ExcelJS를 통한 Excel 파일 생성 및 다운로드</li>
+                  <li>
+                    <strong>API 클라이언트:</strong> Axios 인터셉터를 통한 자동 토큰 관리 및 에러
+                    처리
+                  </li>
+                </ul>
+
                 <h4>프로젝트 특징</h4>
+                <ul>
+                  <li>
+                    <strong>마이크로서비스 아키텍처:</strong> NestJS (비즈니스 로직) + FastAPI (AI
+                    처리) 분리
+                  </li>
+                  <li>
+                    <strong>하이브리드 데이터베이스:</strong> PostgreSQL (정형 데이터) + MongoDB
+                    (비정형 문서 데이터)
+                  </li>
+                  <li><strong>타입 안정성:</strong> TypeScript를 전면 적용하여 타입 안전성 확보</li>
+                  <li>
+                    <strong>AI 멀티 에이전트:</strong> CrewAI를 활용한 전문 에이전트 협업 시스템
+                  </li>
+                  <li>
+                    <strong>다중 LLM 지원:</strong> OpenAI, Google Gemini, Anthropic Claude 모델
+                    지원
+                  </li>
+                  <li>
+                    <strong>비동기 문서 생성:</strong> 백그라운드 태스크로 문서 생성 진행 상황 추적
+                  </li>
+                </ul>
+
+                <h4>협업 방식</h4>
+                <ul>
+                  <li>모든 팀원 (4명): 프론트엔드 / 백엔드 개발 참여</li>
+                  <li>GitHub Flow 기반 브랜치 전략 (main / dev / feature)</li>
+                  <li>구글드라이브로 일정 및 문서 공유</li>
+                  <li>회의 주기: 주 1회 (스프린트 리뷰)</li>
+                </ul>
+
+                <h4>프로젝트 경험</h4>
                 <p>
-                  Python FastAPI와 Node.js를 함께 사용하여 각 언어의 장점을 활용했으며, PostgreSQL과
-                  MongoDB를 혼합하여 정형/비정형 데이터를 효율적으로 관리했습니다. TypeScript를
-                  도입하여 프론트엔드 개발의 안정성을 높였습니다.
+                  풀스택 개발자로서 3개의 서버를 설계하고 개발했습니다. NestJS를 활용한 RESTful API
+                  서버 구축, JWT 기반 인증 시스템 구현, TypeORM을 활용한 데이터베이스 설계 및 최적화
+                  경험을 쌓았습니다. FastAPI를 활용한 AI 문서 생성 서버 구축, LangChain과 CrewAI를
+                  활용한 멀티 에이전트 시스템 구현, 다양한 LLM 모델(OpenAI, Gemini, Claude) 연동
+                  경험을 얻었습니다. 프론트엔드에서는 React 19와 TypeScript를 활용한 타입 안전한
+                  개발, Zustand를 활용한 경량 상태 관리, Vite를 활용한 빠른 개발 환경,
+                  Handsontable을 활용한 스프레드시트 컴포넌트 구현 경험을 쌓았습니다.
                 </p>
               </div>
             </div>
@@ -153,25 +332,26 @@
               <div class="portfolio-info">
                 <h3>Project information</h3>
                 <ul>
-                  <li><strong>Category</strong> AI 웹 애플리케이션</li>
-                  <li><strong>Client</strong> 교육 프로젝트</li>
-                  <li><strong>Project date</strong> 2025.07 - 2025.08</li>
-                  <li><strong>교육 기관</strong> 가산 codelab 아카데미 (KDT)</li>
+                  <li><strong>Category</strong> AI 웹 애플리케이션 (풀스택)</li>
+                  <li><strong>Client</strong> 팀 프로젝트</li>
+                  <li><strong>Project date</strong> 2025.07 – 2025.08 (약 2개월)</li>
+                  <li><strong>팀 구성</strong> 총 4인 (모두 Backend + Frontend 개발 참여)</li>
+                  <li><strong>역할</strong> 백엔드, 프론트엔드 개발 / DB 설계 / AI 문서 생성</li>
                   <li>
                     <strong>GitHub Project URL</strong>
                     <p>
                       <a href="https://github.com/6-n0kim/docgen-backend" target="_blank"
-                        >Backend</a
+                        >Backend (NestJS) Repository</a
                       >
                     </p>
                     <p>
                       <a href="https://github.com/6-n0kim/docgen-fastapi" target="_blank"
-                        >FastAPI</a
+                        >FastAPI (AI 서버) Repository</a
                       >
                     </p>
                     <p>
                       <a href="https://github.com/6-n0kim/docgen-frontend" target="_blank"
-                        >Frontend</a
+                        >Frontend Repository</a
                       >
                     </p>
                   </li>

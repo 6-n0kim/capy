@@ -105,38 +105,89 @@
           <div class="row justify-content-between gy-4 mt-4">
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
-                <h2>OnSpot - 맵 기반 SNS 서비스</h2>
+                <h2>On Spot — 위치 기반 소셜 미디어 플랫폼</h2>
                 <p>
-                  OnSpot은 지도를 기반으로 한 위치 기반 소셜 네트워크 서비스입니다. 사용자가 특정
+                  <strong
+                    >내 주변의 경험을 공유하고, 지도 위에서 새로운 사람들의 이야기를 발견하는
+                    공간</strong
+                  >
+                </p>
+                <p>
+                  On Spot은 지도를 기반으로 한 위치 기반 소셜 네트워크 서비스입니다. 사용자가 특정
                   장소에서의 경험과 사진을 공유하고, 다른 사용자들의 추천을 받을 수 있는
                   플랫폼입니다.
                 </p>
+
+                <h4>문제 정의</h4>
                 <p>
-                  자바 개발자 양성 교육 과정에서 진행한 첫 번째 팀 프로젝트로, Spring Framework와
-                  JSP를 활용한 웹 애플리케이션 개발 경험을 쌓았습니다. 카카오 맵 API를 활용하여 지도
-                  서비스를 구현했으며, 사용자 인증 및 게시물 관리 기능을 개발했습니다.
+                  기존 SNS에서는 게시물이 시간순으로만 정렬되어
+                  <strong>"지금 이 장소 주변에서 무슨 일이 있는가"</strong>를 알기 어려움을 해결하기
+                  위해, 위치 데이터를 중심으로 콘텐츠를 탐색할 수 있는 플랫폼을 설계하였습니다.
                 </p>
+                <ul>
+                  <li>게시물에 위치 정보와 좌표를 결합 → 지도 기반 탐색</li>
+                  <li>Kakao Map SDK로 실제 장소 중심의 UI 제공</li>
+                  <li>Oracle 기반 데이터 구조로 다중 사용자 요청 처리 안정화</li>
+                </ul>
+
                 <h4>주요 기능</h4>
                 <ul>
-                  <li>지도 기반 위치 표시 및 검색</li>
-                  <li>장소별 게시물 작성 및 공유</li>
-                  <li>사진 업로드 및 갤러리 기능</li>
-                  <li>댓글 및 좋아요 기능</li>
-                  <li>회원 관리 및 프로필 설정</li>
-                  <li>팔로우 및 팔로워 시스템</li>
+                  <li>
+                    <strong>회원 관리:</strong> 회원가입, 로그인, 아이디/비밀번호 찾기, 마이페이지,
+                    회원 탈퇴
+                  </li>
+                  <li>
+                    <strong>게시물 기능:</strong> 이미지 업로드, 위치 정보 입력,
+                    최신순/인기순/팔로우 게시물 조회, 게시물 검색
+                  </li>
+                  <li><strong>댓글 시스템:</strong> 게시물별 댓글 작성 및 조회</li>
+                  <li>
+                    <strong>지도 기능:</strong> Kakao Maps SDK 통합, 지도 클릭으로 마커 위치 설정,
+                    게시물 위치 연동
+                  </li>
+                  <li><strong>사용자 검색:</strong> 닉네임 기반 사용자 검색</li>
+                  <li><strong>팔로우 시스템:</strong> 팔로우 및 팔로워 관리</li>
                 </ul>
+
                 <h4>기술 스택</h4>
                 <ul>
-                  <li><strong>Backend:</strong> Java, Spring Framework, Oracle Database</li>
-                  <li><strong>Frontend:</strong> JSP, JavaScript, HTML/CSS</li>
-                  <li><strong>API:</strong> 카카오 맵 API</li>
-                  <li><strong>기타:</strong> MVC 패턴, 세션 관리</li>
+                  <li><strong>Backend:</strong> Java (JSP/Servlet), Oracle Database 11g</li>
+                  <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript, Bootstrap</li>
+                  <li><strong>Map API:</strong> Kakao Maps SDK</li>
+                  <li><strong>File Upload:</strong> COS (Multipart)</li>
+                  <li><strong>Server:</strong> Apache Tomcat 8.5</li>
+                  <li><strong>아키텍처:</strong> MVC 패턴 (DTO/DAO), 커넥션 풀, 세션 관리</li>
                 </ul>
+
+                <h4>시스템 아키텍처</h4>
+                <p>
+                  사용자 요청 → Front-End JSP/JS → Controller (Servlet) → Service Layer (DAO/DTO) →
+                  DB Connection Pool (Oracle)
+                </p>
+
+                <h4>기술적 도전 및 개선 경험</h4>
+                <ul>
+                  <li>
+                    <strong>파일 업로드 안정화:</strong> Multipart 처리 시 인코딩 깨짐 문제 → UTF-8
+                    필터 설정으로 해결
+                  </li>
+                  <li>
+                    <strong>SQL Injection 방지:</strong> PreparedStatement 적용, 검색 쿼리 문자열
+                    연결 제거
+                  </li>
+                  <li>
+                    <strong>API 응답 속도 개선:</strong> 인기 게시물 조회 SQL 인덱스 튜닝 (LIKE →
+                    INSTR + INDEX)
+                  </li>
+                </ul>
+
                 <h4>프로젝트 경험</h4>
                 <p>
-                  이 프로젝트를 통해 Spring Framework의 기본 구조와 동작 원리를 학습했으며, 웹
-                  애플리케이션의 전체 개발 프로세스를 경험했습니다. 팀 프로젝트를 통해 협업 방법과
-                  코드 리뷰 프로세스를 이해했습니다.
+                  이 프로젝트를 통해 Java 웹 애플리케이션의 전체 개발 프로세스를 경험했습니다.
+                  JSP/Servlet 기반의 MVC 패턴을 구현하며 웹 애플리케이션의 기본 구조와 동작 원리를
+                  학습했고, Kakao Maps API를 활용한 지도 서비스 통합 경험을 쌓았습니다. Oracle
+                  Database를 활용한 데이터베이스 설계 및 최적화, 커넥션 풀 관리, 세션 기반 인증
+                  시스템 구축 등의 백엔드 개발 역량을 키웠습니다.
                 </p>
               </div>
             </div>
@@ -146,9 +197,9 @@
                 <h3>Project information</h3>
                 <ul>
                   <li><strong>Category</strong> 웹 애플리케이션</li>
-                  <li><strong>Client</strong> 교육 프로젝트</li>
-                  <li><strong>Project date</strong> 2022.07 - 2022.09</li>
-                  <li><strong>교육 기관</strong> 신촌 한국 ICT 인재개발원</li>
+                  <li><strong>Client</strong> 개인 프로젝트</li>
+                  <li><strong>Project date</strong> 2022.07 – 2022.09 (약 2개월)</li>
+                  <li><strong>팀 규모</strong> 1인</li>
                   <li>
                     <strong>GitHub Project URL</strong>
                     <p>
