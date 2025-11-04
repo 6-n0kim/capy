@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>InPick - Portfolio Details</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="portfolio-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">JY BLOG</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li>
+              <a href="index.html#hero">Home<br /></a>
+            </li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#resume">Resume</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Page Title -->
+      <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">InPick</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">InPick</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- End Page Title -->
+
+      <!-- Portfolio Details Section -->
+      <section id="portfolio-details" class="portfolio-details section">
+        <div class="container" data-aos="fade-up">
+          <div class="portfolio-details-slider swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "navigation": {
+                  "nextEl": ".swiper-button-next",
+                  "prevEl": ".swiper-button-prev"
+                },
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                }
+              }
+            </script>
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide">
+                <img src="assets/img/portfolio/inPick.jpg" alt="InPick" />
+              </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <div class="row justify-content-between gy-4 mt-4">
+            <div class="col-lg-8" data-aos="fade-up">
+              <div class="portfolio-description">
+                <h2>InPick - 인스타그램 데이터를 통한 여행 추천 서비스</h2>
+                <p>
+                  InPick은 인스타그램의 여행 관련 게시물을 분석하여 개인화된 여행지 추천을 제공하는
+                  AI 기반 추천 시스템입니다. RAG(Retrieval-Augmented Generation) 기술과 협업 필터링
+                  알고리즘을 결합하여 정확하고 개인화된 여행지 추천을 구현했습니다.
+                </p>
+                <p>
+                  KDT AI 교육 과정의 최종 프로젝트로, 머신러닝과 딥러닝 기법을 실제 서비스에
+                  적용했습니다. 인스타그램 데이터를 크롤링하고 처리하며, 벡터 데이터베이스(FAISS)를
+                  활용한 유사도 검색과 추천 알고리즘을 구현했습니다.
+                </p>
+                <h4>주요 기능</h4>
+                <ul>
+                  <li>인스타그램 여행 게시물 크롤링 및 전처리</li>
+                  <li>RAG 기반 여행지 정보 검색 및 추천</li>
+                  <li>협업 필터링(CBF, ALS) 기반 맞춤형 추천</li>
+                  <li>딥러닝 모델을 통한 이미지 및 텍스트 분석</li>
+                  <li>사용자 선호도 기반 개인화 추천</li>
+                  <li>여행지 상세 정보 및 리뷰 제공</li>
+                </ul>
+                <h4>기술 스택</h4>
+                <ul>
+                  <li><strong>Backend:</strong> Python, FastAPI, PostgreSQL, MongoDB, FAISS</li>
+                  <li><strong>Frontend:</strong> React, TypeScript</li>
+                  <li>
+                    <strong>AI/ML:</strong> RAG(OpenAI), ML - Implicit [CBF, ALS], DL - PyTorch
+                  </li>
+                  <li><strong>기타:</strong> 데이터 크롤링, 벡터 검색, 추천 시스템</li>
+                </ul>
+                <h4>AI/ML 기술 적용</h4>
+                <p>
+                  <strong>RAG (Retrieval-Augmented Generation):</strong>
+                  여행지에 대한 최신 정보를 검색하고, 이를 기반으로 개인화된 추천 설명을 생성합니다.
+                </p>
+                <p>
+                  <strong>협업 필터링:</strong>
+                  콘텐츠 기반 필터링(CBF)과 행렬 분해 알고리즘(ALS)을 활용하여 사용자의 선호도와
+                  유사한 여행지에 관심이 있는 다른 사용자들의 패턴을 분석합니다.
+                </p>
+                <p>
+                  <strong>딥러닝:</strong>
+                  PyTorch를 사용하여 이미지와 텍스트를 분석하고, 여행지의 특징을 추출하여 추천
+                  품질을 향상시킵니다.
+                </p>
+                <h4>프로젝트 특징</h4>
+                <p>
+                  FAISS 벡터 데이터베이스를 활용하여 대규모 이미지 및 텍스트 데이터에서 유사도를
+                  빠르게 검색할 수 있도록 구현했습니다. PostgreSQL과 MongoDB를 혼합하여 정형/비정형
+                  데이터를 효율적으로 관리하며, FastAPI를 통해 고성능 API 서버를 구축했습니다.
+                </p>
+                <h4>데이터 처리</h4>
+                <p>
+                  인스타그램에서 여행 관련 게시물을 수집하고, 이미지와 텍스트를 전처리하여 머신러닝
+                  모델에 적합한 형태로 변환합니다. 벡터화된 데이터는 FAISS에 저장되어 실시간 유사도
+                  검색이 가능합니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="portfolio-info">
+                <h3>Project information</h3>
+                <ul>
+                  <li><strong>Category</strong> AI 추천 시스템</li>
+                  <li><strong>Client</strong> 교육 프로젝트</li>
+                  <li><strong>Project date</strong> 2025.09 - 2025.11</li>
+                  <li><strong>교육 기관</strong> 가산 codelab 아카데미 (KDT)</li>
+                  <li>
+                    <strong>GitHub Project URL</strong>
+                    <p>
+                      <a href="https://github.com/6-n0kim/InPick_BACKEND" target="_blank"
+                        >Backend</a
+                      >
+                    </p>
+                    <p>
+                      <a href="https://github.com/6-n0kim/InPick_FRONTEND" target="_blank"
+                        >Frontend</a
+                      >
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Portfolio Details Section -->
+    </main>
+
+    <footer id="footer" class="footer accent-background">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>
+            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
+            <span>All Rights Reserved</span>
+          </p>
+        </div>
+        <div class="social-links d-flex justify-content-center">
+          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Docgen - Portfolio Details</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="portfolio-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">JY BLOG</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li>
+              <a href="index.html#hero">Home<br /></a>
+            </li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#resume">Resume</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Page Title -->
+      <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">Docgen</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">Docgen</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- End Page Title -->
+
+      <!-- Portfolio Details Section -->
+      <section id="portfolio-details" class="portfolio-details section">
+        <div class="container" data-aos="fade-up">
+          <div class="portfolio-details-slider swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "navigation": {
+                  "nextEl": ".swiper-button-next",
+                  "prevEl": ".swiper-button-prev"
+                },
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                }
+              }
+            </script>
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide">
+                <img src="assets/img/portfolio/docgen.jpg" alt="Docgen" />
+              </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <div class="row justify-content-between gy-4 mt-4">
+            <div class="col-lg-8" data-aos="fade-up">
+              <div class="portfolio-description">
+                <h2>Docgen - AI 기반 프로젝트 문서 자동 생성 서비스</h2>
+                <p>
+                  Docgen은 개발 프로젝트의 문서화 작업을 자동화하는 AI 기반 서비스입니다. 프로젝트
+                  코드와 요구사항을 분석하여 API 문서, 사용자 가이드, 기술 문서 등을 자동으로
+                  생성합니다.
+                </p>
+                <p>
+                  LangChain과 CrewAI를 활용한 멀티 에이전트 시스템을 구현하여, 복잡한 문서 생성
+                  프로세스를 여러 AI 에이전트가 협업하여 처리하도록 설계했습니다. TypeScript를
+                  사용하여 타입 안정성을 확보하고, MongoDB를 통해 비정형 데이터를 효율적으로
+                  관리했습니다.
+                </p>
+                <h4>주요 기능</h4>
+                <ul>
+                  <li>코드 기반 API 문서 자동 생성</li>
+                  <li>프로젝트 요구사항 분석 및 문서화</li>
+                  <li>멀티 에이전트 협업 시스템 (CrewAI)</li>
+                  <li>문서 템플릿 관리 및 커스터마이징</li>
+                  <li>문서 버전 관리 및 히스토리 추적</li>
+                  <li>실시간 문서 생성 진행 상황 모니터링</li>
+                </ul>
+                <h4>기술 스택</h4>
+                <ul>
+                  <li><strong>Backend:</strong> Node.js, Python, FastAPI, PostgreSQL, MongoDB</li>
+                  <li><strong>Frontend:</strong> React, TypeScript</li>
+                  <li><strong>AI:</strong> LLM(OpenAI), LangChain, CrewAI</li>
+                  <li><strong>기타:</strong> RESTful API, WebSocket, 멀티 에이전트 시스템</li>
+                </ul>
+                <h4>AI 기술 적용</h4>
+                <p>
+                  LangChain을 활용하여 코드 분석, 문서 생성, 품질 검증 등의 여러 단계를 체인으로
+                  연결하고, CrewAI의 멀티 에이전트 시스템을 통해 각 단계를 전문 에이전트가
+                  처리하도록 구현했습니다. 이를 통해 정확하고 일관성 있는 문서를 자동으로 생성할 수
+                  있습니다.
+                </p>
+                <h4>프로젝트 특징</h4>
+                <p>
+                  Python FastAPI와 Node.js를 함께 사용하여 각 언어의 장점을 활용했으며, PostgreSQL과
+                  MongoDB를 혼합하여 정형/비정형 데이터를 효율적으로 관리했습니다. TypeScript를
+                  도입하여 프론트엔드 개발의 안정성을 높였습니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="portfolio-info">
+                <h3>Project information</h3>
+                <ul>
+                  <li><strong>Category</strong> AI 웹 애플리케이션</li>
+                  <li><strong>Client</strong> 교육 프로젝트</li>
+                  <li><strong>Project date</strong> 2025.07 - 2025.08</li>
+                  <li><strong>교육 기관</strong> 가산 codelab 아카데미 (KDT)</li>
+                  <li>
+                    <strong>GitHub Project URL</strong>
+                    <p>
+                      <a href="https://github.com/6-n0kim/docgen-backend" target="_blank"
+                        >Backend</a
+                      >
+                    </p>
+                    <p>
+                      <a href="https://github.com/6-n0kim/docgen-fastapi" target="_blank"
+                        >FastAPI</a
+                      >
+                    </p>
+                    <p>
+                      <a href="https://github.com/6-n0kim/docgen-frontend" target="_blank"
+                        >Frontend</a
+                      >
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Portfolio Details Section -->
+    </main>
+
+    <footer id="footer" class="footer accent-background">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>
+            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
+            <span>All Rights Reserved</span>
+          </p>
+        </div>
+        <div class="social-links d-flex justify-content-center">
+          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
