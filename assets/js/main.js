@@ -232,18 +232,49 @@
   let navmenulinks = document.querySelectorAll('.navmenu a');
 
   function navmenuScrollspy() {
+    let sections = [];
+    let scrollPosition = window.scrollY + 200;
+    let windowHeight = window.innerHeight;
+    let documentHeight = document.documentElement.scrollHeight;
+
+    // 모든 섹션 정보 수집
     navmenulinks.forEach(navmenulink => {
       if (!navmenulink.hash) return;
       let section = document.querySelector(navmenulink.hash);
       if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
-      } else {
-        navmenulink.classList.remove('active');
+      sections.push({
+        link: navmenulink,
+        section: section,
+        top: section.offsetTop,
+        bottom: section.offsetTop + section.offsetHeight
+      });
+    });
+
+    // 섹션을 정렬 (위에서 아래로)
+    sections.sort((a, b) => a.top - b.top);
+
+    // 현재 활성화할 섹션 찾기
+    let activeSection = null;
+    
+    // 페이지 끝에 가까운 경우 마지막 섹션 활성화
+    if (scrollPosition + windowHeight >= documentHeight - 100) {
+      activeSection = sections[sections.length - 1];
+    } else {
+      // 현재 스크롤 위치에서 가장 적합한 섹션 찾기
+      for (let i = sections.length - 1; i >= 0; i--) {
+        let section = sections[i];
+        if (scrollPosition >= section.top - 100) {
+          activeSection = section;
+          break;
+        }
       }
-    })
+    }
+
+    // 모든 링크에서 active 제거 후 활성 섹션에만 추가
+    navmenulinks.forEach(link => link.classList.remove('active'));
+    if (activeSection) {
+      activeSection.link.classList.add('active');
+    }
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
