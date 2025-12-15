@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fit Harmony - Portfolio Details</title>
+    <meta
+      name="description"
+      content="AI 기반 실시간 자세 교정 및 맞춤형 운동 추천 서비스 Fit Harmony 포트폴리오"
+    />
+
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+
+    <style>
+      /* 커스텀 스타일 */
+      .tech-badge {
+        font-size: 0.85rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+      }
+      .diagram-container {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        border: 1px solid #e9ecef;
+        overflow-x: auto;
+      }
+      .section-title {
+        border-left: 4px solid #007bff;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #333;
+      }
+      .screenshot-placeholder {
+        width: 100%;
+        height: 250px;
+        background-color: #e9ecef;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        color: #6c757d;
+        border: 2px dashed #ced4da;
+      }
+      .screenshot-img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body class="portfolio-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">JY BLOG</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">Fit Harmony Project</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">Fit Harmony</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <section id="portfolio-details" class="portfolio-details section">
+        <div class="container" data-aos="fade-up">
+          <div class="row justify-content-between gy-4 mt-4">
+            <div class="col-lg-8" data-aos="fade-up">
+              <div class="portfolio-description">
+                <h2>Fit Harmony — AI 기반 실시간 자세 교정 및 운동 추천 서비스</h2>
+                <p class="lead text-muted">
+                  웹캠을 통해 사용자의 운동 자세를 실시간으로 분석하고 피드백을 제공하는
+                  서비스입니다.
+                </p>
+
+                <hr class="my-4" />
+
+                <h3 class="section-title">1. 시스템 아키텍처 (System Architecture)</h3>
+                <p>
+                  프론트엔드에서 AI 모델을 직접 실행(On-Device AI)하여 서버 부하를 줄이고 실시간성을
+                  확보했습니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+graph TD
+    subgraph ClientLayer [Client Layer]
+        React["React Frontend"] 
+        Browser["User Browser<br/>(WebCam Access)"]
+    end
+
+    subgraph FrontAI [On-Device AI]
+        TFJS["TensorFlow.js<br/>(PoseNet Model)"]
+        CorrectionLogic["Client-side Correction Logic<br/>(Keypoint Analysis)"]
+    end
+
+    subgraph ServerLayer [Server Layer]
+        Express["Backend Server<br/>(Express.js/Node.js)"]
+    end
+
+    subgraph DataLayer [Data Layer]
+        MySQL[("MySQL/MariaDB<br/>User/Record Data")]
+        Redis[("Redis<br/>Caching/Session")]
+    end
+
+    Browser -->|Stream Video| TFJS
+    TFJS -->|Keypoints| CorrectionLogic
+    CorrectionLogic -->|Real-time Feedback| React
+    React -->|REST API| Express
+    Express -->|Sequelize| MySQL
+    Express --> Redis
+</pre>
+                  <p class="text-muted small mt-2">▲ 클라이언트 기반 AI 분석 및 서버 연동 구조</p>
+                </div>
+
+                <h3 class="section-title mt-5">2. 주요 기능 및 화면 (UI/UX)</h3>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <span class="text-center"
+                        >📷 <strong>실시간 자세 교정 화면</strong><br />키포인트 및 피드백</span
+                      >
+                    </div>
+                    <h5>AI 실시간 피드백</h5>
+                    <p class="small">
+                      PoseNet으로 추출된 관절 키포인트를 분석하여 오차각에 따른 음성/텍스트 피드백
+                      제공.
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <span class="text-center"
+                        >📷 <strong>운동 기록 대시보드</strong><br />Reps/Sets 및 칼로리</span
+                      >
+                    </div>
+                    <h5>맞춤형 운동 기록</h5>
+                    <p class="small">
+                      운동 종류별 횟수(Reps), 세트(Sets), 소모 칼로리를 기록하고 그래프로 시각화.
+                    </p>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">3. 실시간 자세 교정 알고리즘 Flow</h3>
+                <p>웹캠 입력부터 오차 계산, 피드백 출력까지의 논리적인 순서입니다.</p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+sequenceDiagram
+    participant User
+    participant Webcam
+    participant TFJS as PoseNet Model
+    participant Analyzer as Angle Analyzer
+    participant Feedback as Feedback Logic
+
+    User->>Webcam: 1. 운동 시작
+    Webcam->>TFJS: 2. 비디오 프레임 전달 (30fps)
+    TFJS->>Analyzer: 3. 관절 키포인트 추출 (X, Y, Z, Score)
+    
+    rect rgb(240, 248, 255)
+    Analyzer->>Analyzer: 4. 기준 각도와 현재 각도 계산 (Cosine Similarity)
+    Analyzer->>Feedback: 5. 오차율(%) 전달
+    Feedback->>Feedback: 6. 오차율에 따른 메시지 결정
+    end
+    
+    Feedback->>User: 7. "무릎이 너무 나갔어요!" (음성/텍스트)
+    Feedback->>TFJS: 8. 다음 프레임 대기
+</pre
+                  >
+                </div>
+
+                <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
+                <p>
+                  사용자, 운동 정보, 기록 데이터를 중심으로 설계된 관계형 데이터베이스(RDB)
+                  구조입니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+erDiagram
+    APP_USER ||--o{ WORKOUT_RECORD : "records"
+    APP_USER ||--o{ USER_PREFERENCE : has
+    APP_USER {
+        int id PK
+        string email
+        string password_hash
+        string nickname
+    }
+    WORKOUT_RECORD ||--o{ EXERCISE_SESSION : contains
+    WORKOUT_RECORD {
+        int id PK
+        date date
+        int total_duration_min
+        int total_calories
+    }
+    EXERCISE_SESSION ||--o{ EXERCISE_TYPE : defines
+    EXERCISE_SESSION {
+        int id PK
+        int set_count
+        int rep_count
+        float accuracy_avg
+    }
+    EXERCISE_TYPE {
+        int id PK
+        string name "squat/lunge"
+        json reference_angles
+    }
+</pre
+                  >
+                  <p class="text-muted small mt-2">▲ MySQL 주요 엔티티 관계도</p>
+                </div>
+
+                <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Frontend & AI</h5>
+                        <span class="badge bg-primary tech-badge">React 18</span>
+                        <span class="badge bg-primary tech-badge">TypeScript</span>
+                        <span class="badge bg-danger tech-badge">TensorFlow.js</span>
+                        <span class="badge bg-danger tech-badge">PoseNet</span>
+                        <span class="badge bg-info tech-badge">p5.js (Canvas)</span>
+                        <span class="badge bg-secondary tech-badge">MUI/Styled-Components</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Backend & DB</h5>
+                        <span class="badge bg-success tech-badge">Node.js</span>
+                        <span class="badge bg-success tech-badge">Express.js</span>
+                        <span class="badge bg-warning text-dark tech-badge">MySQL/MariaDB</span>
+                        <span class="badge bg-warning text-dark tech-badge">Sequelize ORM</span>
+                        <span class="badge bg-info tech-badge">Redis</span>
+                        <span class="badge bg-dark tech-badge">JWT Auth</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Deployment</h5>
+                        <span class="badge bg-primary tech-badge">AWS EC2</span>
+                        <span class="badge bg-primary tech-badge">Docker</span>
+                        <span class="badge bg-secondary tech-badge">Nginx Proxy</span>
+                        <span class="badge bg-dark tech-badge">Git Actions (CI/CD)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="portfolio-info shadow-sm p-4 rounded">
+                <h3>Project Info</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-3">
+                    <strong>Category</strong> <br />AI/헬스케어 웹 서비스 (풀스택)
+                  </li>
+                  <li class="mb-3">
+                    <strong>Role</strong> <br />AI 모델 적용, 프론트엔드 개발, DB 관리
+                  </li>
+                  <li class="mb-3"><strong>Date</strong> <br />2025.04 – 2025.06 (3개월)</li>
+                  <li class="mb-3">
+                    <strong>GitHub</strong><br />
+                    <a href="#" target="_blank" class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Project Repo</a
+                    >
+                  </li>
+                  <li class="mb-3">
+                    <strong>Deployment</strong><br />
+                    <a
+                      href="https://fitharmony.com/"
+                      target="_blank"
+                      class="btn btn-primary btn-sm w-100 mt-2"
+                      >사이트 방문하기</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer accent-background">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>
+            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
+            <span>All Rights Reserved</span>
+          </p>
+        </div>
+        <div class="social-links d-flex justify-content-center">
+          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

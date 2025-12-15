@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>BodyManager - Portfolio Details</title>
+    <meta
+      name="description"
+      content="Spring Boot와 React 기반의 헬스장 통합 관리 시스템 BodyManager 포트폴리오"
+    />
+
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+
+    <style>
+      /* 커스텀 스타일 */
+      .tech-badge {
+        font-size: 0.85rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+      }
+      .diagram-container {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        border: 1px solid #e9ecef;
+        overflow-x: auto;
+      }
+      .section-title {
+        border-left: 4px solid #007bff;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #333;
+      }
+      .screenshot-placeholder {
+        width: 100%;
+        height: 250px;
+        background-color: #e9ecef;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        color: #6c757d;
+        border: 2px dashed #ced4da;
+      }
+      .screenshot-img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body class="portfolio-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">JY BLOG</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">BodyManager Project</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">BodyManager</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <section id="portfolio-details" class="portfolio-details section">
+        <div class="container" data-aos="fade-up">
+          <div class="row justify-content-between gy-4 mt-4">
+            <div class="col-lg-8" data-aos="fade-up">
+              <div class="portfolio-description">
+                <h2>BodyManager — 헬스장 통합 운영 관리 플랫폼</h2>
+                <p class="lead text-muted">
+                  회원 관리, 운동 기록, 결제부터 실시간 상담까지.<br />
+                  피트니스 센터 운영에 필요한 모든 기능을 하나로 통합한 풀스택 웹
+                  애플리케이션입니다.
+                </p>
+
+                <hr class="my-4" />
+
+                <h3 class="section-title">1. 시스템 아키텍처 (System Architecture)</h3>
+                <p>
+                  Spring Boot와 React를 분리하여 구축하고, JWT를 이용한 Stateless 인증 방식을
+                  채택했습니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+graph TD
+    subgraph Client [Client Side]
+        React["React Application<br>(Redux Toolkit)"]
+    end
+
+    subgraph Server [Server Side]
+        SpringBoot["Spring Boot API Server<br>(Spring Security)"]
+        WebSocket["WebSocket / STOMP"]
+    end
+
+    subgraph Data [Data Persistence]
+        MariaDB[("MariaDB<br>(JPA / QueryDSL)")]
+        S3[("AWS S3<br>(File Storage)")]
+    end
+
+    subgraph External [External Services]
+        Toss["Toss Payments"]
+        SMTP["Gmail SMTP"]
+    end
+
+    React -->|REST API / JWT| SpringBoot
+    React -->|Real-time Chat| WebSocket
+    SpringBoot -->|ORM| MariaDB
+    SpringBoot -->|Image Upload| S3
+    SpringBoot -->|Payment Verify| Toss
+    SpringBoot -->|Email Auth| SMTP
+</pre>
+                  <p class="text-muted small mt-2">
+                    ▲ React 클라이언트와 Spring Boot 서버 간의 데이터 흐름
+                  </p>
+                </div>
+
+                <h3 class="section-title mt-5">2. 주요 기능 및 화면 (UI/UX)</h3>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <span class="text-center"
+                        >📷 <strong>인바디 데이터 시각화</strong><br />Recharts 기반 차트</span
+                      >
+                    </div>
+                    <h5>체성분 분석 시각화</h5>
+                    <p class="small">
+                      Recharts 라이브러리를 활용하여 인바디 데이터의 변화 추이를 라인/바/레이더
+                      차트로 직관적으로 보여줍니다.
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <span class="text-center"
+                        >📷 <strong>실시간 1:1 채팅</strong><br />회원-트레이너 상담</span
+                      >
+                    </div>
+                    <h5>실시간 상담 시스템</h5>
+                    <p class="small">
+                      WebSocket과 STOMP 프로토콜을 사용하여 트레이너와 회원 간의 끊김 없는 실시간
+                      소통을 지원합니다.
+                    </p>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">3. 핵심 로직: STOMP 실시간 채팅</h3>
+                <p>메시지 브로커 패턴을 활용한 실시간 양방향 통신 프로세스입니다.</p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+sequenceDiagram
+    participant UserA as Sender (Client)
+    participant Server as Spring Boot (Broker)
+    participant UserB as Receiver (Client)
+    participant DB as MariaDB
+
+    UserA->>Server: 1. CONNECT (SockJS/WS)
+    UserB->>Server: 1. CONNECT (SockJS/WS)
+    UserB->>Server: 2. SUBSCRIBE (/sub/room/1)
+    
+    UserA->>Server: 3. SEND (/pub/chat/message)<br>Content: "안녕하세요!"
+    
+    activate Server
+    Server->>DB: 4. 메시지 영구 저장 (JPA)
+    Server->>Server: 5. 메시지 브로커 라우팅
+    Server-->>UserB: 6. MESSAGE (/sub/room/1)<br>Content: "안녕하세요!"
+    deactivate Server
+
+    UserB->>UserB: 7. UI 업데이트 (Redux State)
+</pre>
+                </div>
+
+                <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
+                <p>
+                  회원 정보, 인바디 기록, 출석, 결제 정보가 유기적으로 연결된 관계형 데이터베이스
+                  구조입니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+erDiagram
+    MEMBER ||--o{ INBODY : has
+    MEMBER ||--o{ ATTENDANCE : checks
+    MEMBER ||--o{ DIET : logs
+    MEMBER ||--o{ ORDERS : makes
+    
+    MEMBER {
+        long id PK
+        string email
+        string password
+        string role "USER/TRAINER/ADMIN"
+    }
+    INBODY {
+        long id PK
+        float weight
+        float muscle_mass
+        float fat_mass
+        date measure_date
+    }
+    ATTENDANCE {
+        long id PK
+        date attend_date
+    }
+    ORDERS {
+        string order_id PK
+        int amount
+        string status "READY/PAID/CANCEL"
+    }
+</pre
+                  >
+                  <p class="text-muted small mt-2">
+                    ▲ MariaDB 주요 엔티티 관계도 (JPA Entity 기반)
+                  </p>
+                </div>
+
+                <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Backend</h5>
+                        <span class="badge bg-success tech-badge">Spring Boot 2.6</span>
+                        <span class="badge bg-success tech-badge">Spring Security</span>
+                        <span class="badge bg-primary tech-badge">JPA / QueryDSL</span>
+                        <span class="badge bg-dark tech-badge">JWT / OAuth2</span>
+                        <span class="badge bg-warning text-dark tech-badge">WebSocket / STOMP</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Frontend</h5>
+                        <span class="badge bg-primary tech-badge">React 18</span>
+                        <span class="badge bg-primary tech-badge">Redux Toolkit</span>
+                        <span class="badge bg-info tech-badge">Styled Components</span>
+                        <span class="badge bg-dark tech-badge">Recharts</span>
+                        <span class="badge bg-secondary tech-badge">Axios</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Infra & Tools</h5>
+                        <span class="badge bg-warning text-dark tech-badge">MariaDB</span>
+                        <span class="badge bg-warning text-dark tech-badge">AWS S3</span>
+                        <span class="badge bg-primary tech-badge">Toss Payments</span>
+                        <span class="badge bg-dark tech-badge">Swagger</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="portfolio-info shadow-sm p-4 rounded">
+                <h3>Project Info</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-3"><strong>Category</strong> <br />웹 애플리케이션 (풀스택)</li>
+                  <li class="mb-3"><strong>Role</strong> <br />백엔드, 프론트엔드 (기여도 50%)</li>
+                  <li class="mb-3"><strong>Date</strong> <br />2022.09 – 2022.12 (4개월)</li>
+                  <li class="mb-3">
+                    <strong>GitHub</strong><br />
+                    <a
+                      href="https://github.com/6-n0kim/bodymanager_server"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Backend Repo</a
+                    >
+                    <a
+                      href="https://github.com/6-n0kim/Body_Manager_client"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Frontend Repo</a
+                    >
+                  </li>
+                  <li class="mb-3">
+                    <strong>Key Features</strong><br />
+                    <span class="badge bg-light text-dark border">JWT Auth</span>
+                    <span class="badge bg-light text-dark border">Real-time Chat</span>
+                    <span class="badge bg-light text-dark border">InBody Charts</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer accent-background">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>
+            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
+            <span>All Rights Reserved</span>
+          </p>
+        </div>
+        <div class="social-links d-flex justify-content-center">
+          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Docgen - Portfolio Details</title>
+    <meta name="description" content="AI 기반 프로젝트 문서 자동 생성 플랫폼 Docgen 포트폴리오" />
+
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+
+    <style>
+      /* 커스텀 스타일 추가 */
+      .tech-badge {
+        font-size: 0.85rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+      }
+      .diagram-container {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        border: 1px solid #e9ecef;
+      }
+      .section-title {
+        border-left: 4px solid #007bff;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #333;
+      }
+      .screenshot-placeholder {
+        width: 100%;
+        height: 300px;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        color: #6c757d;
+        border: 2px dashed #ced4da;
+      }
+      .screenshot-img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body class="portfolio-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">JY BLOG</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">DocGen Project</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">DocGen</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <section id="portfolio-details" class="portfolio-details section">
+        <div class="container" data-aos="fade-up">
+          <div class="row justify-content-between gy-4 mt-4">
+            <div class="col-lg-8" data-aos="fade-up">
+              <div class="portfolio-description">
+                <h2>DocGen — AI 기반 프로젝트 문서 자동 생성 플랫폼</h2>
+                <p class="lead text-muted">
+                  개발 프로세스의 문서화 작업을 AI 에이전트로 자동화하여, 기획 및 명세 단계의
+                  효율성을 극대화한 프로젝트입니다.
+                </p>
+
+                <hr class="my-4" />
+
+                <h3 class="section-title">1. 시스템 아키텍처 (System Architecture)</h3>
+                <p>
+                  DocGen은 비즈니스 로직과 AI 처리 부하를 분산하기 위해
+                  <strong>MSA(Microservice Architecture)</strong>를 채택했습니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+                  graph TD
+                      subgraph ClientLayer [Client Layer]
+                          React["React Frontend"] 
+                      end
+                  
+                      subgraph ServerLayer [Server Layer]
+                          Nest["Backend Server<br/>(NestJS)"]
+                          Fast["AI Server<br/>(FastAPI)"]
+                      end
+                  
+                      subgraph DataLayer [Data Layer]
+                          PG[("PostgreSQL<br/>User/Project Data")]
+                          Mongo[("MongoDB<br/>Document Data")]
+                      end
+                      
+                      subgraph External [External Services]
+                          LLM["LLM Models<br/>GPT/Gemini/Claude"]
+                      end
+                  
+                      React -->|REST API / JWT| Nest
+                      React -->|Doc Gen Request| Fast
+                      Nest -->|TypeORM| PG
+                      Fast -->|Motor| Mongo
+                      Fast -->|LangChain| LLM
+                      Nest -.->|Auth Check| Fast
+                  </pre>
+                  <p class="text-muted small mt-2">
+                    ▲ React, NestJS, FastAPI 간의 데이터 흐름 및 DB 연결 구조
+                  </p>
+                </div>
+
+                <h3 class="section-title mt-5">2. 주요 기능 및 화면 (UI/UX)</h3>
+                <p>
+                  직관적인 대시보드와 스프레드시트 형태의 에디터를 통해 사용자 편의성을 높였습니다.
+                </p>
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <span class="text-center"
+                        >📷 <strong>메인 대시보드 화면</strong><br />프로젝트 목록 및 타임라인</span
+                      >
+                    </div>
+                    <h5>프로젝트 및 타임라인 관리</h5>
+                    <p class="small">
+                      해시태그 기반 프로젝트 분류 및 진행 상황을 시각적으로 파악할 수 있는 타임라인
+                      기능.
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <span class="text-center"
+                        >📷 <strong>AI 문서 생성 화면</strong><br />문서 생성 옵션 및 결과</span
+                      >
+                    </div>
+                    <h5>AI 문서 생성 및 엑셀 편집</h5>
+                    <p class="small">
+                      요구사항(PRD), 기능명세(FSD) 자동 생성 후 Handsontable을 이용한 웹 엑셀 편집
+                      지원.
+                    </p>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">3. AI 문서 생성 프로세스 (Logic Flow)</h3>
+                <p>
+                  LangChain과 CrewAI를 활용한 <strong>멀티 에이전트(Multi-Agent) 시스템</strong>이
+                  단계별로 문서를 구체화합니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+                  sequenceDiagram
+                      actor User
+                      participant API as FastAPI Server
+                      participant QGen as Question Agent
+                      participant ListGen as List Agent
+                      participant DetailGen as Detail Agent
+                      participant DB as MongoDB
+                  
+                      User->>API: 요구사항 입력
+                      API->>QGen: 핵심 질문 생성 요청
+                      QGen-->>API: 질문 리스트 반환
+                      API->>User: 질문 제시
+                      User->>API: 답변 제출
+                      
+                      rect rgb(240, 248, 255)
+                      Note right of API: 백그라운드 태스크 실행
+                      API->>ListGen: 요구사항 목록 생성 요청
+                      ListGen-->>API: 기능 목록(List)
+                      API->>DetailGen: 상세 스펙 작성 요청
+                      DetailGen-->>API: 상세 명세(Detail)
+                      end
+                      
+                      API->>DB: 최종 문서 저장
+                      API-->>User: 완료 알림 및 엑셀 다운로드
+                  </pre>
+                </div>
+
+                <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
+                <p>
+                  정형 데이터는 PostgreSQL에, 비정형 문서 데이터는 MongoDB에 저장하는
+                  <strong>Polyglot Persistence</strong> 전략을 사용했습니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+                    erDiagram
+                        MEMBER ||--o{ PROJECT : "creates/manages"
+                        MEMBER {
+                            string email PK
+                            string password
+                            string role
+                        }
+                        PROJECT ||--o{ TIMELINE : has
+                        PROJECT ||--o{ PROJECT_HASHTAG : tagged
+                        PROJECT ||--o{ DOCUMENT : contains
+                        PROJECT {
+                            int id PK
+                            string title
+                            string status
+                        }
+                        DOCUMENT {
+                            int id PK
+                            string type "PRD/FSD/SPD"
+                            json content "Stored in MongoDB Ref"
+                        }
+                        TIMELINE {
+                            int id PK
+                            date start_date
+                            date end_date
+                        }
+                        HASHTAG ||--o{ PROJECT_HASHTAG : used_in
+                  </pre>
+                  <p class="text-muted small mt-2">▲ PostgreSQL 주요 테이블 관계도 (논리적 모델)</p>
+                </div>
+
+                <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Frontend</h5>
+                        <span class="badge bg-primary tech-badge">React 19</span>
+                        <span class="badge bg-primary tech-badge">TypeScript</span>
+                        <span class="badge bg-primary tech-badge">Vite</span>
+                        <span class="badge bg-info tech-badge">Zustand</span>
+                        <span class="badge bg-secondary tech-badge">Tailwind CSS</span>
+                        <span class="badge bg-dark tech-badge">Handsontable</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Backend (Main)</h5>
+                        <span class="badge bg-danger tech-badge">NestJS</span>
+                        <span class="badge bg-danger tech-badge">Node.js</span>
+                        <span class="badge bg-primary tech-badge">TypeScript</span>
+                        <span class="badge bg-success tech-badge">PostgreSQL</span>
+                        <span class="badge bg-warning text-dark tech-badge">TypeORM</span>
+                        <span class="badge bg-dark tech-badge">Swagger</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">AI Server</h5>
+                        <span class="badge bg-warning text-dark tech-badge">Python</span>
+                        <span class="badge bg-warning text-dark tech-badge">FastAPI</span>
+                        <span class="badge bg-success tech-badge">MongoDB</span>
+                        <span class="badge bg-info tech-badge">LangChain</span>
+                        <span class="badge bg-info tech-badge">CrewAI</span>
+                        <span class="badge bg-dark tech-badge">OpenAI/Gemini</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="portfolio-info shadow-sm p-4 rounded">
+                <h3>Project Info</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-3"><strong>Category</strong> <br />AI 웹 애플리케이션 (풀스택)</li>
+                  <li class="mb-3">
+                    <strong>Role</strong> <br />백엔드, 프론트엔드, DB 설계, AI 서버
+                  </li>
+                  <li class="mb-3"><strong>Date</strong> <br />2025.07 – 2025.08 (2개월)</li>
+                  <li class="mb-3">
+                    <strong>GitHub</strong><br />
+                    <a
+                      href="https://github.com/6-n0kim/docgen-backend"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Backend</a
+                    >
+                    <a
+                      href="https://github.com/6-n0kim/docgen-fastapi"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> AI Server</a
+                    >
+                    <a
+                      href="https://github.com/6-n0kim/docgen-frontend"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Frontend</a
+                    >
+                  </li>
+                  <li class="mb-3">
+                    <strong>Deployment</strong><br />
+                    <a
+                      href="https://docgen.aicc-project.com/"
+                      target="_blank"
+                      class="btn btn-primary btn-sm w-100 mt-2"
+                      >사이트 방문하기</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer accent-background">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>
+            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
+            <span>All Rights Reserved</span>
+          </p>
+        </div>
+        <div class="social-links d-flex justify-content-center">
+          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
