@@ -20,7 +20,7 @@
   }
 
   var isIndex = document.body && document.body.classList.contains('index-page');
-  var headerUrl = isIndex ? 'partials/header.html' : 'partials/header.html';
+  var headerUrl = isIndex ? 'partials/header.html' : 'partials/header-portfolio.html';
   var footerUrl = isIndex ? 'partials/footer-index.html' : 'partials/footer-portfolio.html';
 
   // 페이지별 바디 클래스(오버라이드용)

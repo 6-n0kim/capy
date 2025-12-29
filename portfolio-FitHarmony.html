@@ -107,18 +107,15 @@ graph TD
                 <div class="row mt-4">
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <img src="assets/img/portfolio/onSpot.png" alt="" />
+                      <img src="assets/img/portfolio/fit_2.gif" alt="" />
                     </div>
-                    <h5>인바디 데이터 시각화</h5>
-                    <p class="small">
-                      Recharts 라이브러리를 활용하여 인바디 데이터의 변화 추이를 라인/바/레이더
-                      차트로 직관적으로 보여줍니다.
-                    </p>
+                    <h5>자동 칼로리 계산</h5>
+                    <p class="small">음식 사진을 입력하여 칼로리를 자동으로 계산합니다.</p>
                   </div>
 
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <img src="assets/img/portfolio/onSpot.png" alt="" />
+                      <img src="assets/img/portfolio/fit_1.gif" alt="" />
                     </div>
                     <h5>OCR 인식</h5>
                     <p class="small">
@@ -127,31 +124,39 @@ graph TD
                   </div>
                 </div>
 
-                <h3 class="section-title mt-5">3. 실시간 자세 교정 알고리즘 Flow</h3>
-                <p>웹캠 입력부터 오차 계산, 피드백 출력까지의 논리적인 순서입니다.</p>
+                <h3 class="section-title mt-5">3. 인바디 결과지 자동 분석 Flow</h3>
+                <p>
+                  이미지 업로드 후 백엔드가 Python AI 모듈을 호출해 분석 결과를 JSON으로 반환하고,
+                  프론트 폼을 자동 채웁니다.
+                </p>
 
                 <div class="diagram-container">
                   <pre class="mermaid">
 sequenceDiagram
-    participant User
-    participant Webcam
-    participant TFJS as PoseNet Model
-    participant Analyzer as Angle Analyzer
-    participant Feedback as Feedback Logic
+    participant U as User
+    participant FE as InbodyRegisterForm
+    participant UP as /common/file/image/upload
+    participant DB as PostgreSQL(file)
+    participant OCR as /inbody/requestOcr
+    participant PY as Python(inbodyGptModel.py)
+    participant AI as OpenAI API
 
-    User->>Webcam: 1. 운동 시작
-    Webcam->>TFJS: 2. 비디오 프레임 전달 (30fps)
-    TFJS->>Analyzer: 3. 관절 키포인트 추출 (X, Y, Z, Score)
-    
-    rect rgb(240, 248, 255)
-    Analyzer->>Analyzer: 4. 기준 각도와 현재 각도 계산 (Cosine Similarity)
-    Analyzer->>Feedback: 5. 오차율(%) 전달
-    Feedback->>Feedback: 6. 오차율에 따른 메시지 결정
-    end
-    
-    Feedback->>User: 7. "무릎이 너무 나갔어요!" (음성/텍스트)
-    Feedback->>TFJS: 8. 다음 프레임 대기
-</pre
+    U->>FE: 1. 인바디 이미지 선택
+    FE->>UP: 2. FormData 업로드(file)
+    UP->>DB: 3. file 메타데이터 저장(file_id)
+    DB-->>UP: 4. file_id 반환
+    UP-->>FE: 5. fileIdArr[0] 수신
+
+    FE->>OCR: 6. POST /inbody/requestOcr {fileId}
+    OCR->>DB: 7. file_id 존재 확인
+    OCR->>PY: 8. spawn(python, [inbodyGptModel.py, "inbody_gpt", fileId, model])
+    PY->>DB: 9. 파일 경로 조회
+    PY->>AI: 10. 이미지 전처리/추출 후 GPT 호출
+    AI-->>PY: 11. 분석 결과(JSON)
+    PY-->>OCR: 12. stdout(JSON)
+    OCR-->>FE: 13. analyzed_data 반환
+
+    FE-->>U: 14. 폼 자동 입력(수정 가능) + 저장</pre
                   >
                 </div>
 
