@@ -221,21 +221,106 @@
                 </div>
 
                 <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
-                <p>
-                  API 호출 시 JSON 데이터가 정상적으로 전달되지 않는 문제를 해결하기 위해 Axios
-                  인터셉터를 사용하여 요청/응답을 로깅하고, 데이터를 확인
-                  <br />
-                  JWT 인증 과정에서 토큰이 정상적으로 전달되지 않는 문제를 해결하기 위해
-                  interceptor를 사용하여 토큰을 추가
-                  <br />
-                  CORS 문제를 해결하기 위해 프론트 작업을 하는 동기와 정보 공유 후 해결
-                </p>
+<p class="mb-4">
+  Jenkins + SonarQube + Docker 기반 CI/CD 구축 과정에서 겪었던 이슈를
+  <strong>증상 → 원인 → 해결</strong> 흐름으로 정리했습니다.
+</p>
+
+<ul class="troubleshooting-list">
+  <!-- 1) Docker 권한/데몬 연결 -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[1] Jenkins가 Docker 데몬에 연결되지 않음</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        <code>Cannot connect to the Docker daemon</code>, <code>permission denied</code> 발생<br />
+        Jenkins 단계에서 <code>docker build</code> / <code>docker ps</code> 실행 실패
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        Jenkins 실행 유저가 <code>/var/run/docker.sock</code> 접근 권한이 없거나<br />
+        Jenkins 컨테이너가 Docker 데몬 소켓을 마운트하지 않아 연결 경로가 끊김
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        Jenkins 컨테이너에 <code>/var/run/docker.sock</code> 마운트(권장)<br />
+        빌드 노드/호스트에서 Jenkins 유저를 <code>docker</code> 그룹에 포함 후 재시작
+      </div>
+    </div>
+  </li>
+
+  <!-- 3) Workspace / Build Context -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[2] Dockerfile/소스가 누락되어 빌드 실패 (경로/컨텍스트 문제)</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        <code>Dockerfile not found</code>, <code>COPY failed: file not found in build context</code><br />
+        특정 파일이 이미지 빌드 컨텍스트에 포함되지 않아 단계에서 중단
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        Jenkins가 체크아웃한 폴더와 실제 <code>docker build</code> 실행 위치가 달라<br />
+        빌드 컨텍스트가 잘못 잡힘(서브폴더/멀티모듈에서 특히 빈번)
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        파이프라인에서 작업 디렉토리를 명확히 고정(<code>dir(...)</code> 개념)<br />
+        <code>docker build -f path/to/Dockerfile .</code> 처럼 Dockerfile 경로/컨텍스트를 명시
+      </div>
+    </div>
+  </li>
+
+  <!-- 5) SonarQube 기동 불가 -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[3] SonarQube 컨테이너가 기동되지 않고 재시작 반복</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        SonarQube가 계속 restart / healthcheck 실패<br />
+        로그에 Elasticsearch bootstrap check 또는 <code>vm.max_map_count</code> 관련 오류 노출
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        Elasticsearch 요구 커널 설정(<code>vm.max_map_count</code>) 미충족 또는 메모리 부족<br />
+        (운영에서) 내장 DB 사용으로 안정성/성능 이슈 발생 가능
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        호스트 커널 파라미터 설정(<code>vm.max_map_count</code>) 조정 후 재기동<br />
+        SonarQube 컨테이너 메모리 증설, 운영은 PostgreSQL 연동 구성 권장
+      </div>
+    </div>
+  </li>
+</ul>
+
 
                 <div class="diagram-container">
                   <div class="screenshot-placeholder screenshot-auto">
-                    <img src="./assets/img/portfolio/bd_notion.png" alt="" />
+                    <img src="./assets/img/portfolio/docgen_drive.png" alt="" />
                   </div>
-                  <p class="text-muted small mt-2">▲ Notion을 통한 협업 및 트러블 슈팅 기록</p>
+                  <p class="text-muted small mt-2">▲ GoogleDrive를 통한 기획, 문서화, 협업 및 트러블 슈팅 관리</p>
                 </div>
               </div>
             </div>

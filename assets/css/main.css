@@ -1671,6 +1671,95 @@ section,
   color: var(--accent-color);
 }
 
+/* ===== Troubleshooting 카드형 UI ===== */
+.troubleshooting-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.troubleshooting-item {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 16px 16px 14px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.troubleshooting-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.10);
+}
+
+.ts-title {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  padding-left: 12px;
+  border-left: 4px solid rgba(0, 0, 0, 0.18);
+}
+
+/* 증상/원인/해결 블록 */
+.ts-block {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px 12px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.ts-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  opacity: 0.85;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ts-desc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  opacity: 0.95;
+}
+
+/* 라벨별 색감(너무 과하지 않게) */
+.ts-block:nth-of-type(1) .ts-label::before { content: "⚠️"; }
+.ts-block:nth-of-type(2) .ts-label::before { content: "🔎"; }
+.ts-block:nth-of-type(3) .ts-label::before { content: "✅"; }
+
+.ts-block:nth-of-type(1) { border: 1px solid rgba(255, 165, 0, 0.25); background: rgba(255, 165, 0, 0.07); }
+.ts-block:nth-of-type(2) { border: 1px solid rgba(80, 120, 255, 0.20); background: rgba(80, 120, 255, 0.06); }
+.ts-block:nth-of-type(3) { border: 1px solid rgba(0, 170, 90, 0.18); background: rgba(0, 170, 90, 0.06); }
+
+/* 코드 가독성 */
+.troubleshooting-item code {
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 0.88em;
+}
+
+/* 모바일 대응 */
+@media (max-width: 576px) {
+  .ts-block {
+    grid-template-columns: 1fr;
+  }
+  .ts-title {
+    font-size: 0.98rem;
+  }
+}
+
+
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/

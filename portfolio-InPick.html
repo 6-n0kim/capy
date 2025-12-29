@@ -212,21 +212,163 @@ graph TD
                 </div>
 
                 <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
-                <p>
-                  API 호출 시 JSON 데이터가 정상적으로 전달되지 않는 문제를 해결하기 위해 Axios
-                  인터셉터를 사용하여 요청/응답을 로깅하고, 데이터를 확인
-                  <br />
-                  JWT 인증 과정에서 토큰이 정상적으로 전달되지 않는 문제를 해결하기 위해
-                  interceptor를 사용하여 토큰을 추가
-                  <br />
-                  CORS 문제를 해결하기 위해 프론트 작업을 하는 동기와 정보 공유 후 해결
-                </p>
+<p class="mb-4">
+  개발/배포 과정에서 발생한 이슈를 <strong>증상 → 원인 → 해결</strong> 흐름으로 정리했습니다.
+</p>
+
+<ul class="troubleshooting-list">
+  <!-- 1) CORS -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[CORS] 프론트 API 호출 실패 (CORS 에러)</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        브라우저에서 API 요청이 차단되며 호출이 실패(CORS 오류 발생)
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        FastAPI에서 허용 Origin/자격 증명(쿠키) 설정이 누락되어
+        브라우저가 요청을 막음
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        <code>CORSMiddleware</code> 적용 후 <code>allow_origins</code>에 프론트 URL 추가,
+        <code>allow_credentials</code> 활성화로 세션 기반 인증이 동작하도록 수정
+      </div>
+    </div>
+  </li>
+
+  <!-- 2) 401 / 인증 풀림 -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[Auth] 로그인 후 간헐적 401 / 사용자 정보 조회 실패</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        로그인 이후 간헐적으로 인증이 풀리거나(401),
+        사용자 정보 조회 API가 실패
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        요청 시 세션/쿠키 전송 누락 또는 인증 헤더/쿠키 흐름이 불안정하여
+        서버가 비인증 요청으로 판단
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        Axios 인스턴스에 요청/응답 로깅 + 인터셉터 적용,
+        <code>withCredentials</code> 포함 여부를 점검해
+        쿠키 전송/인증 흐름을 안정화
+      </div>
+    </div>
+  </li>
+
+  <!-- 3) 추천 기능 500 / 파일 누락 -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[ML] 추천 API 호출 시 500 (FileNotFoundError)</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        추천 기능 호출 시 서버가 <code>500</code>으로 종료되며
+        <code>FileNotFoundError</code> 발생
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        모델 파일(<code>nextpoi_gru4rec.pt</code>)이 배포 환경에 포함되지 않거나
+        로딩 경로가 잘못되어 ML artifact를 찾지 못함
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        <code>app/ml/artifacts/</code> 디렉토리 구성 및 배포 포함 여부를 점검하고,
+        모델 파일 배치를 재정리하여 로딩 실패를 제거
+      </div>
+    </div>
+  </li>
+
+  <!-- 4) .env / 환경변수 누락 -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[Config] .env 누락/필수 값 미설정 (pydantic field required)</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        개발/배포 환경에서 실행 시
+        <code>pydantic field required</code> 에러로 서버 기동 실패
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        <code>.env</code>가 누락되거나 필수 환경변수가 비어 있어
+        Settings 로딩 단계에서 검증에 실패
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        Settings 기준 필수 환경변수 목록을 재정리하고,
+        실행 전 환경변수 검증(체크리스트/검증 단계)을 추가하여 재발 방지
+      </div>
+    </div>
+  </li>
+
+  <!-- 5) MongoDB TTL / 세션 만료 -->
+  <li class="troubleshooting-item">
+    <h5 class="ts-title">[Session] MongoDB TTL 인덱스로 인한 예기치 못한 로그아웃</h5>
+
+    <div class="ts-block">
+      <div class="ts-label">증상</div>
+      <div class="ts-desc">
+        사용 중 갑자기 로그아웃되거나,
+        세션이 만료되어 인증이 끊기는 현상이 발생
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">원인</div>
+      <div class="ts-desc">
+        MongoDB 세션이 TTL 인덱스 정책에 의해 만료되며,
+        사용자 활동과 무관하게 세션이 삭제될 수 있음
+      </div>
+    </div>
+
+    <div class="ts-block">
+      <div class="ts-label">해결</div>
+      <div class="ts-desc">
+        세션(쿠키) 만료 정책(TTL)과 갱신(refresh) 흐름을 점검하고,
+        갱신 타이밍/유효기간을 조정하여 사용자 경험을 개선
+      </div>
+    </div>
+  </li>
+</ul>
+
 
                 <div class="diagram-container">
                   <div class="screenshot-placeholder screenshot-auto">
-                    <img src="./assets/img/portfolio/bd_notion.png" alt="" />
+                    <img src="./assets/img/portfolio/InPick_drive.png" alt="" />
                   </div>
-                  <p class="text-muted small mt-2">▲ Notion을 통한 협업 및 트러블 슈팅 기록</p>
+                  <p class="text-muted small mt-2">▲ GoogleDrive를 통한 기획, 문서화, 협업 및 트러블 슈팅 관리</p>
                 </div>
               </div>
             </div>
