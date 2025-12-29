@@ -1,0 +1,70 @@
+/* portfolio details 공통 커스텀 스타일 (기존 각 페이지 <style> 중복 제거용) */
+/* base: BodyManager 스타일 기반 */
+
+/* 커스텀 스타일 */
+.tech-badge {
+  font-size: 0.85rem;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.diagram-container {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+  overflow-x: auto;
+}
+.section-title {
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #333;
+}
+.screenshot-placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: #e9ecef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  color: #6c757d;
+  border: 2px dashed #ced4da;
+}
+.screenshot-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.screenshot-img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+.screenshot-placeholder.screenshot-auto {
+  height: auto;
+  overflow: visible;
+  background-color: transparent;
+  border: 0;
+  display: block;
+}
+.screenshot-placeholder.screenshot-auto img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.screenshot-img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}

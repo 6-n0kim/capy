@@ -62,9 +62,34 @@
         align-items: center;
         justify-content: center;
         border-radius: 8px;
+        overflow: hidden;
         margin-bottom: 15px;
         color: #6c757d;
         border: 2px dashed #ced4da;
+      }
+      .screenshot-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .screenshot-img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .screenshot-placeholder.screenshot-auto {
+        height: auto;
+        overflow: visible;
+        background-color: transparent;
+        border: 0;
+        display: block;
+      }
+      .screenshot-placeholder.screenshot-auto img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
       }
       .screenshot-img {
         width: 100%;
@@ -166,9 +191,7 @@ graph TD
                 <div class="row mt-4">
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>여행 계획 마법사</strong><br />4단계 맞춤 설정</span
-                      >
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
                     </div>
                     <h5>4단계 일정 생성 마법사</h5>
                     <p class="small">
@@ -177,9 +200,7 @@ graph TD
                   </div>
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>지도 및 경로 시각화</strong><br />Kakao Map 연동</span
-                      >
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
                     </div>
                     <h5>지도 기반 경로 확인</h5>
                     <p class="small">
@@ -301,6 +322,17 @@ erDiagram
                     </div>
                   </div>
                 </div>
+
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
+                <p>
+                  API 호출 시 JSON 데이터가 정상적으로 전달되지 않는 문제를 해결하기 위해 Axios
+                  인터셉터를 사용하여 요청/응답을 로깅하고, 데이터를 확인
+                  <br />
+                  JWT 인증 과정에서 토큰이 정상적으로 전달되지 않는 문제를 해결하기 위해
+                  interceptor를 사용하여 토큰을 추가
+                  <br />
+                  CORS 문제를 해결하기 위해 프론트 작업을 하는 동기와 정보 공유 후 해결
+                </p>
               </div>
             </div>
 

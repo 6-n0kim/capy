@@ -4,62 +4,42 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>InPick - Portfolio Details</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="AI 기반 여행 일정 생성 및 추천 플랫폼 InPick 포트폴리오" />
 
-    <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon" />
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
     <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
-    <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- Page Custom CSS (moved from inline <style>) -->
+    <link href="assets/css/portfolio-details-custom.css" rel="stylesheet" />
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
   </head>
 
   <body class="portfolio-details-page">
-    <header id="header" class="header d-flex align-items-center sticky-top">
-      <div
-        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
-      >
-        <a href="index.html" class="logo d-flex align-items-center">
-          <h1 class="sitename">JY BLOG</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li>
-              <a href="index.html#hero">Home<br /></a>
-            </li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#resume">Resume</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#portfolio">Portfolio</a></li>
-            <li><a href="index.html#peer reviews">peer reviews</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-      </div>
-    </header>
+    <div id="site-header"></div>
 
     <main class="main">
-      <!-- Page Title -->
       <div class="page-title" data-aos="fade">
         <div class="container d-lg-flex justify-content-between align-items-center">
-          <h1 class="mb-2 mb-lg-0">InPick</h1>
+          <h1 class="mb-2 mb-lg-0">InPick Project</h1>
           <nav class="breadcrumbs">
             <ol>
               <li><a href="index.html">Home</a></li>
@@ -68,276 +48,219 @@
           </nav>
         </div>
       </div>
-      <!-- End Page Title -->
 
-      <!-- Portfolio Details Section -->
       <section id="portfolio-details" class="portfolio-details section">
         <div class="container" data-aos="fade-up">
           <div class="row justify-content-between gy-4 mt-4">
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
                 <h2>InPick — AI 기반 여행 일정 생성 및 추천 시스템</h2>
+                <p class="lead text-muted">
+                  사용자의 취향과 위치 정보를 분석하여 개인화된 여행 코스를 설계해주는 올인원 여행
+                  플랫폼입니다.
+                </p>
+
+                <hr class="my-4" />
+
+                <h3 class="section-title">1. 시스템 아키텍처 (System Architecture)</h3>
                 <p>
-                  <strong
-                    >사용자의 여행지, 동행자, 테마, 위치 정보를 기반으로 개인화된 일정을 생성하고
-                    다양한 AI 추천 알고리즘을 활용한 장소 추천 서비스</strong
+                  FastAPI를 중심으로 다양한 AI 모델과 3종류의 데이터베이스(RDB, NoSQL, Vector DB)가
+                  유기적으로 연결된 구조입니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+graph TD
+    subgraph ClientLayer [Client Layer]
+        React["React Frontend<br/>(Vite/TypeScript)"]
+    end
+
+    subgraph ServerLayer [Server Layer]
+        FastAPI["FastAPI Backend<br/>(Core Logic)"]
+        AI_Module["AI Engine<br/>(PyTorch/Implicit)"]
+    end
+
+    subgraph DataLayer [Data Layer]
+        PG[("PostgreSQL<br/>Core Data")]
+        Mongo[("MongoDB<br/>Session/Log")]
+        Faiss[("FAISS<br/>Vector DB")]
+    end
+
+    subgraph External [External Services]
+        Maps["Map APIs<br/>Kakao/TMAP"]
+        OAuth["OAuth 2.0<br/>Google/Naver/Kakao"]
+        LLM["LLM<br/>OpenAI/Claude"]
+    end
+
+    React -->|REST API| FastAPI
+    FastAPI -->|ORM| PG
+    FastAPI -->|ODM| Mongo
+    FastAPI -->|Similarity Search| Faiss
+    FastAPI -.->|Invoke| AI_Module
+    FastAPI --> Maps
+    FastAPI --> OAuth
+    FastAPI --> LLM
+</pre>
+                  <p class="text-muted small mt-2">▲ React, FastAPI 및 다중 DB/AI 모델 연동 구조</p>
+                </div>
+
+                <h3 class="section-title mt-5">2. 주요 기능 및 화면 (UI/UX)</h3>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
+                    </div>
+                    <h5>4단계 일정 생성 마법사</h5>
+                    <p class="small">
+                      지역, 기간, 동행자, 테마를 단계별로 입력받아 최적의 코스를 제안합니다.
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
+                    </div>
+                    <h5>지도 기반 경로 확인</h5>
+                    <p class="small">
+                      생성된 일정의 동선을 Kakao Map과 TMAP API로 시각화하여 보여줍니다.
+                    </p>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">3. AI 추천 프로세스 (Recommendation Flow)</h3>
+                <p>
+                  사용자 입력부터 최종 일정 생성까지 <strong>5가지 추천 알고리즘</strong>이
+                  복합적으로 작용합니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+sequenceDiagram
+    actor User
+    participant FE as React Client
+    participant API as FastAPI
+    participant Recommender as AI Engine
+    participant DB as Vector/RDB
+
+    User->>FE: 1. 여행 취향 입력 (지역/테마)
+    FE->>API: 2. 일정 생성 요청
+    
+    rect rgb(240, 248, 255)
+    Note right of API: 하이브리드 추천 로직 수행
+    API->>Recommender: 후보군 추출 요청
+    Recommender->>Recommender: CBF (유사도 분석)
+    Recommender->>Recommender: CF/ALS (협업 필터링)
+    Recommender->>Recommender: Next-POI (시퀀스 예측)
+    Recommender-->>API: 추천 장소 리스트 반환
+    end
+
+    API->>DB: RAG/Vector 검색 (세부 조건)
+    DB-->>API: 최적화된 장소 데이터
+    API-->>FE: 3. 추천 일정 및 경로 응답
+    FE->>User: 4. 결과 시각화 (지도/타임라인)
+</pre
                   >
-                </p>
+                </div>
+
+                <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
                 <p>
-                  InPick은 AI 기반 여행 일정 생성 및 추천 시스템으로, 사용자의 여행 선호도를
-                  분석하여 개인화된 여행 일정을 자동 생성합니다. 콘텐츠 기반 추천, 협업 필터링,
-                  시퀀스 기반 Next-POI, RAG(Vector DB)를 활용한 다양한 추천 방식을 제공합니다.
+                  사용자 정보와 장소 데이터는 관계형 DB에, 세션과 로그는 NoSQL에 분산 저장합니다.
                 </p>
 
-                <h4>시스템 아키텍처</h4>
+                <div class="diagram-container">
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/inpick_erd.png" alt="" />
+                  </div>
+                  <p class="text-muted small mt-2">▲ PostgreSQL 핵심 엔티티 관계도</p>
+                </div>
+
+                <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Frontend</h5>
+                        <span class="badge bg-primary tech-badge">React 19</span>
+                        <span class="badge bg-primary tech-badge">TypeScript</span>
+                        <span class="badge bg-primary tech-badge">Vite 7</span>
+                        <span class="badge bg-dark tech-badge">Tailwind CSS 4</span>
+                        <span class="badge bg-warning text-dark tech-badge">Kakao Maps SDK</span>
+                        <span class="badge bg-secondary tech-badge">shadcn/ui</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Backend & AI</h5>
+                        <span class="badge bg-success tech-badge">FastAPI</span>
+                        <span class="badge bg-warning text-dark tech-badge">Python</span>
+                        <span class="badge bg-info tech-badge">PyTorch</span>
+                        <span class="badge bg-info tech-badge">FAISS (Vector)</span>
+                        <span class="badge bg-dark tech-badge">LangChain</span>
+                        <span class="badge bg-primary tech-badge">OAuth 2.0</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Data & Infra</h5>
+                        <span class="badge bg-secondary tech-badge">PostgreSQL</span>
+                        <span class="badge bg-success tech-badge">MongoDB</span>
+                        <span class="badge bg-primary tech-badge">Docker</span>
+                        <span class="badge bg-warning text-dark tech-badge">Jenkins</span>
+                        <span class="badge bg-dark tech-badge">Nginx</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
                 <p>
-                  InPick은 <strong>Backend (FastAPI)</strong>와 <strong>Frontend (React)</strong>로
-                  구성된 풀스택 애플리케이션입니다:
+                  API 호출 시 JSON 데이터가 정상적으로 전달되지 않는 문제를 해결하기 위해 Axios
+                  인터셉터를 사용하여 요청/응답을 로깅하고, 데이터를 확인
+                  <br />
+                  JWT 인증 과정에서 토큰이 정상적으로 전달되지 않는 문제를 해결하기 위해
+                  interceptor를 사용하여 토큰을 추가
+                  <br />
+                  CORS 문제를 해결하기 위해 프론트 작업을 하는 동기와 정보 공유 후 해결
                 </p>
-                <ul>
-                  <li>
-                    <strong>Backend (FastAPI):</strong> 여행 일정 관리, AI 추천 시스템, OAuth 인증,
-                    지도 API 연동
-                  </li>
-                  <li>
-                    <strong>Frontend (React):</strong> 사용자 인터페이스, 4단계 여행 계획 마법사,
-                    지도 시각화
-                  </li>
-                </ul>
 
-                <h4>주요 기능</h4>
-                <p><strong>인증 시스템</strong></p>
-                <ul>
-                  <li>소셜 로그인: Google / Naver / Kakao OAuth 2.0 인증</li>
-                  <li>쿠키 기반 세션 관리 (MongoDB, TTL: 1800초)</li>
-                  <li>세션 자동 재활성화 (매 요청마다 갱신)</li>
-                  <li>계정 삭제 (soft delete 지원)</li>
-                </ul>
-                <p><strong>여행 일정 관리</strong></p>
-                <ul>
-                  <li>4단계 마법사로 일정 생성 (기본 정보 → 장소 선택 → 숙소 선택 → 최종 확인)</li>
-                  <li>일정 CRUD 작업 (생성, 조회, 수정, 삭제)</li>
-                  <li>일정 내 세부 장소 관리 (itinerary_item)</li>
-                  <li>Kakao Map 기반 경로 시각화</li>
-                </ul>
-                <p><strong>AI 추천 시스템</strong></p>
-                <ul>
-                  <li>
-                    <strong>CBF (Content-Based Filtering):</strong> 카테고리, 테마, 설명 기반 코사인
-                    유사도 추천
-                  </li>
-                  <li>
-                    <strong>CF (Collaborative Filtering):</strong> ALS 알고리즘 기반 사용자-아이템
-                    행렬 분해
-                  </li>
-                  <li>
-                    <strong>Next-POI 추천:</strong> GRU4Rec, SASRec 모델을 활용한 시퀀스 기반 다음
-                    장소 예측
-                  </li>
-                  <li>
-                    <strong>RAG 기반 추천:</strong> FAISS 벡터 DB를 활용한 위치·테마·동행자 조건
-                    검색
-                  </li>
-                  <li>
-                    <strong>GPT 추천:</strong> OpenAI, Claude를 활용한 자연어 기반 맞춤형 일정 추천
-                  </li>
-                </ul>
-                <p><strong>지도 기능</strong></p>
-                <ul>
-                  <li>Kakao Maps SDK 통합 (지도 렌더링, 마커, 인포윈도우)</li>
-                  <li>TMAP API (자동차 경로 탐색)</li>
-                  <li>장소 타입별 마커 아이콘 (음식점, 카페, 관광지 등)</li>
-                </ul>
-                <p><strong>관리자 기능</strong></p>
-                <ul>
-                  <li>대시보드 통계 (Recharts)</li>
-                  <li>사용자 관리, 카테고리 관리, 숙소 관리, SNS 계정 관리</li>
-                  <li>활동 로그 관리 (모든 주요 이벤트 로깅)</li>
-                </ul>
-
-                <h4>기술 스택</h4>
-                <p><strong>Backend (FastAPI)</strong></p>
-                <ul>
-                  <li><strong>Language:</strong> Python</li>
-                  <li><strong>Framework:</strong> FastAPI</li>
-                  <li><strong>Database:</strong> PostgreSQL, MongoDB</li>
-                  <li><strong>Vector DB:</strong> FAISS</li>
-                  <li><strong>Machine Learning:</strong> PyTorch, Implicit (ALS)</li>
-                  <li><strong>LLM/AI:</strong> OpenAI, Claude (via LangChain)</li>
-                  <li><strong>Auth:</strong> OAuth 2.0 (Google, Naver, Kakao)</li>
-                  <li><strong>Map API:</strong> Kakao Map, TMAP API</li>
-                  <li><strong>Infra:</strong> Docker, Jenkins, Gunicorn</li>
-                  <li><strong>Env:</strong> Conda (environment.yml)</li>
-                </ul>
-                <p><strong>Frontend</strong></p>
-                <ul>
-                  <li><strong>Language:</strong> TypeScript</li>
-                  <li><strong>Framework:</strong> React 19</li>
-                  <li><strong>Build Tool:</strong> Vite 7</li>
-                  <li><strong>Routing:</strong> React Router DOM 7</li>
-                  <li><strong>State Management:</strong> React Hooks (useState, useEffect)</li>
-                  <li><strong>UI Library:</strong> Radix UI, shadcn/ui</li>
-                  <li><strong>Styling:</strong> Tailwind CSS 4</li>
-                  <li><strong>Forms:</strong> React Hook Form, Zod</li>
-                  <li><strong>HTTP Client:</strong> Axios</li>
-                  <li><strong>Maps:</strong> Kakao Maps SDK</li>
-                  <li><strong>Charts:</strong> Recharts</li>
-                  <li><strong>Notifications:</strong> React Toastify</li>
-                  <li><strong>Infra:</strong> Docker, Jenkins, Nginx</li>
-                </ul>
-
-                <h4>추천 시스템 상세</h4>
-                <p><strong>1. 콘텐츠 기반 추천 (CBF)</strong></p>
-                <ul>
-                  <li>경로: app/ml/content_based_filtering/main.py</li>
-                  <li>카테고리, 테마, 설명 기반 코사인 유사도 계산</li>
-                  <li>장소 간 유사도 기반 추천</li>
-                </ul>
-                <p><strong>2. 협업 필터링 (CF - ALS)</strong></p>
-                <ul>
-                  <li>경로: app/ml/collaborative_filtering/main.py</li>
-                  <li>사용자-아이템 행렬 분해를 통한 잠재 요인 추출</li>
-                  <li>Implicit 라이브러리를 활용한 ALS 알고리즘 구현</li>
-                </ul>
-                <p><strong>3. 시퀀스 기반 Next-POI 추천</strong></p>
-                <ul>
-                  <li>GRU4Rec: app/ml/next_poi_gru4rec.py</li>
-                  <li>SASRec: app/ml/next_poi_sas_rec.py</li>
-                  <li>PyTorch 기반 딥러닝 모델로 사용자 방문 시퀀스 학습</li>
-                  <li>다음 방문할 장소 예측</li>
-                </ul>
-                <p><strong>4. RAG 기반 장소 검색</strong></p>
-                <ul>
-                  <li>경로: app/rag/faiss_store/</li>
-                  <li>FAISS 벡터 DB를 활용한 유사도 검색</li>
-                  <li>위치, 테마, 동행자 조건을 자연어로 검색</li>
-                  <li>LangChain을 통한 LLM 연동</li>
-                </ul>
-
-                <h4>인증 플로우</h4>
-                <p>
-                  사용자 → /auth/{provider}/login → OAuth Provider 인증 → /auth/{provider}/callback
-                  → 사용자 정보 검증 → MongoDB 세션 생성 (TTL: 1800초) → app_user 테이블 등록/갱신 →
-                  쿠키 기반 세션 관리
-                </p>
-                <ul>
-                  <li><strong>세션 재활성화:</strong> 매 요청마다 자동 갱신 (UserLogMiddleware)</li>
-                  <li><strong>로그아웃:</strong> GET /auth/logout (세션 삭제)</li>
-                  <li><strong>계정 삭제:</strong> DELETE /auth/user (soft delete)</li>
-                </ul>
-
-                <h4>여행 계획 마법사 (4단계)</h4>
-                <ul>
-                  <li><strong>Step 1: 기본 정보 입력</strong> - 지역, 기간, 동반자, 테마 선택</li>
-                  <li>
-                    <strong>Step 2: 장소 선택 및 추천</strong> - AI 추천 모델 선택, 장소 검색 및
-                    선택
-                  </li>
-                  <li><strong>Step 3: 숙소 선택</strong> - 숙소 검색 및 선택</li>
-                  <li><strong>Step 4: 최종 확인</strong> - 일정 최종 확인 및 저장</li>
-                </ul>
-
-                <h4>데이터베이스 구조</h4>
-                <p><strong>PostgreSQL</strong></p>
-                <ul>
-                  <li>app_user (유저 계정, 소셜 로그인, soft delete 지원)</li>
-                  <li>place (장소: 관광지, 음식점, 카페 등)</li>
-                  <li>accommodation (숙소 정보)</li>
-                  <li>itinerary (여행 일정: 시작/종료일, 구성원, 테마 등)</li>
-                  <li>itinerary_item (일정 내 세부 장소)</li>
-                  <li>category (장소 카테고리)</li>
-                  <li>region (지역 정보, 위경도 포함)</li>
-                  <li>place_category (장소-카테고리 연결, 다대다)</li>
-                  <li>place_registrar (사용자 등록 장소, 다대다)</li>
-                </ul>
-                <p><strong>MongoDB</strong></p>
-                <ul>
-                  <li>세션 저장소 (TTL: 1800초)</li>
-                  <li>활동 로그 저장</li>
-                </ul>
-
-                <h4>프론트엔드 주요 기능</h4>
-                <ul>
-                  <li>
-                    <strong>상태 관리:</strong> React Hooks 기반 (useState, useEffect),
-                    localStorage로 사용자 정보 캐싱
-                  </li>
-                  <li>
-                    <strong>UI 컴포넌트:</strong> shadcn/ui 기반 커스텀 컴포넌트 (Card, Dialog,
-                    Badge, Button, Input, Switch)
-                  </li>
-                  <li>
-                    <strong>지도 통합:</strong> Kakao Maps SDK를 통한 지도 렌더링, 마커, 경로 표시
-                  </li>
-                  <li>
-                    <strong>폼 관리:</strong> React Hook Form + Zod를 통한 폼 검증 및 데이터 처리
-                  </li>
-                  <li>
-                    <strong>API 클라이언트:</strong> Axios를 통한 백엔드 API 통신, 쿠키 기반 세션
-                    관리
-                  </li>
-                </ul>
-
-                <h4>프로젝트 특징</h4>
-                <ul>
-                  <li>
-                    <strong>다양한 추천 알고리즘:</strong> CBF, CF, 시퀀스 기반, RAG 등 5가지 추천
-                    방식 제공
-                  </li>
-                  <li>
-                    <strong>하이브리드 데이터베이스:</strong> PostgreSQL (정형 데이터) + MongoDB
-                    (세션, 로그)
-                  </li>
-                  <li><strong>벡터 검색:</strong> FAISS를 활용한 고속 유사도 검색으로 RAG 구현</li>
-                  <li>
-                    <strong>딥러닝 모델:</strong> PyTorch 기반 GRU4Rec, SASRec 모델로 시퀀스 기반
-                    추천
-                  </li>
-                  <li><strong>소셜 로그인:</strong> Google, Naver, Kakao OAuth 2.0 통합 인증</li>
-                  <li>
-                    <strong>지도 API 통합:</strong> Kakao Maps, Naver Directions, TMAP API 연동
-                  </li>
-                  <li><strong>타입 안정성:</strong> TypeScript를 전면 적용하여 타입 안전성 확보</li>
-                </ul>
-
-                <h4>프로젝트 경험</h4>
-                <p>
-                  팀장으로서 전체 일정과 개발 방향을 총괄하며 팀원 간 협업을 조율했습니다. 데이터
-                  구조의 일관성과 효율성을 확보하기 위해 데이터베이스를 직접 설계하고 서비스 전반의
-                  데이터 흐름을 관리했습니다. 또한 추천 시스템의 핵심인 콘텐츠 기반
-                  필터링(Content-Based Filtering)과 협업 필터링(ALS) 모델을 구현하여 사용자 맞춤형
-                  여행지 추천 기능을 완성했습니다. 모델 성능을 개선하기 위해 다양한 하이퍼파라미터를
-                  실험했으나, 기대한 수준의 평가 점수를 달성하지 못한 점은 아쉬움으로 남습니다. 이번
-                  프로젝트를 통해 문제 해결 능력과 팀 리딩 역량을 강화했으며, 다양한 AI 모델을 실제
-                  서비스에 적용하며 실무형 개발 역량을 한층 향상시킬 수 있었습니다.
-                </p>
+                <div class="diagram-container">
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/bd_notion.png" alt="" />
+                  </div>
+                  <p class="text-muted small mt-2">▲ Notion을 통한 협업 및 트러블 슈팅 기록</p>
+                </div>
               </div>
             </div>
 
             <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
-              <div class="portfolio-info">
-                <h3>Project information</h3>
-                <ul>
-                  <li><strong>Category</strong> AI 웹 애플리케이션 (풀스택)</li>
-                  <li><strong>Client</strong> 팀 프로젝트</li>
-                  <li><strong>Project date</strong> 2025.09 – 2025.11 (약 3개월)</li>
-                  <li><strong>팀 구성</strong> AICC6-Maenggler-3rd Team</li>
-                  <li>
-                    <strong>GitHub Project URL</strong>
-                    <p>
-                      <a href="#" target="_blank">Backend Repository</a>
-                    </p>
-                    <p>
-                      <a href="#" target="_blank">Frontend Repository</a>
-                    </p>
+              <div class="portfolio-info shadow-sm p-4 rounded">
+                <h3>Project Info</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-3"><strong>Category</strong> <br />AI 웹 애플리케이션 (풀스택)</li>
+                  <li class="mb-3">
+                    <strong>Role</strong> <br />팀장, DB 설계, 추천 모델(CBF/CF), 백엔드
                   </li>
-                  <li>
-                    <strong>배포 사이트</strong>
-                    <p>
-                      <a href="https://inpick.aicc-project.com/" target="_blank" class="btn-visit"
-                        >프로젝트 사이트 방문</a
-                      >
-                    </p>
+                  <li class="mb-3"><strong>Date</strong> <br />2025.09 – 2025.11 (3개월)</li>
+                  <li class="mb-3">
+                    <strong>GitHub</strong><br />
+                    <a href="#" target="_blank" class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Backend Repo</a
+                    >
+                    <a href="#" target="_blank" class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Frontend Repo</a
+                    >
+                  </li>
+                  <li class="mb-3">
+                    <strong>Deployment</strong><br />
+                    <a
+                      href="https://inpick.aicc-project.com/"
+                      target="_blank"
+                      class="btn btn-primary btn-sm w-100 mt-2"
+                      >사이트 방문하기</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -345,43 +268,20 @@
           </div>
         </div>
       </section>
-      <!-- /Portfolio Details Section -->
     </main>
 
-    <footer id="footer" class="footer accent-background">
-      <div class="container">
-        <div class="copyright text-center">
-          <p>
-            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
-            <span>All Rights Reserved</span>
-          </p>
-        </div>
-        <div class="social-links d-flex justify-content-center">
-          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
-        </div>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a>
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/typed.js/typed.umd.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/includes.js"></script>
 
-    <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
   </body>
 </html>

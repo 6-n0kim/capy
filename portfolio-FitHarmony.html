@@ -4,62 +4,45 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Fit Harmony - Portfolio Details</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta
+      name="description"
+      content="AI 기반 실시간 자세 교정 및 맞춤형 운동 추천 서비스 Fit Harmony 포트폴리오"
+    />
 
-    <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon" />
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
     <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
-    <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- Page Custom CSS (moved from inline <style>) -->
+    <link href="assets/css/portfolio-details-custom.css" rel="stylesheet" />
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
   </head>
 
   <body class="portfolio-details-page">
-    <header id="header" class="header d-flex align-items-center sticky-top">
-      <div
-        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
-      >
-        <a href="index.html" class="logo d-flex align-items-center">
-          <h1 class="sitename">JY BLOG</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li>
-              <a href="index.html#hero">Home<br /></a>
-            </li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#resume">Resume</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#portfolio">Portfolio</a></li>
-            <li><a href="index.html#peer reviews">peer reviews</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-      </div>
-    </header>
+    <div id="site-header"></div>
 
     <main class="main">
-      <!-- Page Title -->
       <div class="page-title" data-aos="fade">
         <div class="container d-lg-flex justify-content-between align-items-center">
-          <h1 class="mb-2 mb-lg-0">Fit Harmony</h1>
+          <h1 class="mb-2 mb-lg-0">Fit Harmony Project</h1>
           <nav class="breadcrumbs">
             <ol>
               <li><a href="index.html">Home</a></li>
@@ -68,161 +51,208 @@
           </nav>
         </div>
       </div>
-      <!-- End Page Title -->
 
-      <!-- Portfolio Details Section -->
       <section id="portfolio-details" class="portfolio-details section">
         <div class="container" data-aos="fade-up">
           <div class="row justify-content-between gy-4 mt-4">
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
-                <h2>FIT HARMONY — 헬스장 통합 운영 및 회원 관리 플랫폼</h2>
-                <p>
-                  <strong>트레이너와 회원, 그리고 헬스장을 하나로 연결하는 통합 플랫폼</strong>
-                </p>
-                <p>
-                  FIT HARMONY는 헬스장 회원·트레이너·운영자를 연결하여 인바디 관리, 일정 조율,
-                  커뮤니티, 상품 결제까지 한 플랫폼에서 해결하는 통합 운영 시스템입니다. AI 기반
-                  인바디 분석(OCR + GPT)을 통해 자동화된 건강 관리 서비스를 제공합니다.
+                <h2>Fit Harmony — AI 기반 실시간 자세 교정 및 운동 추천 서비스</h2>
+                <p class="lead text-muted">
+                  웹캠을 통해 사용자의 운동 자세를 실시간으로 분석하고 피드백을 제공하는
+                  서비스입니다.
                 </p>
 
-                <h4>문제 정의</h4>
-                <p>헬스장 운영에서 다음과 같은 비효율을 해결했습니다:</p>
-                <ul>
-                  <li>트레이너와 회원 간 일정 조율 및 인바디 관리가 수기로 이루어짐</li>
-                  <li>회원 관리 시스템과 커뮤니티가 분리되어 있어 소통이 단절</li>
-                  <li>트레이너별 고객 데이터를 효율적으로 추적할 수 없음</li>
-                </ul>
+                <hr class="my-4" />
+
+                <h3 class="section-title">1. 시스템 아키텍처 (System Architecture)</h3>
                 <p>
-                  👉 이를 해결하기 위해
-                  <strong>운영·소통·데이터를 통합한 플랫폼 "FIT HARMONY"</strong>를 개발하였습니다.
+                  프론트엔드에서 AI 모델을 직접 실행(On-Device AI)하여 서버 부하를 줄이고 실시간성을
+                  확보했습니다.
                 </p>
 
-                <h4>주요 기능</h4>
-                <ul>
-                  <li>
-                    <strong>회원 관리:</strong> 로그인, 회원가입, 프로필 수정 (Local/Google OAuth
-                    인증, SHA-512 암호화)
-                  </li>
-                  <li>
-                    <strong>트레이너 기능:</strong> 회원 관리, 일정, 상품 등록/판매 (역할 기반 권한
-                    부여)
-                  </li>
-                  <li>
-                    <strong>인바디 분석:</strong> OCR + GPT 분석 리포트 (PaddleOCR + OpenAI API
-                    연동)
-                  </li>
-                  <li>
-                    <strong>일정 관리:</strong> FullCalendar 일정 뷰, 식단 관리 (Redux 상태관리 +
-                    date-fns)
-                  </li>
-                  <li>
-                    <strong>커뮤니티:</strong> 게시글·댓글 CRUD, 관리자 기능 (React Router + API
-                    CRUD 통합)
-                  </li>
-                  <li>
-                    <strong>상품 관리:</strong> 트레이너별 상품 등록·구매 기능 (RESTful 설계 기반
-                    API)
-                  </li>
-                </ul>
+                <div class="diagram-container">
+                  <pre class="mermaid">
+graph TD
+    subgraph ClientLayer [Client Layer]
+        React["React Frontend"] 
+        Browser["User Browser<br/>(WebCam Access)"]
+    end
 
-                <h4>기술 스택</h4>
-                <p><strong>Frontend</strong></p>
-                <ul>
-                  <li><strong>Core:</strong> React (Vite), Redux Toolkit, Tailwind CSS</li>
-                  <li><strong>Visualization:</strong> Recharts, FullCalendar</li>
-                  <li><strong>State Management:</strong> Redux Toolkit + Context API</li>
-                </ul>
-                <p><strong>Backend</strong></p>
-                <ul>
-                  <li><strong>Core:</strong> Node.js (Express), PostgreSQL</li>
-                  <li>
-                    <strong>Auth:</strong> Passport.js (Local + Google OAuth2.0), express-session
-                  </li>
-                  <li><strong>Security:</strong> Helmet, SHA-512 암호화</li>
-                </ul>
-                <p><strong>AI/OCR</strong></p>
-                <ul>
-                  <li><strong>OCR:</strong> Python + PaddleOCR</li>
-                  <li><strong>AI Analysis:</strong> OpenAI API</li>
-                  <li>
-                    <strong>Integration:</strong> Node.js에서 Python subprocess 호출하여 OCR/GPT
-                    결과 JSON 반환
-                  </li>
-                </ul>
-                <p><strong>Infrastructure</strong></p>
-                <ul>
-                  <li>Vite Build + Tomcat/Express 배포 (프론트-백 분리형 배포 구조)</li>
-                </ul>
+    subgraph FrontAI [On-Device AI]
+        TFJS["TensorFlow.js<br/>(PoseNet Model)"]
+        CorrectionLogic["Client-side Correction Logic<br/>(Keypoint Analysis)"]
+    end
 
-                <h4>시스템 아키텍처</h4>
+    subgraph ServerLayer [Server Layer]
+        Express["Backend Server<br/>(Express.js/Node.js)"]
+    end
+
+    subgraph DataLayer [Data Layer]
+        MySQL[("MySQL/MariaDB<br/>User/Record Data")]
+        Redis[("Redis<br/>Caching/Session")]
+    end
+
+    Browser -->|Stream Video| TFJS
+    TFJS -->|Keypoints| CorrectionLogic
+    CorrectionLogic -->|Real-time Feedback| React
+    React -->|REST API| Express
+    Express -->|Sequelize| MySQL
+    Express --> Redis
+</pre>
+                  <p class="text-muted small mt-2">▲ 클라이언트 기반 AI 분석 및 서버 연동 구조</p>
+                </div>
+
+                <h3 class="section-title mt-5">2. 주요 기능 및 화면 (UI/UX)</h3>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
+                    </div>
+                    <h5>인바디 데이터 시각화</h5>
+                    <p class="small">
+                      Recharts 라이브러리를 활용하여 인바디 데이터의 변화 추이를 라인/바/레이더
+                      차트로 직관적으로 보여줍니다.
+                    </p>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
+                    </div>
+                    <h5>OCR 인식</h5>
+                    <p class="small">
+                      Tesseract OCR을 활용하여 골격근량, 나이, 체성분량, 성별을 인식하고 저장합니다.
+                    </p>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">3. 실시간 자세 교정 알고리즘 Flow</h3>
+                <p>웹캠 입력부터 오차 계산, 피드백 출력까지의 논리적인 순서입니다.</p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+sequenceDiagram
+    participant User
+    participant Webcam
+    participant TFJS as PoseNet Model
+    participant Analyzer as Angle Analyzer
+    participant Feedback as Feedback Logic
+
+    User->>Webcam: 1. 운동 시작
+    Webcam->>TFJS: 2. 비디오 프레임 전달 (30fps)
+    TFJS->>Analyzer: 3. 관절 키포인트 추출 (X, Y, Z, Score)
+    
+    rect rgb(240, 248, 255)
+    Analyzer->>Analyzer: 4. 기준 각도와 현재 각도 계산 (Cosine Similarity)
+    Analyzer->>Feedback: 5. 오차율(%) 전달
+    Feedback->>Feedback: 6. 오차율에 따른 메시지 결정
+    end
+    
+    Feedback->>User: 7. "무릎이 너무 나갔어요!" (음성/텍스트)
+    Feedback->>TFJS: 8. 다음 프레임 대기
+</pre
+                  >
+                </div>
+
+                <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
                 <p>
-                  사용자 → React SPA (Vite, Redux) → Axios 통신 → Express.js API 서버 → PostgreSQL
-                  (RDB) → Python (OCR, GPT 분석)
+                  사용자, 운동 정보, 기록 데이터를 중심으로 설계된 관계형 데이터베이스(RDB)
+                  구조입니다.
                 </p>
-                <ul>
-                  <li>세션 기반 인증 구조: Passport.js + connect-pg-simple</li>
-                  <li>역할별 접근 제어 (RBAC): ADMIN / TRAINER / MEMBER</li>
-                  <li>AI 연동: Node.js에서 Python 스크립트를 호출하여 인바디 데이터 자동 분석</li>
-                </ul>
 
-                <h4>AI 기술 적용</h4>
+                <div class="diagram-container">
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/fit_erd.png" alt="" />
+                  </div>
+                  <p class="text-muted small mt-2">▲ MySQL 주요 엔티티 관계도</p>
+                </div>
+
+                <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Frontend & AI</h5>
+                        <span class="badge bg-primary tech-badge">React 18</span>
+                        <span class="badge bg-primary tech-badge">TypeScript</span>
+                        <span class="badge bg-danger tech-badge">TensorFlow.js</span>
+                        <span class="badge bg-danger tech-badge">PoseNet</span>
+                        <span class="badge bg-info tech-badge">p5.js (Canvas)</span>
+                        <span class="badge bg-secondary tech-badge">MUI/Styled-Components</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Backend & DB</h5>
+                        <span class="badge bg-success tech-badge">Node.js</span>
+                        <span class="badge bg-success tech-badge">Express.js</span>
+                        <span class="badge bg-warning text-dark tech-badge">MySQL/MariaDB</span>
+                        <span class="badge bg-warning text-dark tech-badge">Sequelize ORM</span>
+                        <span class="badge bg-info tech-badge">Redis</span>
+                        <span class="badge bg-dark tech-badge">JWT Auth</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Deployment</h5>
+                        <span class="badge bg-primary tech-badge">AWS EC2</span>
+                        <span class="badge bg-primary tech-badge">Docker</span>
+                        <span class="badge bg-secondary tech-badge">Nginx Proxy</span>
+                        <span class="badge bg-dark tech-badge">Git Actions (CI/CD)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
                 <p>
-                  <strong>인바디 이미지 분석 자동화:</strong> PaddleOCR을 통해 인바디 측정 결과
-                  이미지에서 텍스트를 추출하고, OpenAI API를 활용하여 GPT 기반 건강 피드백 리포트를
-                  자동 생성합니다.
+                  API 호출 시 JSON 데이터가 정상적으로 전달되지 않는 문제를 해결하기 위해 Axios
+                  인터셉터를 사용하여 요청/응답을 로깅하고, 데이터를 확인
+                  <br />
+                  JWT 인증 과정에서 토큰이 정상적으로 전달되지 않는 문제를 해결하기 위해
+                  interceptor를 사용하여 토큰을 추가
+                  <br />
+                  CORS 문제를 해결하기 위해 프론트 작업을 하는 동기와 정보 공유 후 해결
                 </p>
 
-                <h4>협업 방식</h4>
-                <ul>
-                  <li>모든 팀원 (4명): 프론트엔드·백엔드 전 영역을 Full-stack 역할로 수행</li>
-                  <li>GitHub Flow 기반 브랜치 전략 (main / feature)</li>
-                  <li>Notion으로 일정 및 API 명세 공유</li>
-                  <li>회의 주기: 주 2회 (스프린트 리뷰 + 코드 리뷰)</li>
-                </ul>
-
-                <h4>프로젝트 경험</h4>
-                <p>
-                  풀스택 개발자로서 프론트엔드와 백엔드 모두를 담당하여 개발 경험을 쌓았습니다.
-                  Node.js와 Express를 활용한 RESTful API 서버 구축, Passport.js를 통한 세션 기반
-                  인증 및 Google OAuth2.0 연동, PostgreSQL 데이터베이스 설계 및 최적화 경험을
-                  쌓았습니다. 특히 Python과 Node.js를 연동하여 PaddleOCR과 OpenAI API를 활용한 AI
-                  기능 구현 경험을 얻었습니다. 프론트엔드에서는 React와 Vite를 활용한 빠른 개발 환경
-                  구축, Redux Toolkit을 통한 상태 관리, Tailwind CSS를 활용한 반응형 디자인,
-                  Recharts와 FullCalendar를 활용한 데이터 시각화 경험을 쌓았습니다.
-                </p>
+                <div class="diagram-container">
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/bd_notion.png" alt="" />
+                  </div>
+                  <p class="text-muted small mt-2">▲ Notion을 통한 협업 및 트러블 슈팅 기록</p>
+                </div>
               </div>
             </div>
 
             <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
-              <div class="portfolio-info">
-                <h3>Project information</h3>
-                <ul>
-                  <li><strong>Category</strong> AI 웹 애플리케이션 (풀스택)</li>
-                  <li><strong>Client</strong> 팀 프로젝트</li>
-                  <li><strong>Project date</strong> 2025.06 – 2025.07 (약 2개월)</li>
-                  <li><strong>팀 구성</strong> 총 4인 (모두 Backend + Frontend 개발 참여)</li>
-                  <li><strong>역할</strong> 백엔드 API 설계 및 구현 / 프론트엔드 개발 / DB 설계</li>
-                  <li>
-                    <strong>GitHub Project URL</strong>
-                    <p>
-                      <a href="https://github.com/6-n0kim/FIT_HARMONY_BACK" target="_blank"
-                        >Backend Repository</a
-                      >
-                    </p>
-                    <p>
-                      <a href="https://github.com/6-n0kim/FIT_HARMONY_FRONT" target="_blank"
-                        >Frontend Repository</a
-                      >
-                    </p>
+              <div class="portfolio-info shadow-sm p-4 rounded">
+                <h3>Project Info</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-3">
+                    <strong>Category</strong> <br />AI/헬스케어 웹 서비스 (풀스택)
                   </li>
-                  <li>
-                    <strong>배포 사이트</strong>
-                    <p>
-                      <a href="https://fitharmony.wa4b.site" target="_blank" class="btn-visit"
-                        >프로젝트 사이트 방문</a
-                      >
-                    </p>
+                  <li class="mb-3">
+                    <strong>Role</strong> <br />AI 모델 적용, 프론트엔드 개발, DB 관리
+                  </li>
+                  <li class="mb-3"><strong>Date</strong> <br />2025.04 – 2025.06 (3개월)</li>
+                  <li class="mb-3">
+                    <strong>GitHub</strong><br />
+                    <a href="#" target="_blank" class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Project Repo</a
+                    >
+                  </li>
+                  <li class="mb-3">
+                    <strong>Deployment</strong><br />
+                    <a
+                      href="https://fitharmony.com/"
+                      target="_blank"
+                      class="btn btn-primary btn-sm w-100 mt-2"
+                      >사이트 방문하기</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -230,43 +260,20 @@
           </div>
         </div>
       </section>
-      <!-- /Portfolio Details Section -->
     </main>
 
-    <footer id="footer" class="footer accent-background">
-      <div class="container">
-        <div class="copyright text-center">
-          <p>
-            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
-            <span>All Rights Reserved</span>
-          </p>
-        </div>
-        <div class="social-links d-flex justify-content-center">
-          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
-        </div>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a>
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/typed.js/typed.umd.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/includes.js"></script>
 
-    <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
   </body>
 </html>

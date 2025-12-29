@@ -62,9 +62,28 @@
         align-items: center;
         justify-content: center;
         border-radius: 8px;
+        overflow: hidden;
         margin-bottom: 15px;
         color: #6c757d;
         border: 2px dashed #ced4da;
+      }
+      .screenshot-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .screenshot-placeholder.screenshot-auto {
+        height: auto;
+        overflow: visible;
+        background-color: transparent;
+        border: 0;
+        display: block;
+      }
+      .screenshot-placeholder.screenshot-auto img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
       }
       .screenshot-img {
         width: 100%;
@@ -113,10 +132,10 @@
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
                 <h2>OnSpot — 위치 기반 소셜 미디어 플랫폼</h2>
-                <p class="lead text-muted">
-                  "지금, 여기"의 경험을 공유하다.<br />
-                  지도 위에서 실시간으로 주변의 이야기를 발견하는 위치 기반 SNS입니다.
-                </p>
+                <strong
+                  >내 주변의 경험을 공유하고, 지도 위에서 새로운 사람들의 이야기를 발견하는
+                  공간</strong
+                >
 
                 <hr class="my-4" />
 
@@ -159,23 +178,19 @@ graph LR
                 <div class="row mt-4">
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>지도 기반 탐색</strong><br />내 주변 게시물 마커 확인</span
-                      >
+                      <img src="./assets/img/portfolio/OnSpot_main.png" alt="" />
                     </div>
-                    <h5>지도 위에서 발견하는 이야기</h5>
+                    <h5>지도 기반 탐색</h5>
                     <p class="small">
-                      Kakao Map API를 활용하여 사용자의 현재 위치 주변에 등록된 게시물을 마커로
-                      시각화합니다.
+                      Kakao Map API를 활용하여 사용자의 현재 위치 주변, 팔로워의 게시물 위치, 최근
+                      게시물 위치를 마커로 시각화합니다.
                     </p>
                   </div>
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>게시물 업로드</strong><br />위치 정보 + 사진 등록</span
-                      >
+                      <img src="./assets/img/portfolio/OnSpot_post.png" alt="" />
                     </div>
-                    <h5>위치 정보가 담긴 기록</h5>
+                    <h5>게시물 업로드</h5>
                     <p class="small">
                       사진 업로드 시 위치 정보를 함께 저장하여, 단순한 시간 순 정렬이 아닌 '장소'
                       중심의 피드를 제공합니다.
@@ -220,37 +235,10 @@ sequenceDiagram
                 </p>
 
                 <div class="diagram-container">
-                  <pre class="mermaid">
-erDiagram
-    MEMBER ||--o{ BOARD : writes
-    MEMBER ||--o{ REPLY : writes
-    MEMBER ||--o{ FOLLOW : "follows/followed"
-    
-    MEMBER {
-        string user_id PK
-        string password
-        string nickname
-    }
-    BOARD {
-        int board_id PK
-        string title
-        string content
-        float latitude
-        float longitude
-        string img_file
-    }
-    REPLY {
-        int reply_id PK
-        int board_id FK
-        string content
-    }
-    FOLLOW {
-        string follower_id FK
-        string following_id FK
-    }
-</pre
-                  >
-                  <p class="text-muted small mt-2">▲ Oracle DB 주요 테이블 관계도</p>
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/OnSpot_erd.png" alt="" />
+                  </div>
+                  <p class="text-muted small mt-2">▲ Oracle DB 테이블 관계도</p>
                 </div>
 
                 <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
@@ -290,6 +278,14 @@ erDiagram
                     </div>
                   </div>
                 </div>
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
+                <p>"Tomcat 서버 실행 시 'Connection refused' 오류"</p>
+                <p>
+                  Tomcat 서버 실행 시 'Connection refused' 오류가 발생했습니다. 이는 Tomcat이
+                  정상적으로 실행되지 않았기 때문입니다. Tomcat을 실행하기 전에 먼저 포트 8080이
+                  사용 중인지 확인해야 합니다. 포트 8080이 사용 중이라면, 다른 포트를 사용하거나
+                  포트를 변경해야 합니다.
+                </p>
               </div>
             </div>
 
@@ -300,12 +296,6 @@ erDiagram
                   <li class="mb-3"><strong>Category</strong> <br />웹 애플리케이션 (개인)</li>
                   <li class="mb-3"><strong>Role</strong> <br />1인 개발 (Full Stack)</li>
                   <li class="mb-3"><strong>Date</strong> <br />2022.07 – 2022.09 (2개월)</li>
-                  <li class="mb-3">
-                    <strong>Tech Focus</strong><br />
-                    <span class="badge bg-light text-dark border">MVC Pattern</span>
-                    <span class="badge bg-light text-dark border">Kakao Maps</span>
-                    <span class="badge bg-light text-dark border">Oracle DB</span>
-                  </li>
                   <li class="mb-3">
                     <strong>GitHub</strong><br />
                     <a

@@ -1010,6 +1010,15 @@ section,
   transition: all ease-in-out 0.3s;
 }
 
+.portfolio .portfolio-item > img {
+  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.portfolio .portfolio-item:hover > img {
+  filter: blur(2px) brightness(0.75);
+  transform: scale(1.02);
+}
+
 .portfolio .portfolio-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -1025,6 +1034,21 @@ section,
   transition: all ease-in-out 0.3s;
   background: color-mix(in srgb, var(--background-color), transparent 10%);
   padding: 15px;
+}
+
+.portfolio .portfolio-item .portfolio-info .portfolio-brief {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--default-color), transparent 10%);
+}
+
+.portfolio .portfolio-item .portfolio-info .details-btn {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
 }
 
 .portfolio .portfolio-item .portfolio-info h4 {
@@ -1652,4 +1676,5 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+  display: block;
 }

@@ -4,62 +4,42 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>OnSpot - Portfolio Details</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="위치 기반 소셜 미디어 플랫폼 OnSpot 포트폴리오" />
 
-    <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon" />
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
     <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
-    <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
-  </head>
+
+    <!-- Page Custom CSS (moved from inline <style>) -->
+    <link href="assets/css/portfolio-details-custom.css" rel="stylesheet" />
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+</head>
 
   <body class="portfolio-details-page">
-    <header id="header" class="header d-flex align-items-center sticky-top">
-      <div
-        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
-      >
-        <a href="index.html" class="logo d-flex align-items-center">
-          <h1 class="sitename">JY BLOG</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li>
-              <a href="index.html#hero">Home<br /></a>
-            </li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#resume">Resume</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#portfolio">Portfolio</a></li>
-            <li><a href="index.html#peer reviews">peer reviews</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-      </div>
-    </header>
+    <div id="site-header"></div>
 
     <main class="main">
-      <!-- Page Title -->
       <div class="page-title" data-aos="fade">
         <div class="container d-lg-flex justify-content-between align-items-center">
-          <h1 class="mb-2 mb-lg-0">OnSpot</h1>
+          <h1 class="mb-2 mb-lg-0">OnSpot Project</h1>
           <nav class="breadcrumbs">
             <ol>
               <li><a href="index.html">Home</a></li>
@@ -68,113 +48,185 @@
           </nav>
         </div>
       </div>
-      <!-- End Page Title -->
 
-      <!-- Portfolio Details Section -->
       <section id="portfolio-details" class="portfolio-details section">
         <div class="container" data-aos="fade-up">
           <div class="row justify-content-between gy-4 mt-4">
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
-                <h2>On Spot — 위치 기반 소셜 미디어 플랫폼</h2>
+                <h2>OnSpot — 위치 기반 소셜 미디어 플랫폼</h2>
+                <strong
+                  >내 주변의 경험을 공유하고, 지도 위에서 새로운 사람들의 이야기를 발견하는
+                  공간</strong
+                >
+
+                <hr class="my-4" />
+
+                <h3 class="section-title">1. 시스템 아키텍처 (MVC Architecture)</h3>
                 <p>
-                  <strong
-                    >내 주변의 경험을 공유하고, 지도 위에서 새로운 사람들의 이야기를 발견하는
-                    공간</strong
+                  JSP(View), Servlet(Controller), DAO/DTO(Model) 패턴을 준수한 고전적인 웹
+                  아키텍처를 구현했습니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+graph LR
+    User((User))
+    subgraph Frontend
+        JSP["JSP Views<br>(HTML/Bootstrap)"]
+        Map["Kakao Map SDK"]
+    end
+    subgraph Backend
+        Controller["Servlet<br>(Controller)"]
+        Model["DAO / DTO<br>(Data Access)"]
+        FileSys["File System<br>(Images)"]
+    end
+    subgraph Database
+        Oracle[("Oracle DB 11g")]
+    end
+
+    User -->|Request| JSP
+    JSP -->|Form Submit| Controller
+    Controller -->|Business Logic| Model
+    Controller -->|Multipart| FileSys
+    Model -->|JDBC Query| Oracle
+    Oracle -->|ResultSet| Model
+    Model -->|DTO Return| Controller
+    Controller -->|Forward| JSP
+</pre>
+                  <p class="text-muted small mt-2">▲ Servlet/JSP 기반의 MVC 패턴 데이터 흐름도</p>
+                </div>
+
+                <h3 class="section-title mt-5">2. 주요 기능 및 화면 (UI/UX)</h3>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <img src="./assets/img/portfolio/OnSpot_main.png" alt="" />
+                    </div>
+                    <h5>지도 기반 탐색</h5>
+                    <p class="small">
+                      Kakao Map API를 활용하여 사용자의 현재 위치 주변, 팔로워의 게시물 위치, 최근
+                      게시물 위치를 마커로 시각화합니다.
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                      <img src="./assets/img/portfolio/OnSpot_post.png" alt="" />
+                    </div>
+                    <h5>게시물 업로드</h5>
+                    <p class="small">
+                      사진 업로드 시 위치 정보를 함께 저장하여, 단순한 시간 순 정렬이 아닌 '장소'
+                      중심의 피드를 제공합니다.
+                    </p>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">3. 핵심 로직: 위치 기반 게시물 등록</h3>
+                <p>
+                  파일 업로드(COS 라이브러리)와 위치 데이터 처리를 동시에 수행하는 프로세스입니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+sequenceDiagram
+    actor User
+    participant Browser
+    participant Server as Tomcat Server
+    participant DB as Oracle DB
+
+    User->>Browser: 1. 사진 선택 및 위치 지정
+    Browser->>Server: 2. POST /upload (Multipart/form-data)
+    
+    activate Server
+    Note right of Server: COS Library 처리
+    Server->>Server: 3. 파일명 중복 처리 및 저장
+    Server->>Server: 4. 위도(Lat), 경도(Lng) 추출
+    Server->>DB: 5. INSERT INTO BOARD VALUES (...)
+    DB-->>Server: 성공(1)
+    deactivate Server
+    
+    Server-->>Browser: 6. 업로드 완료 및 지도 갱신
+    Browser->>User: 7. 지도에 새 마커 표시
+</pre
                   >
-                </p>
+                </div>
+
+                <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
                 <p>
-                  On Spot은 지도를 기반으로 한 위치 기반 소셜 네트워크 서비스입니다. 사용자가 특정
-                  장소에서의 경험과 사진을 공유하고, 다른 사용자들의 추천을 받을 수 있는
-                  플랫폼입니다.
-                </p>
-
-                <h4>문제 정의</h4>
-                <p>
-                  기존 SNS에서는 게시물이 시간순으로만 정렬되어
-                  <strong>"지금 이 장소 주변에서 무슨 일이 있는가"</strong>를 알기 어려움을 해결하기
-                  위해, 위치 데이터를 중심으로 콘텐츠를 탐색할 수 있는 플랫폼을 설계하였습니다.
-                </p>
-                <ul>
-                  <li>게시물에 위치 정보와 좌표를 결합 → 지도 기반 탐색</li>
-                  <li>Kakao Map SDK로 실제 장소 중심의 UI 제공</li>
-                  <li>Oracle 기반 데이터 구조로 다중 사용자 요청 처리 안정화</li>
-                </ul>
-
-                <h4>주요 기능</h4>
-                <ul>
-                  <li>
-                    <strong>회원 관리:</strong> 회원가입, 로그인, 아이디/비밀번호 찾기, 마이페이지,
-                    회원 탈퇴
-                  </li>
-                  <li>
-                    <strong>게시물 기능:</strong> 이미지 업로드, 위치 정보 입력,
-                    최신순/인기순/팔로우 게시물 조회, 게시물 검색
-                  </li>
-                  <li><strong>댓글 시스템:</strong> 게시물별 댓글 작성 및 조회</li>
-                  <li>
-                    <strong>지도 기능:</strong> Kakao Maps SDK 통합, 지도 클릭으로 마커 위치 설정,
-                    게시물 위치 연동
-                  </li>
-                  <li><strong>사용자 검색:</strong> 닉네임 기반 사용자 검색</li>
-                  <li><strong>팔로우 시스템:</strong> 팔로우 및 팔로워 관리</li>
-                </ul>
-
-                <h4>기술 스택</h4>
-                <ul>
-                  <li><strong>Backend:</strong> Java (JSP/Servlet), Oracle Database 11g</li>
-                  <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript, Bootstrap</li>
-                  <li><strong>Map API:</strong> Kakao Maps SDK</li>
-                  <li><strong>File Upload:</strong> COS (Multipart)</li>
-                  <li><strong>Server:</strong> Apache Tomcat 8.5</li>
-                  <li><strong>아키텍처:</strong> MVC 패턴 (DTO/DAO), 커넥션 풀, 세션 관리</li>
-                </ul>
-
-                <h4>시스템 아키텍처</h4>
-                <p>
-                  사용자 요청 → Front-End JSP/JS → Controller (Servlet) → Service Layer (DAO/DTO) →
-                  DB Connection Pool (Oracle)
+                  Oracle Database를 사용하여 회원, 게시물, 댓글, 팔로우 관계를 정규화하여
+                  설계했습니다.
                 </p>
 
-                <h4>기술적 도전 및 개선 경험</h4>
-                <ul>
-                  <li>
-                    <strong>파일 업로드 안정화:</strong> Multipart 처리 시 인코딩 깨짐 문제 → UTF-8
-                    필터 설정으로 해결
-                  </li>
-                  <li>
-                    <strong>SQL Injection 방지:</strong> PreparedStatement 적용, 검색 쿼리 문자열
-                    연결 제거
-                  </li>
-                  <li>
-                    <strong>API 응답 속도 개선:</strong> 인기 게시물 조회 SQL 인덱스 튜닝 (LIKE →
-                    INSTR + INDEX)
-                  </li>
-                </ul>
+                <div class="diagram-container">
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/OnSpot_erd.png" alt="" />
+                  </div>
+                  <p class="text-muted small mt-2">▲ Oracle DB 테이블 관계도</p>
+                </div>
 
-                <h4>프로젝트 경험</h4>
+                <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Frontend</h5>
+                        <span class="badge bg-primary tech-badge">HTML5/CSS3</span>
+                        <span class="badge bg-primary tech-badge">JavaScript (ES6)</span>
+                        <span class="badge bg-warning text-dark tech-badge">Kakao Maps SDK</span>
+                        <span class="badge bg-info tech-badge">Bootstrap</span>
+                        <span class="badge bg-secondary tech-badge">JQuery</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Backend</h5>
+                        <span class="badge bg-danger tech-badge">Java 8</span>
+                        <span class="badge bg-danger tech-badge">JSP / Servlet</span>
+                        <span class="badge bg-dark tech-badge">Apache Tomcat 8.5</span>
+                        <span class="badge bg-secondary tech-badge">COS (Multipart)</span>
+                        <span class="badge bg-success tech-badge">JDBC</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Database</h5>
+                        <span class="badge bg-danger tech-badge">Oracle 11g XE</span>
+                        <span class="badge bg-secondary tech-badge">SQL Developer</span>
+                        <span class="badge bg-dark tech-badge">DBCP (Connection Pool)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
+                <p>"Tomcat 서버 실행 시 'Connection refused' 오류"</p>
                 <p>
-                  이 프로젝트를 통해 첫 프로젝트 개발을 경험했습니다. 1인으로 프로젝트 개발의 흐름을
-                  알게되었고, JSP/Servlet 기반의 MVC 패턴을 구현하며 웹 애플리케이션의 기본 구조와
-                  동작 원리를 학습했습니다. 또한 Kakao Maps API를 활용해 보면서 외부 API 통합 경험을
-                  할 수 있는 좋은 기회가 되었습니다.
+                  Tomcat 서버 실행 시 'Connection refused' 오류가 발생했습니다. 이는 Tomcat이
+                  정상적으로 실행되지 않았기 때문입니다. Tomcat을 실행하기 전에 먼저 포트 8080이
+                  사용 중인지 확인해야 합니다. 포트 8080이 사용 중이라면, 다른 포트를 사용하거나
+                  포트를 변경해야 합니다.
                 </p>
               </div>
             </div>
 
             <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
-              <div class="portfolio-info">
-                <h3>Project information</h3>
-                <ul>
-                  <li><strong>Category</strong> 웹 애플리케이션</li>
-                  <li><strong>Client</strong> 개인 프로젝트</li>
-                  <li><strong>Project date</strong> 2022.07 – 2022.09 (약 2개월)</li>
-                  <li><strong>팀 규모</strong> 1인</li>
-                  <li>
-                    <strong>GitHub Project URL</strong>
-                    <p>
-                      <a href="https://github.com/6-n0kim/on_spot" target="_blank">GitHub</a>
-                    </p>
+              <div class="portfolio-info shadow-sm p-4 rounded">
+                <h3>Project Info</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-3"><strong>Category</strong> <br />웹 애플리케이션 (개인)</li>
+                  <li class="mb-3"><strong>Role</strong> <br />1인 개발 (Full Stack)</li>
+                  <li class="mb-3"><strong>Date</strong> <br />2022.07 – 2022.09 (2개월)</li>
+                  <li class="mb-3">
+                    <strong>GitHub</strong><br />
+                    <a
+                      href="https://github.com/6-n0kim/on_spot"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Source Code</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -182,43 +234,21 @@
           </div>
         </div>
       </section>
-      <!-- /Portfolio Details Section -->
     </main>
 
-    <footer id="footer" class="footer accent-background">
-      <div class="container">
-        <div class="copyright text-center">
-          <p>
-            © <span>Copyright</span> <strong class="px-1 sitename">JY BLOG</strong>
-            <span>All Rights Reserved</span>
-          </p>
-        </div>
-        <div class="social-links d-flex justify-content-center">
-          <a href="https://github.com/6-n0kim" target="_blank"><i class="bi bi-github"></i></a>
-        </div>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a>
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/typed.js/typed.umd.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/includes.js"></script>
 
-    <!-- Main JS File -->
+
     <script src="assets/js/main.js"></script>
   </body>
 </html>

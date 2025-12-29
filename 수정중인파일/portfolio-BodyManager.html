@@ -65,9 +65,34 @@
         align-items: center;
         justify-content: center;
         border-radius: 8px;
+        overflow: hidden;
         margin-bottom: 15px;
         color: #6c757d;
         border: 2px dashed #ced4da;
+      }
+      .screenshot-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .screenshot-img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .screenshot-placeholder.screenshot-auto {
+        height: auto;
+        overflow: visible;
+        background-color: transparent;
+        border: 0;
+        display: block;
+      }
+      .screenshot-placeholder.screenshot-auto img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
       }
       .screenshot-img {
         width: 100%;
@@ -116,11 +141,10 @@
             <div class="col-lg-8" data-aos="fade-up">
               <div class="portfolio-description">
                 <h2>BodyManager — 헬스장 통합 운영 관리 플랫폼</h2>
-                <p class="lead text-muted">
-                  회원 관리, 운동 기록, 결제부터 실시간 상담까지.<br />
-                  피트니스 센터 운영에 필요한 모든 기능을 하나로 통합한 풀스택 웹
-                  애플리케이션입니다.
-                </p>
+                <strong
+                  >회원 관리, 운동 기록, 결제부터 실시간 상담까지<br />
+                  피트니스 센터 운영에 필요한 모든 기능을 하나로 통합한 웹 서비스</strong
+                >
 
                 <hr class="my-4" />
 
@@ -168,11 +192,9 @@ graph TD
                 <div class="row mt-4">
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>인바디 데이터 시각화</strong><br />Recharts 기반 차트</span
-                      >
+                      <img src="assets/img/portfolio/bd_pic1.png" alt="체성분 시각화" />
                     </div>
-                    <h5>체성분 분석 시각화</h5>
+                    <h5>체성분 시각화</h5>
                     <p class="small">
                       Recharts 라이브러리를 활용하여 인바디 데이터의 변화 추이를 라인/바/레이더
                       차트로 직관적으로 보여줍니다.
@@ -180,14 +202,11 @@ graph TD
                   </div>
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>실시간 1:1 채팅</strong><br />회원-트레이너 상담</span
-                      >
+                      <img src="assets/img/portfolio/bd_pic2.png" alt="실시간 상담 시스템" />
                     </div>
                     <h5>실시간 상담 시스템</h5>
                     <p class="small">
-                      WebSocket과 STOMP 프로토콜을 사용하여 트레이너와 회원 간의 끊김 없는 실시간
-                      소통을 지원합니다.
+                      WebSocket을 활용한 실시간 양방향 통신으로 실시간 상담을 제공합니다.
                     </p>
                   </div>
                 </div>
@@ -226,37 +245,9 @@ sequenceDiagram
                 </p>
 
                 <div class="diagram-container">
-                  <pre class="mermaid">
-erDiagram
-    MEMBER ||--o{ INBODY : has
-    MEMBER ||--o{ ATTENDANCE : checks
-    MEMBER ||--o{ DIET : logs
-    MEMBER ||--o{ ORDERS : makes
-    
-    MEMBER {
-        long id PK
-        string email
-        string password
-        string role "USER/TRAINER/ADMIN"
-    }
-    INBODY {
-        long id PK
-        float weight
-        float muscle_mass
-        float fat_mass
-        date measure_date
-    }
-    ATTENDANCE {
-        long id PK
-        date attend_date
-    }
-    ORDERS {
-        string order_id PK
-        int amount
-        string status "READY/PAID/CANCEL"
-    }
-</pre
-                  >
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/bm_erd.png" alt="" />
+                  </div>
                   <p class="text-muted small mt-2">
                     ▲ MariaDB 주요 엔티티 관계도 (JPA Entity 기반)
                   </p>
@@ -300,6 +291,24 @@ erDiagram
                     </div>
                   </div>
                 </div>
+
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
+                <p>
+                  API 호출 시 JSON 데이터가 정상적으로 전달되지 않는 문제를 해결하기 위해 Axios
+                  인터셉터를 사용하여 요청/응답을 로깅하고, 데이터를 확인
+                  <br />
+                  JWT 인증 과정에서 토큰이 정상적으로 전달되지 않는 문제를 해결하기 위해
+                  interceptor를 사용하여 토큰을 추가
+                  <br />
+                  CORS 문제를 해결하기 위해 프론트 작업을 하는 동기와 정보 공유 후 해결
+                </p>
+
+                <div class="diagram-container">
+                  <div class="screenshot-placeholder screenshot-auto">
+                    <img src="./assets/img/portfolio/bd_notion.png" alt="" />
+                  </div>
+                  <p class="text-muted small mt-2">▲ Notion을 통한 협업 및 트러블 슈팅 기록</p>
+                </div>
               </div>
             </div>
 
@@ -324,12 +333,6 @@ erDiagram
                       class="d-block text-truncate"
                       ><i class="bi bi-github"></i> Frontend Repo</a
                     >
-                  </li>
-                  <li class="mb-3">
-                    <strong>Key Features</strong><br />
-                    <span class="badge bg-light text-dark border">JWT Auth</span>
-                    <span class="badge bg-light text-dark border">Real-time Chat</span>
-                    <span class="badge bg-light text-dark border">InBody Charts</span>
                   </li>
                 </ul>
               </div>

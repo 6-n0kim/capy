@@ -65,9 +65,34 @@
         align-items: center;
         justify-content: center;
         border-radius: 8px;
+        overflow: hidden;
         margin-bottom: 15px;
         color: #6c757d;
         border: 2px dashed #ced4da;
+      }
+      .screenshot-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .screenshot-img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .screenshot-placeholder.screenshot-auto {
+        height: auto;
+        overflow: visible;
+        background-color: transparent;
+        border: 0;
+        display: block;
+      }
+      .screenshot-placeholder.screenshot-auto img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
       }
       .screenshot-img {
         width: 100%;
@@ -165,25 +190,22 @@ graph TD
                 <div class="row mt-4">
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>실시간 자세 교정 화면</strong><br />키포인트 및 피드백</span
-                      >
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
                     </div>
-                    <h5>AI 실시간 피드백</h5>
+                    <h5>인바디 데이터 시각화</h5>
                     <p class="small">
-                      PoseNet으로 추출된 관절 키포인트를 분석하여 오차각에 따른 음성/텍스트 피드백
-                      제공.
+                      Recharts 라이브러리를 활용하여 인바디 데이터의 변화 추이를 라인/바/레이더
+                      차트로 직관적으로 보여줍니다.
                     </p>
                   </div>
+
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                      <span class="text-center"
-                        >📷 <strong>운동 기록 대시보드</strong><br />Reps/Sets 및 칼로리</span
-                      >
+                      <img src="assets/img/portfolio/onSpot.png" alt="" />
                     </div>
-                    <h5>맞춤형 운동 기록</h5>
+                    <h5>OCR 인식</h5>
                     <p class="small">
-                      운동 종류별 횟수(Reps), 세트(Sets), 소모 칼로리를 기록하고 그래프로 시각화.
+                      Tesseract OCR을 활용하여 골격근량, 나이, 체성분량, 성별을 인식하고 저장합니다.
                     </p>
                   </div>
                 </div>
@@ -297,6 +319,17 @@ erDiagram
                     </div>
                   </div>
                 </div>
+
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
+                <p>
+                  API 호출 시 JSON 데이터가 정상적으로 전달되지 않는 문제를 해결하기 위해 Axios
+                  인터셉터를 사용하여 요청/응답을 로깅하고, 데이터를 확인
+                  <br />
+                  JWT 인증 과정에서 토큰이 정상적으로 전달되지 않는 문제를 해결하기 위해
+                  interceptor를 사용하여 토큰을 추가
+                  <br />
+                  CORS 문제를 해결하기 위해 프론트 작업을 하는 동기와 정보 공유 후 해결
+                </p>
               </div>
             </div>
 
