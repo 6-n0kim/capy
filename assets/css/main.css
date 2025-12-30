@@ -911,7 +911,105 @@ section,
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
+
+/* --- Projects(Portfolio) 카드 간격/테두리/패딩 강화 --- */
+.portfolio {
+  --portfolio-card-pad: 10px;
+  --portfolio-card-radius: 18px;
+  --portfolio-card-img-radius: 14px;
+}
+
+/* 카드(프로젝트) 사이 여백: bootstrap row gutter override */
+.portfolio .isotope-container {
+  margin-top: 0 !important;
+  --bs-gutter-x: 2.5rem;
+  --bs-gutter-y: 2.5rem;
+}
+
+@media (max-width: 575px) {
+  .portfolio {
+    --portfolio-card-pad: 14px;
+    --portfolio-card-radius: 16px;
+    --portfolio-card-img-radius: 12px;
+  }
+
+  .portfolio .isotope-container {
+    --bs-gutter-x: 1.25rem;
+    --bs-gutter-y: 1.5rem;
+  }
+}
+
+.portfolio .portfolio-item {
+  position: relative;
+  cursor: pointer;
+  transition: all ease-in-out 0.25s;
+
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+  border-radius: var(--portfolio-card-radius);
+  padding: var(--portfolio-card-pad);
+  overflow: hidden; /* 이미지 scale/blur가 border 밖으로 새지 않게 */
+}
+
+/* 이미지와 border 사이 여백은 카드 padding으로 확보 */
+.portfolio .portfolio-item > img {
+  display: block;
+  width: 100%;
+  border-radius: var(--portfolio-card-img-radius);
+  transition: filter 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+/* featured 뱃지 기본(Recent/Ongoing 색상은 아래 featured 규칙에서 override) */
+.portfolio .portfolio-item .featured-badge {
+  position: absolute;
+  top: calc(var(--portfolio-card-pad) - 4px);
+  left: calc(var(--portfolio-card-pad) - 4px);
+  z-index: 4;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+
+  background: color-mix(in srgb, var(--background-color), transparent 10%);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.portfolio .portfolio-item:hover > img {
+  filter: blur(2px) brightness(0.75);
+  transform: scale(1.02);
+}
+
+.portfolio .portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.portfolio .portfolio-item .portfolio-info {
+  opacity: 0;
+  position: absolute;
+  left: var(--portfolio-card-pad);
+  right: var(--portfolio-card-pad);
+  bottom: var(--portfolio-card-pad);
+  z-index: 3;
+  transition: all ease-in-out 0.25s;
+  background: color-mix(in srgb, var(--background-color), transparent 10%);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.portfolio .portfolio-item:hover .portfolio-info {
+  opacity: 1;
+  bottom: calc(var(--portfolio-card-pad) + 4px);
+}
+
 .portfolio .portfolio-filters {
+  position: relative;
+  z-index: 10;
   padding: 0;
   margin: 0 auto 20px auto;
   list-style: none;
@@ -1092,95 +1190,6 @@ section,
 .pricing .pricing-item h4 {
   margin: 0;
   font-size: 18px;
-  color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
-# Faq Section
---------------------------------------------------------------*/
-.faq .content h3 {
-  font-weight: 400;
-  font-size: 34px;
-}
-
-.faq .content p {
-  font-size: 15px;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-}
-
-.faq .faq-container .faq-item {
-  background-color: var(--surface-color);
-  position: relative;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.faq .faq-container .faq-item:last-child {
-  margin-bottom: 0;
-}
-
-.faq .faq-container .faq-item h3 {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
-  margin: 0 30px 0 0;
-  transition: 0.3s;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-start;
-}
-
-.faq .faq-container .faq-item h3 .num {
-  color: var(--accent-color);
-  padding-right: 5px;
-}
-
-.faq .faq-container .faq-item h3:hover {
-  color: var(--accent-color);
-}
-
-.faq .faq-container .faq-item .faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: 0.3s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.faq .faq-container .faq-item .faq-content p {
-  margin-bottom: 0;
-  overflow: hidden;
-}
-
-.faq .faq-container .faq-item .faq-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 16px;
-  line-height: 0;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.faq .faq-container .faq-item .faq-toggle:hover {
-  color: var(--accent-color);
-}
-
-.faq .faq-container .faq-active h3 {
-  color: var(--accent-color);
-}
-
-.faq .faq-container .faq-active .faq-content {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  opacity: 1;
-  padding-top: 10px;
-}
-
-.faq .faq-container .faq-active .faq-toggle {
-  transform: rotate(90deg);
   color: var(--accent-color);
 }
 
@@ -1708,12 +1717,6 @@ section,
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
-/* 호버 시 살짝 더 떠 보이게 */
-.section-box.neu:hover {
-  transform: translateY(-2px);
-  box-shadow: 18px 18px 36px rgba(0, 0, 0, 0.12), -18px -18px 36px rgba(255, 255, 255, 0.9);
-}
-
 /* 눌린(pressed / inset) 버전이 필요하면 */
 .section-box.neu-inset {
   background: var(--background-color);
@@ -1734,11 +1737,6 @@ section,
   /* ✅ 흰색 하이라이트 제거 → 블루 톤 하이라이트로 */
   box-shadow: 14px 14px 28px rgba(0, 40, 120, 0.35),
     /* dark shadow (blue-ish) */ -14px -14px 28px rgba(90, 190, 255, 0.35); /* light highlight (blue-ish) */
-}
-
-#peer-reviews .section-box.neu:hover,
-#skills .section-box.neu:hover {
-  box-shadow: 18px 18px 36px rgba(0, 40, 120, 0.42), -18px -18px 36px rgba(90, 190, 255, 0.42);
 }
 
 /* (선택) 눌림(inset) 버전도 블루 톤으로 */
@@ -1768,6 +1766,114 @@ section,
   /* 기존 것 유지 */
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   border-radius: 18px;
+}
+
+/* --------------------------------------------------------------
+# Wave transition (Projects -> Skills)
+  - Subtle animated water-wave gradient at the boundary
+  - Only applies to the Skills section (#skills)
+-------------------------------------------------------------- */
+#skills {
+  /* Projects 섹션(.light-background)의 배경과 맞추기 */
+  --wave-top: #f9f9f9;
+
+  /* SVG 웨이브 반복 루프 폭(애니메이션 매끈하게) */
+  --wave-loop-x: 1200px;
+}
+
+/* Skills(.stats) 배경 레이어링 보정 */
+#skills.stats img {
+  z-index: 0;
+} /* background image */
+#skills.stats:before {
+  z-index: 1;
+} /* dim overlay */
+
+/* 경계 웨이브 오버레이 */
+#skills .wave-bridge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 140px;
+  pointer-events: none;
+  z-index: 2;
+
+  /* Projects(밝은 톤) -> Skills(블루)로 자연스러운 페이드 */
+  background: linear-gradient(
+    to bottom,
+    var(--wave-top) 0%,
+    rgba(0, 120, 255, 0.35) 60%,
+    rgba(0, 120, 255, 0) 100%
+  );
+}
+
+#skills .wave-bridge::before,
+#skills .wave-bridge::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 120px;
+  background-repeat: repeat-x;
+  background-size: var(--wave-loop-x) 120px;
+  background-position: 0 100%;
+  will-change: background-position;
+}
+
+/* 앞(밝은) 물결 */
+#skills .wave-bridge::before {
+  opacity: 0.95;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201200%20120'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,60%20C150,20%20350,100%20600,60%20C850,20%201050,100%201200,60%20V120%20H0%20Z'%20fill='%238ad7ff'%20fill-opacity='0.35'/%3E%3C/svg%3E");
+  animation: wave-move 14s linear infinite;
+}
+
+/* 뒤(깊은) 물결 */
+#skills .wave-bridge::after {
+  bottom: -10px;
+  opacity: 0.7;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201200%20120'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,70%20C200,95%20400,25%20600,55%20C800,85%201000,25%201200,55%20V120%20H0%20Z'%20fill='%230045b8'%20fill-opacity='0.22'/%3E%3C/svg%3E");
+  animation: wave-move-rev 22s linear infinite;
+}
+
+@keyframes wave-move {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: var(--wave-loop-x);
+  }
+}
+
+@keyframes wave-move-rev {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--wave-loop-x) * -1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #skills .wave-bridge::before,
+  #skills .wave-bridge::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 576px) {
+  #skills {
+    --wave-loop-x: 900px;
+  }
+  #skills .wave-bridge {
+    height: 110px;
+  }
+  #skills .wave-bridge::before,
+  #skills .wave-bridge::after {
+    height: 90px;
+    background-size: var(--wave-loop-x) 90px;
+  }
 }
 
 /*--------------------------------------------------------------
