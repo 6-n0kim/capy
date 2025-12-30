@@ -34,7 +34,7 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
     </script>
-</head>
+  </head>
 
   <body class="portfolio-details-page">
     <div id="site-header"></div>
@@ -210,99 +210,99 @@ sequenceDiagram
                 </div>
 
                 <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
-<p class="mb-4">
-  개발 과정에서 발생한 이슈를 <strong>증상 → 원인 → 해결</strong> 흐름으로 정리했습니다.
-</p>
+                <p class="mb-4">
+                  개발 과정에서 발생한 이슈를 <strong>증상 → 원인 → 해결</strong> 흐름으로
+                  정리했습니다.
+                </p>
 
-<ul class="troubleshooting-list">
-  <!-- 1) JSON 데이터 전달 문제 -->
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[API] JSON 데이터가 정상적으로 전달되지 않음</h5>
+                <ul class="troubleshooting-list">
+                  <!-- 1) JSON 데이터 전달 문제 -->
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[API] JSON 데이터가 정상적으로 전달되지 않음</h5>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">
-        API 호출은 되지만 서버에서 요청 body가 비어 있거나,
-        기대한 JSON 구조가 전달되지 않아 처리 실패가 발생
-      </div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        API 호출은 되지만 서버에서 요청 body가 비어 있거나, 기대한 JSON 구조가
+                        전달되지 않아 처리 실패가 발생
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">
-        요청 헤더/바디 구성 오류 또는 Axios 요청 설정(데이터 전달 방식)이 맞지 않아
-        실제 전송 payload가 예상과 달라짐
-      </div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        요청 헤더/바디 구성 오류 또는 Axios 요청 설정(데이터 전달 방식)이 맞지 않아
+                        실제 전송 payload가 예상과 달라짐
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">
-        Axios 인터셉터로 요청/응답을 로깅하여 실제 전송되는 payload를 확인하고,
-        요청 형식(JSON body/headers)을 정상화하여 데이터 전달 문제를 해결
-      </div>
-    </div>
-  </li>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        Axios 인터셉터로 요청/응답을 로깅하여 실제 전송되는 payload를 확인하고, 요청
+                        형식(JSON body/headers)을 정상화하여 데이터 전달 문제를 해결
+                      </div>
+                    </div>
+                  </li>
 
-  <!-- 2) JWT 토큰 전달 문제 -->
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Auth] JWT 인증 토큰이 정상적으로 전달되지 않음</h5>
+                  <!-- 2) JWT 토큰 전달 문제 -->
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Auth] JWT 인증 토큰이 정상적으로 전달되지 않음</h5>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">
-        로그인 이후에도 인증이 필요한 API에서 <code>401 Unauthorized</code>가 발생하거나,
-        토큰 누락으로 인해 인증 흐름이 끊김
-      </div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        로그인 이후에도 인증이 필요한 API에서 <code>401 Unauthorized</code>가
+                        발생하거나, 토큰 누락으로 인해 인증 흐름이 끊김
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">
-        요청에 <code>Authorization</code> 헤더가 포함되지 않거나,
-        토큰 저장/추출/주입 과정에서 누락이 발생
-      </div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        요청에 <code>Authorization</code> 헤더가 포함되지 않거나, 토큰
+                        저장/추출/주입 과정에서 누락이 발생
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">
-        Axios interceptor에서 토큰을 읽어
-        <code>Authorization: Bearer ...</code> 형태로 자동 주입하도록 구성하여
-        인증 요청의 일관성을 확보
-      </div>
-    </div>
-  </li>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        Axios interceptor에서 토큰을 읽어
+                        <code>Authorization: Bearer ...</code> 형태로 자동 주입하도록 구성하여 인증
+                        요청의 일관성을 확보
+                      </div>
+                    </div>
+                  </li>
 
-  <!-- 3) CORS -->
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[CORS] 브라우저에서 API 호출이 차단됨</h5>
+                  <!-- 3) CORS -->
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[CORS] 브라우저에서 API 호출이 차단됨</h5>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">
-        브라우저 콘솔에 CORS 오류가 발생하며 API 호출이 실패
-      </div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        브라우저 콘솔에 CORS 오류가 발생하며 API 호출이 실패
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">
-        프론트/백엔드 Origin이 달라 브라우저가 보안 정책으로 요청을 차단하며,
-        서버의 CORS 허용 설정이 충분하지 않음
-      </div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        프론트/백엔드 Origin이 달라 브라우저가 보안 정책으로 요청을 차단하며, 서버의
+                        CORS 허용 설정이 충분하지 않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">
-        프론트 작업자와 요청 URL/포트/인증 방식(쿠키/헤더)을 함께 점검하고,
-        서버 CORS 허용 정책을 맞춰 설정하여 문제를 해결
-      </div>
-    </div>
-  </li>
-</ul>
-
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        프론트 작업자와 요청 URL/포트/인증 방식(쿠키/헤더)을 함께 점검하고, 서버
+                        CORS 허용 정책을 맞춰 설정하여 문제를 해결
+                      </div>
+                    </div>
+                  </li>
+                </ul>
 
                 <div class="diagram-container">
                   <div class="screenshot-placeholder screenshot-auto">
@@ -326,13 +326,13 @@ sequenceDiagram
                       href="https://github.com/6-n0kim/bodymanager_server"
                       target="_blank"
                       class="d-block text-truncate"
-                      ><i class="bi bi-github"></i> Backend Repo</a
+                      ><i class="bi bi-github"></i> Backend</a
                     >
                     <a
                       href="https://github.com/6-n0kim/Body_Manager_client"
                       target="_blank"
                       class="d-block text-truncate"
-                      ><i class="bi bi-github"></i> Frontend Repo</a
+                      ><i class="bi bi-github"></i> Frontend</a
                     >
                   </li>
                 </ul>
@@ -354,7 +354,6 @@ sequenceDiagram
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/includes.js"></script>
-
 
     <script src="assets/js/main.js"></script>
   </body>

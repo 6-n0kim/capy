@@ -214,239 +214,310 @@ sequenceDiagram
                   </div>
                 </div>
                 <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
-<p class="mb-4">
-  개발/배포 과정에서 발생한 이슈를 <strong>증상 → 원인 → 해결</strong> 흐름으로 정리했습니다.
-</p>
+                <p class="mb-4">
+                  개발/배포 과정에서 발생한 이슈를 <strong>증상 → 원인 → 해결</strong> 흐름으로
+                  정리했습니다.
+                </p>
 
-<ul class="troubleshooting-list">
-  <!-- ========== Backend ========== -->
+                <ul class="troubleshooting-list">
+                  <!-- ========== Backend ========== -->
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Backend | B-E-002] 메인 서버 OCR 미작동</h5>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Backend | B-E-002] 메인 서버 OCR 미작동</h5>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">배포 환경(메인 서버)에서 OCR 기능이 정상 동작하지 않음</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        배포 환경(메인 서버)에서 OCR 기능이 정상 동작하지 않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">EC2 메모리 부족으로 OCR 처리 과정이 실패/중단됨</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">EC2 메모리 부족으로 OCR 처리 과정이 실패/중단됨</div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">OCR 파이프라인을 <strong>GPT 기반 분석 방식</strong>으로 전환하여 메모리 부담을 완화</div>
-    </div>
-  </li>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        OCR 파이프라인을 <strong>GPT 기반 분석 방식</strong>으로 전환하여 메모리
+                        부담을 완화
+                      </div>
+                    </div>
+                  </li>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Backend | B-E-003] 인바디 날짜별 조회 오류</h5>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Backend | B-E-003] 인바디 날짜별 조회 오류</h5>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">인바디 데이터를 날짜 기준으로 조회할 때 결과가 누락되거나 조회 실패</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        인바디 데이터를 날짜 기준으로 조회할 때 결과가 누락되거나 조회 실패
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">DATETIME 타입/포맷 처리 오류로 날짜 비교 조건이 정상적으로 맞지 않음</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        DATETIME 타입/포맷 처리 오류로 날짜 비교 조건이 정상적으로 맞지 않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">DATETIME 포맷을 정리하고, SQL에서 날짜 비교 시 <code>AS DATE</code> 형태로 캐스팅하여 수정</div>
-    </div>
-  </li>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        DATETIME 포맷을 정리하고, SQL에서 날짜 비교 시 <code>AS DATE</code> 형태로
+                        캐스팅하여 수정
+                      </div>
+                    </div>
+                  </li>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Backend | B-E-004] 인트로 이미지 파일 로딩 오류</h5>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Backend | B-E-004] 인트로 이미지 파일 로딩 오류</h5>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">인트로 화면 이미지가 로딩되지 않거나 404가 발생</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">인트로 화면 이미지가 로딩되지 않거나 404가 발생</div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">배포 환경 기준 파일 경로가 잘못 설정됨</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">배포 환경 기준 파일 경로가 잘못 설정됨</div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">정적 파일 경로를 배포 기준으로 재정렬하고 이미지 경로를 올바르게 수정</div>
-    </div>
-  </li>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        정적 파일 경로를 배포 기준으로 재정렬하고 이미지 경로를 올바르게 수정
+                      </div>
+                    </div>
+                  </li>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Backend | B-E-005] 댓글/리뷰 유효성 검사 부족</h5>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Backend | B-E-005] 댓글/리뷰 유효성 검사 부족</h5>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">비정상 리뷰 등록(구매 이력 없는 리뷰 등), 과도한 댓글/욕설 등 품질 이슈 발생</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        비정상 리뷰 등록(구매 이력 없는 리뷰 등), 과도한 댓글/욕설 등 품질 이슈 발생
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">댓글/리뷰 유효성 검사 로직이 미흡하여 서버에서 입력 검증이 제대로 되지 않음</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        댓글/리뷰 유효성 검사 로직이 미흡하여 서버에서 입력 검증이 제대로 되지 않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">
-        1) 리뷰 등록 전 구매 이력을 확인하는 미들웨어 추가<br />
-        2) 댓글 길이 제한/욕설 필터링 등 유효성 검사 강화<br />
-        3) 사용자당 상품별 댓글 개수 제한 조건 추가
-      </div>
-    </div>
-  </li>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        1) 리뷰 등록 전 구매 이력을 확인하는 미들웨어 추가<br />
+                        2) 댓글 길이 제한/욕설 필터링 등 유효성 검사 강화<br />
+                        3) 사용자당 상품별 댓글 개수 제한 조건 추가
+                      </div>
+                    </div>
+                  </li>
 
+                  <!-- ========== Frontend ========== -->
 
-  <!-- ========== Frontend ========== -->
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">
+                      [Frontend | F-E-001] 상태 변환 후 화면 데이터 미조회(useEffect)
+                    </h5>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Frontend | F-E-001] 상태 변환 후 화면 데이터 미조회(useEffect)</h5>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        식단/운동 스케줄 상태 변환 후 화면(그래프/리스트)이 최신 데이터로 갱신되지
+                        않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">식단/운동 스케줄 상태 변환 후 화면(그래프/리스트)이 최신 데이터로 갱신되지 않음</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        useEffect 의존성/동작 설정 이슈로 Redux 데이터 변경 시 각 UI 영역이
+                        재조회되지 않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">useEffect 의존성/동작 설정 이슈로 Redux 데이터 변경 시 각 UI 영역이 재조회되지 않음</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        Redux 스케줄 데이터 변경 시 각 JSX(식단/상태/그래프)의 useEffect가
+                        동작하도록 의존성 및 트리거 로직 조정
+                      </div>
+                    </div>
+                  </li>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">Redux 스케줄 데이터 변경 시 각 JSX(식단/상태/그래프)의 useEffect가 동작하도록 의존성 및 트리거 로직 조정</div>
-    </div>
-  </li>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">
+                      [Frontend | F-E-002] 게시글 저장 버튼 연타 시 중복 생성
+                    </h5>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Frontend | F-E-002] 게시글 저장 버튼 연타 시 중복 생성</h5>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        게시글 작성 후 저장 버튼을 여러 번 누르면 동일 게시글이 중복 생성됨
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">게시글 작성 후 저장 버튼을 여러 번 누르면 동일 게시글이 중복 생성됨</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        요청이 끝나기 전에 추가 클릭이 가능해 POST 요청이 여러 번 전송됨
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">요청이 끝나기 전에 추가 클릭이 가능해 POST 요청이 여러 번 전송됨</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        게시글 생성 요청이 들어가면 완료(또는 오류)까지 추가 생성 요청을 차단(버튼
+                        disable/로딩 락)
+                      </div>
+                    </div>
+                  </li>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">게시글 생성 요청이 들어가면 완료(또는 오류)까지 추가 생성 요청을 차단(버튼 disable/로딩 락)</div>
-    </div>
-  </li>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">
+                      [Frontend | F-E-004] 게시글 제목 200자 초과 시 작성 불가
+                    </h5>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Frontend | F-E-004] 게시글 제목 200자 초과 시 작성 불가</h5>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">제목이 길면 저장이 실패하거나 작성이 불가능</div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">제목이 길면 저장이 실패하거나 작성이 불가능</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        DB(post 테이블)의 title 길이 제한을 프론트에서 고려하지 않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">DB(post 테이블)의 title 길이 제한을 프론트에서 고려하지 않음</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        요청 전 제목 길이 유효성 검사를 추가하고, 초과 시 사용자에게 알림 제공
+                      </div>
+                    </div>
+                  </li>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">요청 전 제목 길이 유효성 검사를 추가하고, 초과 시 사용자에게 알림 제공</div>
-    </div>
-  </li>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Frontend | F-E-005] 회원가입 후 리다이렉트 오류</h5>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Frontend | F-E-005] 회원가입 후 리다이렉트 오류</h5>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        회원가입 완료 후 의도한 페이지로 이동하지 않거나 잘못된 URL로 리다이렉트됨
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">회원가입 완료 후 의도한 페이지로 이동하지 않거나 잘못된 URL로 리다이렉트됨</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        로컬 개발 환경과 배포 환경의 리다이렉트 주소가 달라 URL을 잘못 받아옴
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">로컬 개발 환경과 배포 환경의 리다이렉트 주소가 달라 URL을 잘못 받아옴</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        리다이렉트 주소를 “상대 경로”가 아닌 “전체 주소(absolute URL)”로 작성하여
+                        해결
+                      </div>
+                    </div>
+                  </li>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">리다이렉트 주소를 “상대 경로”가 아닌 “전체 주소(absolute URL)”로 작성하여 해결</div>
-    </div>
-  </li>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Frontend | F-E-006] 마이페이지 모바일 UI 깨짐</h5>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Frontend | F-E-006] 마이페이지 모바일 UI 깨짐</h5>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        모바일에서 마이페이지 레이아웃이 깨지거나 요소가 잘리는 현상 발생
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">모바일에서 마이페이지 레이아웃이 깨지거나 요소가 잘리는 현상 발생</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        고정 픽셀 기반 레이아웃으로 다양한 화면 폭을 대응하지 못함
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">고정 픽셀 기반 레이아웃으로 다양한 화면 폭을 대응하지 못함</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        반응형 웹 디자인으로 수정(브레이크포인트/유동 너비 적용)
+                      </div>
+                    </div>
+                  </li>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">반응형 웹 디자인으로 수정(브레이크포인트/유동 너비 적용)</div>
-    </div>
-  </li>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">[Frontend | F-E-009] 지도 노출 시 모바일 반응형 미적용</h5>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Frontend | F-E-009] 지도 노출 시 모바일 반응형 미적용</h5>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        지도 화면에서 모바일 레이아웃이 깨지거나 지도 영역이 잘림
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">지도 화면에서 모바일 레이아웃이 깨지거나 지도 영역이 잘림</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">지도 컨테이너의 반응형 처리(CSS)가 부족</div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">지도 컨테이너의 반응형 처리(CSS)가 부족</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        지도 CSS에 반응형 클래스/속성을 추가해 대응 (예: <code>md:w-[90%]</code>,
+                        <code>md:h-[80%]</code>, <code>md:relative</code>,
+                        <code>overflow-hidden</code>)
+                      </div>
+                    </div>
+                  </li>
 
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">
-        지도 CSS에 반응형 클래스/속성을 추가해 대응
-        (예: <code>md:w-[90%]</code>, <code>md:h-[80%]</code>, <code>md:relative</code>, <code>overflow-hidden</code>)
-      </div>
-    </div>
-  </li>
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">
+                      [Frontend | F-E-010] 배포 시 카카오맵 API 미적용(CI/CD)
+                    </h5>
 
-  <li class="troubleshooting-item">
-    <h5 class="ts-title">[Frontend | F-E-010] 배포 시 카카오맵 API 미적용(CI/CD)</h5>
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">
+                        로컬에서는 지도가 뜨지만, 배포 환경에서는 카카오맵이 로드되지 않음
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">증상</div>
-      <div class="ts-desc">로컬에서는 지도가 뜨지만, 배포 환경에서는 카카오맵이 로드되지 않음</div>
-    </div>
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">
+                        CI/CD 배포 과정에서 API 키가 빌드 산출물에 포함되지 않아 런타임에서 키를
+                        찾지 못함
+                      </div>
+                    </div>
 
-    <div class="ts-block">
-      <div class="ts-label">원인</div>
-      <div class="ts-desc">CI/CD 배포 과정에서 API 키가 빌드 산출물에 포함되지 않아 런타임에서 키를 찾지 못함</div>
-    </div>
-
-    <div class="ts-block">
-      <div class="ts-label">해결</div>
-      <div class="ts-desc">배포 환경의 환경변수 설정을 점검하고, 빌드 시점에 키가 주입되도록 CI/CD 설정을 수정</div>
-    </div>
-  </li>
-</ul>
-
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        배포 환경의 환경변수 설정을 점검하고, 빌드 시점에 키가 주입되도록 CI/CD
+                        설정을 수정
+                      </div>
+                    </div>
+                  </li>
+                </ul>
 
                 <div class="diagram-container">
                   <div class="screenshot-placeholder screenshot-auto">
                     <img src="./assets/img/portfolio/fit_drive.png" alt="" />
                   </div>
-                  <p class="text-muted small mt-2">▲ GoogleDrive를 통한 기획, 문서화, 협업 및 트러블 슈팅 관리</p>
+                  <p class="text-muted small mt-2">
+                    ▲ GoogleDrive를 통한 기획, 문서화, 협업 및 트러블 슈팅 관리
+                  </p>
                 </div>
               </div>
             </div>
@@ -464,14 +535,23 @@ sequenceDiagram
                   <li class="mb-3"><strong>Date</strong> <br />2025.04 – 2025.06 (3개월)</li>
                   <li class="mb-3">
                     <strong>GitHub</strong><br />
-                    <a href="#" target="_blank" class="d-block text-truncate"
-                      ><i class="bi bi-github"></i> Project Repo</a
+                    <a
+                      href="https://github.com/6-n0kim/FIT_HARMONY_BACK"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Backend</a
+                    >
+                    <a
+                      href="https://github.com/6-n0kim/FIT_HARMONY_FRONT"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Frontend</a
                     >
                   </li>
                   <li class="mb-3">
                     <strong>Deployment</strong><br />
                     <a
-                      href="https://fitharmony.com/"
+                      href="https://fitHarmony.aicc-project.com/"
                       target="_blank"
                       class="btn btn-primary btn-sm w-100 mt-2"
                       >사이트 방문하기</a

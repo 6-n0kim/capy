@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -58,8 +58,8 @@
       <!-- /Hero Section -->
 
       <!-- About Section -->
-      <section id="about" class="about section">
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <section id="about" class="about section light-background">
+        <div class="container section-box neu" data-aos="fade-up" data-aos-delay="100">
           <div class="row gy-4">
             <div class="col-md-6">
               <div class="row justify-content-between gy-4">
@@ -111,14 +111,14 @@
       <!-- /About Section -->
 
       <!-- Resume Section -->
-      <section id="resume" class="resume section">
+      <section id="resume" class="resume section light-background">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Resume</h2>
         </div>
         <!-- End Section Title -->
 
-        <div class="container">
+        <div class="container section-box neu">
           <div class="row">
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
               <h3 class="resume-title">Summary</h3>
@@ -239,13 +239,271 @@
       </section>
       <!-- /Resume Section -->
 
+      <!-- Portfolio Section -->
+      <section id="portfolio" class="portfolio section light-background">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Projects</h2>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container section-box neu">
+          <div
+            class="isotope-layout"
+            data-default-filter="*"
+            data-layout="masonry"
+            data-sort="original-order"
+          >
+            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-featured">최근 프로젝트</li>
+              <li data-filter=".filter-ICT">자바 교육</li>
+              <li data-filter=".filter-adent">(주) 아던트</li>
+              <li data-filter=".filter-codelab">인공지능 교육</li>
+              <li data-filter=".filter-toy">토이 프로젝트</li>
+            </ul>
+            <!-- End Portfolio Filters -->
+
+            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+              <div
+                class="col-lg-4 col-md-6 portfolio-item isotope-item filter-codelab filter-featured featured border border-1"
+              >
+                <div class="featured-badge"><i class="bi bi-stars"></i>Recent</div>
+                <img src="assets/img/portfolio/fitHarmony.jpg" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>Fit Harmony</h4>
+                  <p>식단 및 인바디 관리 서비스</p>
+                  <div class="portfolio-brief">팀 프로젝트<br />React / TypeScript / Node.js</div>
+                  <div class="portfolio-brief">
+                    팀 프로젝트<br />Node.js / React + TypeScript<br />한 일: OCR·LLM을 통한 인바디
+                    지표 저장, CRUD
+                  </div>
+                  <a href="portfolio-FitHarmony.html" class="btn btn-sm btn-primary details-btn"
+                    >자세히 보기</a
+                  >
+                  <a
+                    href="assets/img/portfolio/fitHarmony.jpg"
+                    title="Fit Harmony"
+                    data-gallery="portfolio-gallery-branding"
+                    class="glightbox preview-link"
+                  ></a>
+                  <!-- <a href="portfolio-FitHarmony.html" title="자세히 보기" class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a> -->
+                  <!-- <a href="assets/pdfs/fit.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
+                    ><i class="bi bi-file-pdf"></i
+                  ></a> -->
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+
+              <div
+                class="col-lg-4 col-md-6 portfolio-item isotope-item filter-codelab filter-featured featured border border-1"
+              >
+                <div class="featured-badge"><i class="bi bi-stars"></i>Recent</div>
+                <img src="assets/img/portfolio/docgen.jpg" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>Docgen</h4>
+                  <p>AI 기반 프로젝트 문서 자동 생성 서비스</p>
+                  <div class="portfolio-brief">
+                    팀 프로젝트<br />React / NestJS / FastAPI<br />한 일: DBA, LLM을 통한 문서 생성,
+                    CRUD
+                  </div>
+                  <a href="portfolio-Docgen.html" class="btn btn-sm btn-primary details-btn"
+                    >자세히 보기</a
+                  >
+                  <a
+                    href="assets/img/portfolio/docgen.jpg"
+                    title="Docgen"
+                    data-gallery="portfolio-gallery-book"
+                    class="glightbox preview-link"
+                  ></a>
+                  <!-- <a href="portfolio-Docgen.html" title="자세히 보기" class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a> -->
+                  <!-- <a href="assets/pdfs/docgen.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
+                    ><i class="bi bi-file-pdf"></i
+                  ></a> -->
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+
+              <div
+                class="col-lg-4 col-md-6 portfolio-item isotope-item filter-codelab filter-featured featured border border-1"
+              >
+                <div class="featured-badge"><i class="bi bi-stars"></i>Recent</div>
+                <img src="assets/img/portfolio/inPick.jpg" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>InPick</h4>
+                  <p>인스타그램 데이터를 통한 여행 추천 서비스</p>
+                  <div class="portfolio-brief">
+                    팀 프로젝트<br />React / FastAPI / PostgreSQL<br />한 일: DBA, 추천알고리즘(CBF,
+                    CF), CRUD
+                  </div>
+                  <a href="portfolio-InPick.html" class="btn btn-sm btn-primary details-btn"
+                    >자세히 보기</a
+                  >
+                  <a
+                    href="assets/img/portfolio/inPick.jpg"
+                    title="InPick"
+                    data-gallery="portfolio-gallery-app"
+                    class="glightbox preview-link"
+                  ></a>
+                  <!-- <a href="portfolio-InPick.html" title="자세히 보기" class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a> -->
+                  <!-- <a href="assets/pdfs/inpick.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
+                    ><i class="bi bi-file-pdf"></i
+                  ></a> -->
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-adent">
+                <img src="assets/img/portfolio/IBK.jpg" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>IBK 기업은행 내부감사 시스템</h4>
+                  <p>기업은행 내부감사 시스템</p>
+                  <div class="portfolio-brief">
+                    회사 프로젝트<br />사용언어: Java(egov) / Nexacro<br />한 일: 공통코드 관리,
+                    CRUD
+                  </div>
+                  <a href="portfolio-IBK.html" class="btn btn-sm btn-primary details-btn"
+                    >자세히 보기</a
+                  >
+                  <a
+                    href="assets/img/portfolio/IBK.jpg"
+                    title="IBK 기업은행 내부감사 시스템"
+                    data-gallery="portfolio-gallery-product"
+                    class="glightbox preview-link"
+                  ></a>
+                  <!-- <a href="portfolio-IBK.html" title="자세히 보기" class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a> -->
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-adent">
+                <img src="assets/img/portfolio/ORP.jpg" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>(주) ORP 연구소 구인구직 웹 서비스</h4>
+                  <p>구인구직 웹 서비스</p>
+                  <div class="portfolio-brief">
+                    회사 프로젝트<br />사용언어: Java(Spring) / JSP<br />한 일: 기존코드 리뷰, 오류
+                    수정, CRUD
+                  </div>
+                  <a href="portfolio-ORP.html" class="btn btn-sm btn-primary details-btn"
+                    >자세히 보기</a
+                  >
+                  <a
+                    href="assets/img/portfolio/ORP.jpg"
+                    title="(주) ORP 연구소 구인구직 웹 서비스"
+                    data-gallery="portfolio-gallery-branding"
+                    class="glightbox preview-link"
+                  ></a>
+                  <!-- <a href="portfolio-ORP.html" title="자세히 보기" class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a> -->
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ICT">
+                <img src="assets/img/portfolio/onSpot.png" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>OnSpot</h4>
+                  <p>맵 기반 sns 서비스</p>
+                  <div class="portfolio-brief">
+                    1인 프로젝트<br />사용언어: Java(Spring) / JSP<br />주요기능:
+                    외부API(카카오맵)연동, 파일 업로드
+                  </div>
+                  <a href="portfolio-OnSpot.html" class="btn btn-sm btn-primary details-btn"
+                    >자세히 보기</a
+                  >
+                  <a
+                    href="assets/img/portfolio/onSpot.png"
+                    title="OnSpot"
+                    data-gallery="portfolio-gallery-app"
+                    class="glightbox preview-link"
+                  ></a>
+                  <!-- <a href="portfolio-OnSpot.html" title="자세히 보기" class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a> -->
+                  <!-- <a href="assets/pdfs/onspot_bodymanager.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
+                    ><i class="bi bi-file-pdf"></i
+                  ></a> -->
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ICT">
+                <img src="assets/img/portfolio/bodyManager.jpg" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>BodyManager</h4>
+                  <p>헬스 케어 서비스</p>
+                  <div class="portfolio-brief">
+                    4인 프로젝트<br />사용언어: Java(Spring Boot) / React<br />한 일: JWT, SMTP연동,
+                    권한 분기, CRUD
+                  </div>
+                  <a href="portfolio-BodyManager.html" class="btn btn-sm btn-primary details-btn"
+                    >자세히 보기</a
+                  >
+                  <a
+                    href="assets/img/portfolio/bodyManager.jpg"
+                    title="BodyManager"
+                    data-gallery="portfolio-gallery-product"
+                    class="glightbox preview-link"
+                  ></a>
+                  <!-- <a href="portfolio-BodyManager.html" title="자세히 보기" class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a> -->
+                  <!-- <a href="assets/pdfs/onspot_bodymanager.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
+                    ><i class="bi bi-file-pdf"></i
+                  ></a> -->
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+
+              <div
+                class="col-lg-4 col-md-6 portfolio-item isotope-item filter-toy filter-featured featured border border-1"
+              >
+                <div class="featured-badge"><i class="bi bi-stars"></i>Ongoing</div>
+                <img src="assets/img/portfolio/stock_analysis_intro.png" class="img-fluid" alt="" />
+                <div class="portfolio-info">
+                  <h4>Stock Analysis</h4>
+                  <p>주식 분석 및 추천 서비스</p>
+                  <div class="portfolio-brief">
+                    솔로 프로젝트<br />React / TypeScript / FastAPI / BeautifulSoup
+                  </div>
+                  <div class="portfolio-brief">
+                    솔로 프로젝트<br />Python<br />ToDo: 주식 데이터 수집, 분석 알고리즘 구현, 웹
+                    크롤링, API 연동, 시각화, 머신러닝 모델링
+                  </div>
+                  <a href="#" class="btn btn-sm btn-primary details-btn">자세히 보기</a>
+                  <a
+                    href="assets/img/portfolio/stock_analysis_intro.png"
+                    title="Stock Analysis"
+                    data-gallery="portfolio-gallery-branding"
+                    class="glightbox preview-link"
+                  ></a>
+                </div>
+              </div>
+              <!-- End Portfolio Item -->
+            </div>
+            <!-- End Portfolio Container -->
+          </div>
+        </div>
+      </section>
+      <!-- /Portfolio Section -->
+
       <!-- Skills Section -->
       <section id="skills" class="stats section accent-background">
         <img src="assets/img/skills-bg.jpg" alt="" data-aos="fade-in" />
 
         <div class="container section-title" data-aos="fade-up" data-aos-delay="100">
           <h2>Skills</h2>
-          <div class="row gy-4">
+          <div class="container section-box neu row gy-4">
             <div class="col-lg-3 col-md-6">
               <div class="stats-item w-100 h-100">
                 <h3 class="text-center">Backend</h3>
@@ -519,264 +777,15 @@
       </section>
       <!-- /Skills Section -->
 
-      <!-- Portfolio Section -->
-      <section id="portfolio" class="portfolio section">
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <h2>Portfolio</h2>
-        </div>
-        <!-- End Section Title -->
-
-        <div class="container">
-          <div
-            class="isotope-layout"
-            data-default-filter="*"
-            data-layout="masonry"
-            data-sort="original-order"
-          >
-            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-featured">최근 프로젝트</li>
-              <li data-filter=".filter-ICT">자바 교육</li>
-              <li data-filter=".filter-adent">(주) 아던트</li>
-              <li data-filter=".filter-codelab">인공지능 교육</li>
-              <li data-filter=".filter-toy">토이 프로젝트</li>
-            </ul>
-            <!-- End Portfolio Filters -->
-          
-            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-codelab filter-featured featured bg-warning-subtle text-dark">
-                <div class="featured-badge"><i class="bi bi-stars"></i>Recent</div>
-                <img src="assets/img/portfolio/fitHarmony.jpg" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>Fit Harmony</h4>
-                  <p>식단 및 인바디 관리 서비스</p>
-                  <div class="portfolio-brief">
-                    팀 프로젝트<br />React / TypeScript / Node.js
-                  </div>
-                  <div class="portfolio-brief">
-                    팀 프로젝트<br />Node.js / React + TypeScript<br />한 일: OCR·LLM을 통한 인바디
-                    지표 저장, CRUD
-                  </div>
-                  <a href="portfolio-FitHarmony.html" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/fitHarmony.jpg"
-                    title="Fit Harmony"
-                    data-gallery="portfolio-gallery-branding"
-                    class="glightbox preview-link"
-                  ></a>
-                  <!-- <a href="portfolio-FitHarmony.html" title="자세히 보기" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a> -->
-                  <!-- <a href="assets/pdfs/fit.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
-                    ><i class="bi bi-file-pdf"></i
-                  ></a> -->
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-codelab filter-featured featured bg-warning-subtle text-dark">
-                <div class="featured-badge"><i class="bi bi-stars"></i>Recent</div>
-                <img src="assets/img/portfolio/docgen.jpg" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>Docgen</h4>
-                  <p>AI 기반 프로젝트 문서 자동 생성 서비스</p>
-                  <div class="portfolio-brief">
-                    팀 프로젝트<br />React / NestJS / FastAPI<br />한 일: DBA, LLM을 통한 문서 생성,
-                    CRUD
-                  </div>
-                  <a href="portfolio-Docgen.html" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/docgen.jpg"
-                    title="Docgen"
-                    data-gallery="portfolio-gallery-book"
-                    class="glightbox preview-link"
-                  ></a>
-                  <!-- <a href="portfolio-Docgen.html" title="자세히 보기" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a> -->
-                  <!-- <a href="assets/pdfs/docgen.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
-                    ><i class="bi bi-file-pdf"></i
-                  ></a> -->
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-codelab filter-featured featured bg-warning-subtle text-dark">
-                <div class="featured-badge"><i class="bi bi-stars"></i>Recent</div>
-                <img src="assets/img/portfolio/inPick.jpg" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>InPick</h4>
-                  <p>인스타그램 데이터를 통한 여행 추천 서비스</p>
-                  <div class="portfolio-brief">
-                    팀 프로젝트<br />React / FastAPI / PostgreSQL<br />한 일: DBA, 추천알고리즘(CBF,
-                    CF), CRUD
-                  </div>
-                  <a href="portfolio-InPick.html" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/inPick.jpg"
-                    title="InPick"
-                    data-gallery="portfolio-gallery-app"
-                    class="glightbox preview-link"
-                  ></a>
-                  <!-- <a href="portfolio-InPick.html" title="자세히 보기" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a> -->
-                  <!-- <a href="assets/pdfs/inpick.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
-                    ><i class="bi bi-file-pdf"></i
-                  ></a> -->
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-adent">
-                <img src="assets/img/portfolio/IBK.jpg" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>IBK 기업은행 내부감사 시스템</h4>
-                  <p>기업은행 내부감사 시스템</p>
-                  <div class="portfolio-brief">
-                    회사 프로젝트<br />사용언어: Java(egov) / Nexacro<br />한 일: 공통코드 관리,
-                    CRUD
-                  </div>
-                  <a href="portfolio-IBK.html" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/IBK.jpg"
-                    title="IBK 기업은행 내부감사 시스템"
-                    data-gallery="portfolio-gallery-product"
-                    class="glightbox preview-link"
-                  ></a>
-                  <!-- <a href="portfolio-IBK.html" title="자세히 보기" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a> -->
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-adent">
-                <img src="assets/img/portfolio/ORP.jpg" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>(주) ORP 연구소 구인구직 웹 서비스</h4>
-                  <p>구인구직 웹 서비스</p>
-                  <div class="portfolio-brief">
-                    회사 프로젝트<br />사용언어: Java(Spring) / JSP<br />한 일: 기존코드 리뷰, 오류
-                    수정, CRUD
-                  </div>
-                  <a href="portfolio-ORP.html" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/ORP.jpg"
-                    title="(주) ORP 연구소 구인구직 웹 서비스"
-                    data-gallery="portfolio-gallery-branding"
-                    class="glightbox preview-link"
-                  ></a>
-                  <!-- <a href="portfolio-ORP.html" title="자세히 보기" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a> -->
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ICT">
-                <img src="assets/img/portfolio/onSpot.png" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>OnSpot</h4>
-                  <p>맵 기반 sns 서비스</p>
-                  <div class="portfolio-brief">
-                    1인 프로젝트<br />사용언어: Java(Spring) / JSP<br />주요기능:
-                    외부API(카카오맵)연동, 파일 업로드
-                  </div>
-                  <a href="portfolio-OnSpot.html" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/onSpot.png"
-                    title="OnSpot"
-                    data-gallery="portfolio-gallery-app"
-                    class="glightbox preview-link"
-                  ></a>
-                  <!-- <a href="portfolio-OnSpot.html" title="자세히 보기" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a> -->
-                  <!-- <a href="assets/pdfs/onspot_bodymanager.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
-                    ><i class="bi bi-file-pdf"></i
-                  ></a> -->
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ICT">
-                <img src="assets/img/portfolio/bodyManager.jpg" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>BodyManager</h4>
-                  <p>헬스 케어 서비스</p>
-                  <div class="portfolio-brief">
-                    4인 프로젝트<br />사용언어: Java(Spring Boot) / React<br />한 일: JWT, SMTP연동,
-                    권한 분기, CRUD
-                  </div>
-                  <a href="portfolio-BodyManager.html" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/bodyManager.jpg"
-                    title="BodyManager"
-                    data-gallery="portfolio-gallery-product"
-                    class="glightbox preview-link"
-                  ></a>
-                  <!-- <a href="portfolio-BodyManager.html" title="자세히 보기" class="details-link"
-                    ><i class="bi bi-link-45deg"></i
-                  ></a> -->
-                  <!-- <a href="assets/pdfs/onspot_bodymanager.pdf" title="PDF로 보기" class="pdf-link" target="_blank"
-                    ><i class="bi bi-file-pdf"></i
-                  ></a> -->
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-toy filter-featured featured bg-warning-subtle text-dark">
-                <div class="featured-badge"><i class="bi bi-stars"></i>Ongoing</div>
-                <img src="assets/img/portfolio/stock_analysis_intro.png" class="img-fluid" alt="" />
-                <div class="portfolio-info">
-                  <h4>Stock Analysis</h4>
-                  <p>주식 분석 및 추천 서비스</p>
-                  <div class="portfolio-brief">
-                    솔로 프로젝트<br />React / TypeScript / FastAPI / BeautifulSoup
-                  </div>
-                  <div class="portfolio-brief">
-                    솔로 프로젝트<br />Python<br />ToDo: 주식 데이터 수집, 분석 알고리즘 구현, 웹 크롤링, API 연동, 시각화, 머신러닝 모델링
-                  </div>
-                  <a href="#" class="btn btn-sm btn-primary details-btn"
-                    >자세히 보기</a
-                  >
-                  <a
-                    href="assets/img/portfolio/stock_analysis_intro.png"
-                    title="Stock Analysis"
-                    data-gallery="portfolio-gallery-branding"
-                    class="glightbox preview-link"
-                  ></a>
-                </div>
-              </div>
-              <!-- End Portfolio Item -->
-            </div>
-            <!-- End Portfolio Container -->
-          </div>
-        </div>
-      </section>
-      <!-- /Portfolio Section -->
-
       <!-- peer-reviews Section -->
       <section id="peer-reviews" class="testimonials section accent-background">
         <img src="assets/img/peerReviews-bg.jpg" class="testimonials-bg" alt="" />
 
-        <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+        <div
+          class="container section-box neu aos-init aos-animate"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           <div
             class="swiper init-swiper swiper-initialized swiper-horizontal swiper-backface-hidden"
           >

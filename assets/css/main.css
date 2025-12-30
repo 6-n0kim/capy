@@ -12,11 +12,10 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
-  --heading-font: 'Raleway', sans-serif;
-  --nav-font: 'Poppins', sans-serif;
+  --default-font: 'Noto Sans KR', system-ui, -apple-system, 'Segoe UI', 'Malgun Gothic', '맑은 고딕',
+    sans-serif;
+  --heading-font: 'Noto Sans KR', sans-serif;
+  --nav-font: 'Gothic A1', sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -96,58 +95,6 @@ h5,
 h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
-}
-
-/* PHP Email Form Messages
-------------------------------*/
-.php-email-form .error-message {
-  display: none;
-  background: #df1529;
-  color: #ffffff;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .loading {
-  display: none;
-  background: var(--surface-color);
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-}
-
-.php-email-form .loading:before {
-  content: '';
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
-}
-
-@keyframes php-email-form-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /*--------------------------------------------------------------
@@ -1109,6 +1056,23 @@ section,
   bottom: 20px;
 }
 
+/* featured 카드 자체는 흰색 + 은은한 테두리 */
+.portfolio-item.featured {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.04);
+}
+
+/* Recent: 쿨블루 */
+.portfolio-item.featured .featured-badge {
+  background: rgba(13, 110, 253, 0.1);
+  border: 1px solid rgba(13, 110, 253, 0.18);
+  color: #0d6efd;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-weight: 600;
+}
+
 /*--------------------------------------------------------------
 # Pricing Section
 --------------------------------------------------------------*/
@@ -1382,55 +1346,6 @@ section,
   color: var(--contrast-color);
 }
 
-.contact .php-email-form {
-  background-color: var(--surface-color);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-}
-
-@media (max-width: 575px) {
-  .contact .php-email-form {
-    padding: 20px;
-  }
-}
-
-.contact .php-email-form input[type='text'],
-.contact .php-email-form input[type='email'],
-.contact .php-email-form textarea {
-  font-size: 14px;
-  padding: 10px 15px;
-  box-shadow: none;
-  border-radius: 0;
-  color: var(--default-color);
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
-  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
-}
-
-.contact .php-email-form input[type='text']:focus,
-.contact .php-email-form input[type='email']:focus,
-.contact .php-email-form textarea:focus {
-  border-color: var(--accent-color);
-}
-
-.contact .php-email-form input[type='text']::placeholder,
-.contact .php-email-form input[type='email']::placeholder,
-.contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
-}
-
-.contact .php-email-form button[type='submit'] {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  border: 0;
-  padding: 10px 30px;
-  transition: 0.4s;
-  border-radius: 50px;
-}
-
-.contact .php-email-form button[type='submit']:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
-}
-
 /*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
@@ -1692,7 +1607,7 @@ section,
 
 .troubleshooting-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.1);
 }
 
 .ts-title {
@@ -1732,13 +1647,28 @@ section,
 }
 
 /* 라벨별 색감(너무 과하지 않게) */
-.ts-block:nth-of-type(1) .ts-label::before { content: "⚠️"; }
-.ts-block:nth-of-type(2) .ts-label::before { content: "🔎"; }
-.ts-block:nth-of-type(3) .ts-label::before { content: "✅"; }
+.ts-block:nth-of-type(1) .ts-label::before {
+  content: '⚠️';
+}
+.ts-block:nth-of-type(2) .ts-label::before {
+  content: '🔎';
+}
+.ts-block:nth-of-type(3) .ts-label::before {
+  content: '✅';
+}
 
-.ts-block:nth-of-type(1) { border: 1px solid rgba(255, 165, 0, 0.25); background: rgba(255, 165, 0, 0.07); }
-.ts-block:nth-of-type(2) { border: 1px solid rgba(80, 120, 255, 0.20); background: rgba(80, 120, 255, 0.06); }
-.ts-block:nth-of-type(3) { border: 1px solid rgba(0, 170, 90, 0.18); background: rgba(0, 170, 90, 0.06); }
+.ts-block:nth-of-type(1) {
+  border: 1px solid rgba(255, 165, 0, 0.25);
+  background: rgba(255, 165, 0, 0.07);
+}
+.ts-block:nth-of-type(2) {
+  border: 1px solid rgba(80, 120, 255, 0.2);
+  background: rgba(80, 120, 255, 0.06);
+}
+.ts-block:nth-of-type(3) {
+  border: 1px solid rgba(0, 170, 90, 0.18);
+  background: rgba(0, 170, 90, 0.06);
+}
 
 /* 코드 가독성 */
 .troubleshooting-item code {
@@ -1758,7 +1688,87 @@ section,
   }
 }
 
+/* Reusable boxed container (border + shadow) */
+.section-box {
+  background-color: var(--surface-color);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 18px;
+}
 
+.section-box.neu {
+  background: var(--background-color); /* 핵심: 배경과 같게 */
+  border: 0;
+  border-radius: 18px;
+  padding: 30px;
+
+  box-shadow: 14px 14px 28px rgba(0, 0, 0, 0.1),
+    /* dark shadow */ -14px -14px 28px rgba(255, 255, 255, 0.85); /* light highlight */
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+/* 호버 시 살짝 더 떠 보이게 */
+.section-box.neu:hover {
+  transform: translateY(-2px);
+  box-shadow: 18px 18px 36px rgba(0, 0, 0, 0.12), -18px -18px 36px rgba(255, 255, 255, 0.9);
+}
+
+/* 눌린(pressed / inset) 버전이 필요하면 */
+.section-box.neu-inset {
+  background: var(--background-color);
+  border: 0;
+  border-radius: 18px;
+  padding: 30px;
+
+  box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.1),
+    inset -10px -10px 20px rgba(255, 255, 255, 0.85);
+}
+
+/* peer-reviews + skills에서만 하이라이트를 흰색 대신 "연한 블루"로 */
+#peer-reviews .section-box.neu,
+#skills .section-box.neu {
+  border: 0;
+  border-radius: 18px;
+
+  /* ✅ 흰색 하이라이트 제거 → 블루 톤 하이라이트로 */
+  box-shadow: 14px 14px 28px rgba(0, 40, 120, 0.35),
+    /* dark shadow (blue-ish) */ -14px -14px 28px rgba(90, 190, 255, 0.35); /* light highlight (blue-ish) */
+}
+
+#peer-reviews .section-box.neu:hover,
+#skills .section-box.neu:hover {
+  box-shadow: 18px 18px 36px rgba(0, 40, 120, 0.42), -18px -18px 36px rgba(90, 190, 255, 0.42);
+}
+
+/* (선택) 눌림(inset) 버전도 블루 톤으로 */
+#peer-reviews .section-box.neu-inset,
+#skills .section-box.neu-inset {
+  box-shadow: inset 10px 10px 20px rgba(0, 40, 120, 0.35),
+    inset -10px -10px 20px rgba(90, 190, 255, 0.28);
+}
+
+/* (선택) 동료평가 아바타 원형 테두리도 하얗게 보이면 파랑톤으로 변경 */
+#peer-reviews .testimonial-img {
+  border-color: rgba(90, 190, 255, 0.55);
+}
+
+@media (max-width: 575px) {
+  .section-box {
+    padding: 20px;
+  }
+
+  .section-box.neu,
+  .section-box.neu-inset {
+    padding: 20px;
+  }
+}
+
+.about .container {
+  /* 기존 것 유지 */
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 18px;
+}
 
 /*--------------------------------------------------------------
 # Starter Section Section
