@@ -56,7 +56,6 @@
               <div class="portfolio-description">
                 <h2>DocGen — AI 기반 프로젝트 문서 자동 생성 플랫폼</h2>
                 <p class="lead text-muted">
-                  개발 프로세스의 문서화 작업을 AI 에이전트로 자동화하여, 기획 및 명세 단계의
                   효율성을 극대화한 프로젝트입니다.
                 </p>
 
@@ -69,33 +68,90 @@
                 </p>
 
                 <div class="diagram-container">
-                  <pre class="mermaid">
-                  graph TD
-                      subgraph ClientLayer [Client Layer]
-                          React["React Frontend"] 
-                      end
-                  
-                      subgraph ServerLayer [Server Layer]
-                          Nest["Backend Server<br/>(NestJS)"]
-                          Fast["AI Server<br/>(FastAPI)"]
-                      end
-                  
-                      subgraph DataLayer [Data Layer]
-                          PG[("PostgreSQL<br/>User/Project Data")]
-                          Mongo[("MongoDB<br/>Document Data")]
-                      end
-                      
-                      subgraph External [External Services]
-                          LLM["LLM Models<br/>GPT/Gemini/Claude"]
-                      end
-                  
-                      React -->|REST API / JWT| Nest
-                      React -->|Doc Gen Request| Fast
-                      Nest -->|TypeORM| PG
-                      Fast -->|Motor| Mongo
-                      Fast -->|LangChain| LLM
-                      Nest -.->|Auth Check| Fast
-                  </pre>
+<pre class="mermaid">
+flowchart TB
+  %%{init: {"flowchart": {"nodeSpacing": 25, "rankSpacing": 35}}}%%
+
+  user["사용자"]
+
+  subgraph DOCGEN["DOCGEN"]
+    direction TB
+
+    subgraph Browser["Browser"]
+      direction TB
+      spa["WebApp SPA<br/>React + Vite"]
+    end
+
+    subgraph AcademyServer["학원 서버<br/>(Docker Host)"]
+      direction TB
+
+      subgraph Compose["Docker Compose<br/>(main)"]
+        direction TB
+        nginx["Nginx<br/>Reverse Proxy · Static"]
+        be1["Backend1 API<br/>NestJS (Node.js)"]
+        be2["Backend2 AI API<br/>FastAPI (Python)"]
+        pg["PostgreSQL"]
+        mongo["MongoDB"]
+        fs["File Storage<br/>Docker Volume / Host FS"]
+      end
+    end
+  end
+
+  openai["OpenAI API"]
+  gemini["Google Gemini API"]
+  anthropic["Anthropic Claude API"]
+
+  user -->|"HTTPS"| nginx
+  nginx -->|"Static"| spa
+  nginx -->|"Proxy /api"| be1
+  nginx -->|"Proxy /ai"| be2
+
+  spa -->|"REST API<br/>(JWT)"| be1
+
+
+  %% =========================
+  %% DB / Storage (Hub)
+  %% =========================
+  dataHub["DB / Storage"]
+  be1 --> dataHub
+  be2 --> dataHub
+
+  dataHub -->|"SQL<br/>(TypeORM)"| pg
+  dataHub -->|"Docs / Runs"| mongo
+  dataHub -->|"Files"| fs
+
+
+  %% =========================
+  %% Service-to-service
+  %% =========================
+  be1 -->|"Generate docs<br/>(HTTP)"| be2
+
+
+  %% =========================
+  %% LLM Providers (Hub)
+  %% =========================
+  llmHub["LLM Providers"]
+  be2 -->|"LLM Call"| llmHub
+
+  llmHub -->|"Call"| openai
+  llmHub -->|"Call"| gemini
+  llmHub -->|"Call"| anthropic
+
+
+  %% =========================
+  %% Styles
+  %% =========================
+  classDef person fill:#F3E8FF,stroke:#7C3AED,stroke-width:2px;
+  classDef c_container fill:#E8F1FF,stroke:#2563EB,stroke-width:2px;
+  classDef external fill:#FFF4E5,stroke:#F59E0B,stroke-width:2px;
+  classDef datastore fill:#E9FBF0,stroke:#16A34A,stroke-width:2px;
+
+  class user person;
+  class spa,nginx,be1,be2,dataHub,llmHub c_container;
+  class openai,gemini,anthropic external;
+  class pg,mongo,fs datastore;
+</pre>
+
                   <p class="text-muted small mt-2">
                     ▲ React, NestJS, FastAPI 간의 데이터 흐름 및 DB 연결 구조
                   </p>
@@ -136,32 +192,32 @@
                 </p>
 
                 <div class="diagram-container">
-                  <pre class="mermaid">
-                  sequenceDiagram
-                      actor User
-                      participant API as FastAPI Server
-                      participant QGen as Question Agent
-                      participant ListGen as List Agent
-                      participant DetailGen as Detail Agent
-                      participant DB as MongoDB
-                  
-                      User->>API: 요구사항 입력
-                      API->>QGen: 핵심 질문 생성 요청
-                      QGen-->>API: 질문 리스트 반환
-                      API->>User: 질문 제시
-                      User->>API: 답변 제출
-                      
-                      rect rgb(240, 248, 255)
-                      Note right of API: 백그라운드 태스크 실행
-                      API->>ListGen: 요구사항 목록 생성 요청
-                      ListGen-->>API: 기능 목록(List)
-                      API->>DetailGen: 상세 스펙 작성 요청
-                      DetailGen-->>API: 상세 명세(Detail)
-                      end
-                      
-                      API->>DB: 최종 문서 저장
-                      API-->>User: 완료 알림 및 엑셀 다운로드
-                  </pre>
+<pre class="mermaid">
+sequenceDiagram
+    actor User
+    participant API as FastAPI Server
+    participant QGen as Question Agent
+    participant ListGen as List Agent
+    participant DetailGen as Detail Agent
+    participant DB as MongoDB
+
+    User->>API: 요구사항 입력
+    API->>QGen: 핵심 질문 생성 요청
+    QGen-->>API: 질문 리스트 반환
+    API->>User: 질문 제시
+    User->>API: 답변 제출
+    
+    rect rgb(240, 248, 255)
+    Note right of API: 백그라운드 태스크 실행
+    API->>ListGen: 요구사항 목록 생성 요청
+    ListGen-->>API: 기능 목록(List)
+    API->>DetailGen: 상세 스펙 작성 요청
+    DetailGen-->>API: 상세 명세(Detail)
+    end
+    
+    API->>DB: 최종 문서 저장
+    API-->>User: 완료 알림 및 엑셀 다운로드
+</pre>
                 </div>
 
                 <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
@@ -380,6 +436,7 @@
 
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/includes.js"></script>

@@ -73,32 +73,54 @@
 
                 <div class="diagram-container">
                   <pre class="mermaid">
-graph TD
-    subgraph ClientLayer [Client Layer]
-        React["React Frontend"] 
-        Browser["User Browser<br/>(WebCam Access)"]
+flowchart TD
+  user["사용자"]
+
+  subgraph FIT_HARMONY["FIT_HARMONY"]
+    subgraph Browser["Browser"]
+      spa["WebApp SPA React Vite"]
     end
 
-    subgraph FrontAI [On-Device AI]
-        TFJS["TensorFlow.js<br/>(PoseNet Model)"]
-        CorrectionLogic["Client-side Correction Logic<br/>(Keypoint Analysis)"]
+    subgraph EC2["EC2"]
+      nginx["Nginx"]
+      api["Backend API Node Express"]
+      ai["OCR AI Runtime Python PaddleOCR"]
+      pg["PostgreSQL"]
+      fs["File Storage Public FS"]
     end
+  end
 
-    subgraph ServerLayer [Server Layer]
-        Express["Backend Server<br/>(Express.js/Node.js)"]
-    end
+  google["Google OAuth2"]
+  openai["OpenAI API"]
+  kakao["Kakao Maps API"]
+  daum["Daum Postcode API"]
 
-    subgraph DataLayer [Data Layer]
-        MySQL[("MySQL/MariaDB<br/>User/Record Data")]
-        Redis[("Redis<br/>Caching/Session")]
-    end
+  user -->|HTTPS| nginx
+  nginx -->|Static| spa
+  nginx -->|Proxy API| api
 
-    Browser -->|Stream Video| TFJS
-    TFJS -->|Keypoints| CorrectionLogic
-    CorrectionLogic -->|Real-time Feedback| React
-    React -->|REST API| Express
-    Express -->|Sequelize| MySQL
-    Express --> Redis
+  spa -->|Call API with Cookies| api
+  api -->|SQL| pg
+  api -->|Session Store| pg
+
+  api -->|OAuth| google
+  api -->|LLM Call| openai
+  spa -->|Maps SDK| kakao
+  spa -->|Postcode| daum
+
+  api -->|Run OCR AI| ai
+  api -->|Read Write Files| fs
+
+  classDef person fill:#F3E8FF,stroke:#7C3AED,stroke-width:2px;
+  classDef c_container fill:#E8F1FF,stroke:#2563EB,stroke-width:2px;
+  classDef external fill:#FFF4E5,stroke:#F59E0B,stroke-width:2px;
+  classDef datastore fill:#E9FBF0,stroke:#16A34A,stroke-width:2px;
+
+  class user person;
+  class spa,nginx,api,ai c_container;
+  class google,openai,kakao,daum external;
+  class pg,fs datastore;
+
 </pre>
                   <p class="text-muted small mt-2">▲ 클라이언트 기반 AI 분석 및 서버 연동 구조</p>
                 </div>
@@ -572,6 +594,7 @@ sequenceDiagram
     </a>
 
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>

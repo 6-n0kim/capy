@@ -69,38 +69,130 @@
                 </p>
 
                 <div class="diagram-container">
-                  <pre class="mermaid">
-graph TD
-    subgraph ClientLayer [Client Layer]
-        React["React Frontend<br/>(Vite/TypeScript)"]
+<pre class="mermaid">
+flowchart TB
+  %%{init: {"flowchart": {"nodeSpacing": 25, "rankSpacing": 35}}}%%
+
+  user["사용자"]
+
+  subgraph INPICK["INPICK"]
+    direction TB
+
+    subgraph Browser["Browser"]
+      direction TB
+      spa["SPA<br/>React 19 · Vite 7<br/>TypeScript"]
     end
 
-    subgraph ServerLayer [Server Layer]
-        FastAPI["FastAPI Backend<br/>(Core Logic)"]
-        AI_Module["AI Engine<br/>(PyTorch/Implicit)"]
+    subgraph Server["학원 서버 (Docker Host)"]
+      direction TB
+      nginx["Nginx<br/>Reverse Proxy · Static"]
+      api["FastAPI<br/>(Gunicorn/Uvicorn)"]
     end
+  end
 
-    subgraph DataLayer [Data Layer]
-        PG[("PostgreSQL<br/>Core Data")]
-        Mongo[("MongoDB<br/>Session/Log")]
-        Faiss[("FAISS<br/>Vector DB")]
-    end
+  user -->|"HTTPS"| nginx
+  nginx -->|"Static"| spa
+  nginx -->|"Proxy /api"| api
+  spa -->|"Session Cookie"| api
 
-    subgraph External [External Services]
-        Maps["Map APIs<br/>Kakao/TMAP"]
-        OAuth["OAuth 2.0<br/>Google/Naver/Kakao"]
-        LLM["LLM<br/>OpenAI/Claude"]
-    end
 
-    React -->|REST API| FastAPI
-    FastAPI -->|ORM| PG
-    FastAPI -->|ODM| Mongo
-    FastAPI -->|Similarity Search| Faiss
-    FastAPI -.->|Invoke| AI_Module
-    FastAPI --> Maps
-    FastAPI --> OAuth
-    FastAPI --> LLM
+  %% =========================
+  %% Data / Models (Hub)
+  %% =========================
+  dataHub["Data / Models"]
+  api --> dataHub
+
+  subgraph Data["Data / Models"]
+    direction TB
+    pg["PostgreSQL<br/>RDB"]
+    mongo["MongoDB<br/>Session TTL"]
+    faiss["FAISS<br/>Vector Index"]
+    ml["PyTorch<br/>Model (.pt)"]
+  end
+
+  dataHub -->|"SQL"| pg
+  dataHub -->|"Session"| mongo
+  dataHub -->|"Vector Search"| faiss
+  dataHub -->|"Load/Run"| ml
+
+
+  %% =========================
+  %% OAuth (Hub)
+  %% =========================
+  oauthHub["OAuth"]
+  api --> oauthHub
+
+  subgraph OAuth["OAuth Providers"]
+    direction TB
+    google["Google"]
+    naver["Naver"]
+    kakaoOAuth["Kakao"]
+  end
+
+  oauthHub -->|"Redirect"| google
+  oauthHub -->|"Redirect"| naver
+  oauthHub -->|"Redirect"| kakaoOAuth
+
+
+  %% =========================
+  %% LLM (Hub)
+  %% =========================
+  llmHub["LLM"]
+  api --> llmHub
+
+  subgraph LLM["LLM APIs"]
+    direction TB
+    openai["OpenAI"]
+    claude["Claude<br/>(LangChain)"]
+  end
+
+  llmHub -->|"Call"| openai
+  llmHub -->|"Call"| claude
+
+
+  %% =========================
+  %% Maps / Routing (Hub)
+  %% =========================
+  mapsHub["Maps / Routing"]
+  spa --> mapsHub
+  api --> mapsHub
+
+  subgraph Maps["Maps / Routing"]
+    direction TB
+    kakaoMaps["Kakao Maps<br/>JS SDK"]
+    ncpMap["NCP Map<br/>Directions"]
+    tmap["TMAP"]
+  end
+
+  mapsHub -->|"UI"| kakaoMaps
+  mapsHub -->|"Route/POI"| ncpMap
+  mapsHub -->|"Route"| tmap
+
+
+  %% =========================
+  %% CI/CD
+  %% =========================
+  jenkins["Jenkins<br/>CI/CD"]
+  jenkins -.->|"Deploy"| nginx
+  jenkins -.->|"Deploy"| api
+
+
+  %% =========================
+  %% Styles
+  %% =========================
+  classDef person fill:#F3E8FF,stroke:#7C3AED,stroke-width:2px;
+  classDef c_container fill:#E8F1FF,stroke:#2563EB,stroke-width:2px;
+  classDef external fill:#FFF4E5,stroke:#F59E0B,stroke-width:2px;
+  classDef datastore fill:#E9FBF0,stroke:#16A34A,stroke-width:2px;
+
+  class user person;
+  class spa,nginx,api,dataHub,oauthHub,llmHub,mapsHub c_container;
+  class google,naver,kakaoOAuth,openai,claude,kakaoMaps,ncpMap,tmap,jenkins external;
+  class pg,mongo,faiss,ml datastore;
+
 </pre>
+
+
                   <p class="text-muted small mt-2">▲ React, FastAPI 및 다중 DB/AI 모델 연동 구조</p>
                 </div>
 
@@ -135,7 +227,7 @@ graph TD
                   편집한 뒤 저장합니다.
                 </p>
                 <div class="diagram-container">
-                  <pre class="mermaid">
+<pre class="mermaid">
 sequenceDiagram
     participant U as User
     participant S1 as Step1(조건 입력)
@@ -159,8 +251,8 @@ sequenceDiagram
 
     U->>S4: 11. 최종 확정/시간 미세조정
     S4->>BE: 12. POST /itinerary/createItinerary (DB 저장)
-    BE-->>U: 13. 저장 완료 + 내 일정 리스트 갱신</pre
-                  >
+    BE-->>U: 13. 저장 완료 + 내 일정 리스트 갱신
+</pre>
                 </div>
                 <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
                 <p>
@@ -431,6 +523,7 @@ sequenceDiagram
 
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/includes.js"></script>

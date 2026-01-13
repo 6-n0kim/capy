@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>JaneJase - Portfolio Details</title>
+    <meta
+      name="description"
+      content="AI 기반 실시간 자세 교정 및 맞춤형 피드백 서비스 JaneJase 포트폴리오"
+    />
+
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- Page Custom CSS -->
+    <link href="assets/css/portfolio-details-custom.css" rel="stylesheet" />
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+  </head>
+
+  <body class="portfolio-details-page">
+    <div id="site-header"></div>
+
+    <main class="main">
+      <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">JaneJase (자네자세)</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">JaneJase</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <section id="portfolio-details" class="portfolio-details section">
+        <div class="container" data-aos="fade-up">
+          <div class="row justify-content-between gy-4 mt-4">
+            <div class="col-lg-8" data-aos="fade-up">
+              <div class="portfolio-description">
+                <h2>JaneJase — AI 기반 실시간 자세 교정 웹 서비스</h2>
+                <p class="lead text-muted">
+                  웹캠을 통해 사용자의 자세를 실시간으로 분석(MediaPipe)하고, 거북목 및 신체 불균형을 감지하여 즉각적인 피드백을 제공하는 헬스케어 서비스입니다.
+                </p>
+
+                <hr class="my-4" />
+
+                <h3 class="section-title">1. 시스템 아키텍처 (System Architecture)</h3>
+                <p>
+                  클라이언트 중심의 AI 처리로 서버 부하를 최소화하고, FastAPI 백엔드로 안정적인 데이터 관리를 수행합니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+flowchart TD
+    User[사용자]
+
+    subgraph Client [Frontend - Browser]
+        UI[React 19 SPA]
+        MP[MediaPipe Vision]
+        Three[Three.js Visual]
+        Store[Zustand Store]
+    end
+
+    subgraph Server [Backend - EC2 Server]
+        API[FastAPI Server]
+        Auth[JWT Auth Service]
+    end
+
+    subgraph Data [Database]
+        DB[(PostgreSQL)]
+    end
+
+    User -->|웹캠 스트림| MP
+    MP -->|실시간 랜드마크 추출| UI
+    MP -->|포즈 데이터| Three
+    UI -->|시각 청각 피드백| User
+    
+    UI -->|API 요청 - Axios| API
+    API -->|사용자 기록 관리| DB
+    API -->|SSO - Google Kakao| Auth
+</pre>
+                  <p class="text-muted small mt-2">▲ MediaPipe 기반 클라이언트 AI 처리 및 백엔드 연동 구조</p>
+                </div>
+
+                <h3 class="section-title mt-5">2. 주요 기능 (Key Features)</h3>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                        <i class="bi bi-camera-video fs-1 text-muted"></i>
+                        <p class="mt-2 text-muted">실시간 분석 화면 예시</p>
+                        <!-- <img src="assets/img/portfolio/janejase_analysis.gif" alt="Analysis" /> -->
+                    </div>
+                    <h5>실시간 자세 분석</h5>
+                    <p class="small">MediaPipe를 활용해 거북목(NTSD), 어깨 불균형(SLD) 등을 실시간으로 감지하고 경고합니다.</p>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="screenshot-placeholder">
+                        <i class="bi bi-bar-chart-line fs-1 text-muted"></i>
+                         <p class="mt-2 text-muted">대시보드 화면 예시</p>
+                        <!-- <img src="assets/img/portfolio/janejase_dashboard.png" alt="Dashboard" /> -->
+                    </div>
+                    <h5>마이페이지 대시보드</h5>
+                    <p class="small">
+                      누적된 자세 데이터를 시각화하여 사용자의 자세 습관 변화와 경고 이력을 제공합니다.
+                    </p>
+                  </div>
+                </div>
+
+                <h3 class="section-title mt-5">3. 실시간 AI 자세 분석 Flow</h3>
+                <p>
+                  사용자의 웹캠 영상이 브라우저 내에서 분석되어 데이터베이스에 저장되기까지의 흐름입니다.
+                </p>
+
+                <div class="diagram-container">
+                  <pre class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant CAM as Webcam
+    participant MP as MediaPipe (Browser)
+    participant UI as React UI (Logic)
+    participant API as FastAPI Server
+    participant DB as PostgreSQL
+
+    U->>UI: 1. 측정 시작 요청
+    UI->>CAM: 2. 스트림 요청 (getUserMedia)
+    CAM-->>UI: 3. Video Stream
+    
+    loop Real-time Analysis (Frame by Frame)
+        UI->>MP: 4. 프레임 전달
+        MP-->>UI: 5. 랜드마크(좌표) 반환
+        UI->>UI: 6. 지표 계산 (NTSD, ETSD, SLD)
+        
+        opt 임계값 초과 (Bad Pose)
+            UI-->>U: 7. 경고 알림 (Audio/Visual)
+        end
+    end
+
+    U->>UI: 8. 측정 종료
+    UI->>API: 9. 세션 데이터 전송 (POST /pose)
+    API->>DB: 10. 자세 기록 저장
+    DB-->>API: 11. 저장 완료
+    API-->>UI: 12. 결과 리포트 생성
+</pre>
+                </div>
+
+                <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
+                <p>
+                  사용자 정보와 시계열 포즈 데이터를 효율적으로 관리하기 위한 PostgreSQL 스키마입니다.
+                </p>
+
+                <div class="diagram-container">
+                   <pre class="mermaid">
+erDiagram
+    users ||--o{ pose : "has many"
+    pose ||--o{ pose_detected : "has many"
+
+    users {
+        UUID id PK
+        VARCHAR email UK
+        VARCHAR name
+        VARCHAR provider
+        TIMESTAMPTZ created_at
+    }
+
+    pose {
+        UUID id PK
+        UUID user_id FK
+        TIMESTAMPTZ created_at
+        TIMESTAMPTZ ended_at
+        JSONB measurement
+    }
+
+    pose_detected {
+        UUID id PK
+        UUID pose_id FK
+        TIMESTAMPTZ occurred_at
+        FLOAT duration_sec
+        FLOAT avg_delta_ntsd
+        FLOAT avg_delta_etsd
+        FLOAT avg_delta_sld
+        JSONB status
+    }
+</pre>
+                  <p class="text-muted small mt-2">▲ Users, Pose, PoseDetected 주요 엔티티 관계</p>
+                </div>
+
+                <h3 class="section-title mt-5">5. 기술 스택 (Tech Stack)</h3>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Frontend & AI</h5>
+                        <span class="badge bg-primary tech-badge">React 19</span>
+                        <span class="badge bg-primary tech-badge">TypeScript</span>
+                        <span class="badge bg-danger tech-badge">MediaPipe</span>
+                        <span class="badge bg-info tech-badge">Three.js</span>
+                        <span class="badge bg-secondary tech-badge">Zustand</span>
+                        <span class="badge bg-dark tech-badge">TailwindCSS</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Backend</h5>
+                        <span class="badge bg-success tech-badge">Python</span>
+                        <span class="badge bg-success tech-badge">FastAPI</span>
+                        <span class="badge bg-warning text-dark tech-badge">PostgreSQL</span>
+                        <span class="badge bg-warning text-dark tech-badge">AsyncPG</span>
+                        <span class="badge bg-dark tech-badge">JWT</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Management</h5>
+                        <span class="badge bg-secondary tech-badge">Git</span>
+                        <span class="badge bg-secondary tech-badge">GitHub</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="portfolio-info shadow-sm p-4 rounded">
+                <h3>Project Info</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-3">
+                    <strong>Category</strong> <br />AI/Healthcare Web Service (Toy Project)
+                  </li>
+                  <li class="mb-3">
+                    <strong>Role</strong> <br />1인 개발 (Full Stack)
+                  </li>
+                  <li class="mb-3"><strong>Period</strong> <br />2 Weeks</li>
+                  <li class="mb-3">
+                    <strong>GitHub</strong><br />
+                    <a
+                      href="#"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Repository</a
+                    >
+                  </li>
+                  <!-- 
+                  <li class="mb-3">
+                    <strong>Deployment</strong><br />
+                    <a
+                      href="#"
+                      target="_blank"
+                      class="btn btn-primary btn-sm w-100 mt-2"
+                      >사이트 방문하기</a
+                    >
+                  </li> 
+                  -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/includes.js"></script>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
