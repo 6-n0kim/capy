@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
@@ -59,20 +59,22 @@
               <div class="portfolio-description">
                 <h2>JaneJase — AI 기반 실시간 자세 교정 웹 서비스</h2>
                 <p class="lead text-muted">
-                  웹캠을 통해 사용자의 자세를 실시간으로 분석(MediaPipe)하고, 거북목 및 신체 불균형을 감지하여 즉각적인 피드백을 제공하는 헬스케어 서비스입니다.
+                  웹캠을 통해 사용자의 자세를 실시간으로 분석(MediaPipe)하고, 거북목 및 신체
+                  불균형을 감지하여 즉각적인 피드백을 제공하는 헬스케어 서비스입니다.
                 </p>
 
                 <hr class="my-4" />
 
                 <h3 class="section-title">1. 시스템 아키텍처 (System Architecture)</h3>
                 <p>
-                  클라이언트 중심의 AI 처리로 서버 부하를 최소화하고, FastAPI 백엔드로 안정적인 데이터 관리를 수행합니다.
+                  클라이언트 중심의 AI 처리로 서버 부하를 최소화하고, FastAPI 백엔드로 안정적인
+                  데이터 관리를 수행합니다.
                 </p>
 
                 <div class="diagram-container">
                   <pre class="mermaid">
 flowchart TD
-    User[사용자]
+    user[사용자]
 
     subgraph Client [Frontend - Browser]
         UI[React 19 SPA]
@@ -90,52 +92,66 @@ flowchart TD
         DB[(PostgreSQL)]
     end
 
-    User -->|웹캠 스트림| MP
+    user -->|웹캠 스트림| MP
     MP -->|실시간 랜드마크 추출| UI
     MP -->|포즈 데이터| Three
-    UI -->|시각 청각 피드백| User
+    UI -->|시각 청각 피드백| user
     
     UI -->|API 요청 - Axios| API
     API -->|사용자 기록 관리| DB
     API -->|SSO - Google Kakao| Auth
-</pre>
-                  <p class="text-muted small mt-2">▲ MediaPipe 기반 클라이언트 AI 처리 및 백엔드 연동 구조</p>
+
+    classDef person fill:#F3E8FF,stroke:#7C3AED,stroke-width:2px;
+    classDef c_container fill:#E8F1FF,stroke:#2563EB,stroke-width:2px;
+    classDef external fill:#FFF4E5,stroke:#F59E0B,stroke-width:2px;
+    classDef datastore fill:#E9FBF0,stroke:#16A34A,stroke-width:2px;
+
+    class user person;
+    class UI,MP,Three,Store c_container;
+    class API,Auth external;
+    class DB datastore;
+</pre
+                  >
+                  <p class="text-muted small mt-2">
+                    ▲ MediaPipe 기반 클라이언트 AI 처리 및 백엔드 연동 구조
+                  </p>
                 </div>
 
                 <h3 class="section-title mt-5">2. 주요 기능 (Key Features)</h3>
                 <div class="row mt-4">
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                        <i class="bi bi-camera-video fs-1 text-muted"></i>
-                        <p class="mt-2 text-muted">실시간 분석 화면 예시</p>
-                        <!-- <img src="assets/img/portfolio/janejase_analysis.gif" alt="Analysis" /> -->
+                      <img src="assets/img/portfolio/janejase_1.gif" alt="" />
                     </div>
                     <h5>실시간 자세 분석</h5>
-                    <p class="small">MediaPipe를 활용해 거북목(NTSD), 어깨 불균형(SLD) 등을 실시간으로 감지하고 경고합니다.</p>
+                    <p class="small">
+                      MediaPipe를 활용해 거북목(NTSD), 어깨 불균형(SLD) 등을 실시간으로 감지하고
+                      경고합니다.
+                    </p>
                   </div>
 
                   <div class="col-md-6">
                     <div class="screenshot-placeholder">
-                        <i class="bi bi-bar-chart-line fs-1 text-muted"></i>
-                         <p class="mt-2 text-muted">대시보드 화면 예시</p>
-                        <!-- <img src="assets/img/portfolio/janejase_dashboard.png" alt="Dashboard" /> -->
+                      <img src="assets/img/portfolio/janejase_2.png" alt="" />
                     </div>
                     <h5>마이페이지 대시보드</h5>
                     <p class="small">
-                      누적된 자세 데이터를 시각화하여 사용자의 자세 습관 변화와 경고 이력을 제공합니다.
+                      누적된 자세 데이터를 시각화하여 사용자의 자세 습관 변화와 경고 이력을
+                      제공합니다.
                     </p>
                   </div>
                 </div>
 
                 <h3 class="section-title mt-5">3. 실시간 AI 자세 분석 Flow</h3>
                 <p>
-                  사용자의 웹캠 영상이 브라우저 내에서 분석되어 데이터베이스에 저장되기까지의 흐름입니다.
+                  사용자의 웹캠 영상이 브라우저 내에서 분석되어 데이터베이스에 저장되기까지의
+                  흐름입니다.
                 </p>
 
                 <div class="diagram-container">
                   <pre class="mermaid">
 sequenceDiagram
-    participant U as User
+    participant U as user
     participant CAM as Webcam
     participant MP as MediaPipe (Browser)
     participant UI as React UI (Logic)
@@ -161,16 +177,18 @@ sequenceDiagram
     API->>DB: 10. 자세 기록 저장
     DB-->>API: 11. 저장 완료
     API-->>UI: 12. 결과 리포트 생성
-</pre>
+</pre
+                  >
                 </div>
 
                 <h3 class="section-title mt-5">4. 데이터베이스 설계 (ERD)</h3>
                 <p>
-                  사용자 정보와 시계열 포즈 데이터를 효율적으로 관리하기 위한 PostgreSQL 스키마입니다.
+                  사용자 정보와 시계열 포즈 데이터를 효율적으로 관리하기 위한 PostgreSQL
+                  스키마입니다.
                 </p>
 
                 <div class="diagram-container">
-                   <pre class="mermaid">
+                  <pre class="mermaid">
 erDiagram
     users ||--o{ pose : "has many"
     pose ||--o{ pose_detected : "has many"
@@ -201,7 +219,8 @@ erDiagram
         FLOAT avg_delta_sld
         JSONB status
     }
-</pre>
+</pre
+                  >
                   <p class="text-muted small mt-2">▲ Users, Pose, PoseDetected 주요 엔티티 관계</p>
                 </div>
 
@@ -243,6 +262,54 @@ erDiagram
                   </div>
                 </div>
 
+                <h3 class="section-title mt-5">6. 트러블 슈팅</h3>
+                <p class="mb-4">
+                  개발/배포 과정에서 발생한 이슈를 <strong>증상 → 원인 → 해결</strong> 흐름으로
+                  정리했습니다.
+                </p>
+
+                <ul class="troubleshooting-list">
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">자세 인식 정확도 관련 트러블</h5>
+
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">정상 자세임에도 경고 발생</div>
+                    </div>
+
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">카메라 품질 문제로 인한 노이즈 발생</div>
+                    </div>
+
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">EMA(지수 이동 평균) 스무딩으로 노이즈 감소</div>
+                    </div>
+                  </li>
+
+                  <li class="troubleshooting-item">
+                    <h5 class="ts-title">서버 · 데이터 처리 트러블</h5>
+
+                    <div class="ts-block">
+                      <div class="ts-label">증상</div>
+                      <div class="ts-desc">DB 부하 증가, 의미 없는 데이터 축적</div>
+                    </div>
+
+                    <div class="ts-block">
+                      <div class="ts-label">원인</div>
+                      <div class="ts-desc">실시간 감지를 그대로 DB 저장</div>
+                    </div>
+
+                    <div class="ts-block">
+                      <div class="ts-label">해결</div>
+                      <div class="ts-desc">
+                        의미 있는 이벤트(3초 이상 유지)만 저장<br />
+                        JSONB 구조로 확장성 확보
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -253,29 +320,33 @@ erDiagram
                   <li class="mb-3">
                     <strong>Category</strong> <br />AI/Healthcare Web Service (Toy Project)
                   </li>
-                  <li class="mb-3">
-                    <strong>Role</strong> <br />1인 개발 (Full Stack)
-                  </li>
+                  <li class="mb-3"><strong>Role</strong> <br />3인 개발 (Full Stack)</li>
                   <li class="mb-3"><strong>Period</strong> <br />2 Weeks</li>
                   <li class="mb-3">
                     <strong>GitHub</strong><br />
                     <a
-                      href="#"
+                      href="https://github.com/6-n0kim/JaneJase_FRONTEND"
+                      target="_blank"
                       class="d-block text-truncate"
-                      ><i class="bi bi-github"></i> Repository</a
+                      ><i class="bi bi-github"></i> Frontend</a
+                    >
+                    <a
+                      href="https://github.com/6-n0kim/JaneJase_BACKEND"
+                      target="_blank"
+                      class="d-block text-truncate"
+                      ><i class="bi bi-github"></i> Backend</a
                     >
                   </li>
-                  <!-- 
+
                   <li class="mb-3">
                     <strong>Deployment</strong><br />
                     <a
-                      href="#"
+                      href="https://jane-jase-frontend.vercel.app/"
                       target="_blank"
                       class="btn btn-primary btn-sm w-100 mt-2"
                       >사이트 방문하기</a
                     >
-                  </li> 
-                  -->
+                  </li>
                 </ul>
               </div>
             </div>

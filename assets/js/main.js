@@ -185,10 +185,10 @@
             filter: this.getAttribute('data-filter'),
           });
           if (typeof aosInit === 'function') {
-            aosInit();
+            // aosInit();
           }
         },
-        false
+        false,
       );
     });
   });
