@@ -12,8 +12,8 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: 'Noto Sans KR', system-ui, -apple-system, 'Segoe UI', 'Malgun Gothic', '맑은 고딕',
-    sans-serif;
+  --default-font:
+    'Noto Sans KR', system-ui, -apple-system, 'Segoe UI', 'Malgun Gothic', '맑은 고딕', sans-serif;
   --heading-font: 'Noto Sans KR', sans-serif;
   --nav-font: 'Gothic A1', sans-serif;
 }
@@ -74,6 +74,7 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  padding-top: 90px;
 }
 
 a {
@@ -956,7 +957,9 @@ section,
   display: block;
   width: 100%;
   border-radius: var(--portfolio-card-img-radius);
-  transition: filter 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition:
+    filter 0.25s ease-in-out,
+    transform 0.25s ease-in-out;
 }
 
 /* featured 뱃지 기본(Recent/Ongoing 색상은 아래 featured 규칙에서 override) */
@@ -979,6 +982,49 @@ section,
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
+/* Recent: 쿨블루 */
+.portfolio-item.featured .featured-badge {
+  background: rgba(13, 110, 253, 0.1);
+  border: 1px solid rgba(13, 110, 253, 0.18);
+  color: #0d6efd;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-weight: 600;
+}
+.portfolio .portfolio-item:hover > img {
+  filter: blur(2px) brightness(0.75);
+  transform: scale(1.02);
+}
+
+/* featured 뱃지 기본(Recent/Ongoing 색상은 아래 featured 규칙에서 override) */
+.portfolio .portfolio-item .featured-badge2 {
+  position: absolute;
+  top: calc(var(--portfolio-card-pad) - 4px);
+  left: calc(var(--portfolio-card-pad) + 80px);
+  z-index: 4;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+
+  background: color-mix(in srgb, var(--background-color), transparent 10%);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+/* Recent: 쿨블루 */
+.portfolio-item.featured .featured-badge2 {
+  background: rgba(13, 110, 253, 0.1);
+  border: 1px solid rgba(13, 110, 253, 0.18);
+  color: #dc3545;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-weight: 600;
+}
 .portfolio .portfolio-item:hover > img {
   filter: blur(2px) brightness(0.75);
   transform: scale(1.02);
@@ -1052,11 +1098,14 @@ section,
 .portfolio .portfolio-item {
   position: relative;
   cursor: pointer;
-  transition: all ease-in-out 0.3s;
+  /* Removed transition: all to prevent conflict with Isotope animation */
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .portfolio .portfolio-item > img {
-  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition:
+    filter 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
 }
 
 .portfolio .portfolio-item:hover > img {
@@ -1065,7 +1114,6 @@ section,
 }
 
 .portfolio .portfolio-item:hover {
-  transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -1159,16 +1207,6 @@ section,
   background: #fff;
   border-color: rgba(0, 0, 0, 0.08) !important;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.04);
-}
-
-/* Recent: 쿨블루 */
-.portfolio-item.featured .featured-badge {
-  background: rgba(13, 110, 253, 0.1);
-  border: 1px solid rgba(13, 110, 253, 0.18);
-  color: #0d6efd;
-  border-radius: 999px;
-  padding: 0.25rem 0.6rem;
-  font-weight: 600;
 }
 
 /*--------------------------------------------------------------
@@ -1414,6 +1452,15 @@ section,
   background-color: var(--accent-color);
 }
 
+.portfolio-details .portfolio-info {
+  position: sticky;
+  top: 120px;
+  z-index: 10;
+  background-color: var(--surface-color);
+  padding: 30px;
+  box-shadow: 0px 0 30px rgba(0, 0, 0, 0.08);
+}
+
 .portfolio-details .portfolio-info h3 {
   font-size: 22px;
   font-weight: 700;
@@ -1611,7 +1658,9 @@ section,
   padding: 16px 16px 14px;
   background: #fff;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .troubleshooting-item:hover {
@@ -1712,9 +1761,12 @@ section,
   border-radius: 18px;
   padding: 30px;
 
-  box-shadow: 14px 14px 28px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    14px 14px 28px rgba(0, 0, 0, 0.1),
     /* dark shadow */ -14px -14px 28px rgba(255, 255, 255, 0.85); /* light highlight */
-  transition: box-shadow 180ms ease, transform 180ms ease;
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
 /* 눌린(pressed / inset) 버전이 필요하면 */
@@ -1724,7 +1776,8 @@ section,
   border-radius: 18px;
   padding: 30px;
 
-  box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    inset 10px 10px 20px rgba(0, 0, 0, 0.1),
     inset -10px -10px 20px rgba(255, 255, 255, 0.85);
 }
 
@@ -1735,14 +1788,16 @@ section,
   border-radius: 18px;
 
   /* ✅ 흰색 하이라이트 제거 → 블루 톤 하이라이트로 */
-  box-shadow: 14px 14px 28px rgba(0, 40, 120, 0.35),
+  box-shadow:
+    14px 14px 28px rgba(0, 40, 120, 0.35),
     /* dark shadow (blue-ish) */ -14px -14px 28px rgba(90, 190, 255, 0.35); /* light highlight (blue-ish) */
 }
 
 /* (선택) 눌림(inset) 버전도 블루 톤으로 */
 #peer-reviews .section-box.neu-inset,
 #skills .section-box.neu-inset {
-  box-shadow: inset 10px 10px 20px rgba(0, 40, 120, 0.35),
+  box-shadow:
+    inset 10px 10px 20px rgba(0, 40, 120, 0.35),
     inset -10px -10px 20px rgba(90, 190, 255, 0.28);
 }
 

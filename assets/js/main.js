@@ -170,6 +170,15 @@
         layoutMode: layout,
         filter: filter,
         sortBy: sort,
+        transitionDuration: '0.6s',
+        hiddenStyle: {
+          opacity: 0,
+          transform: 'translateY(50px)',
+        },
+        visibleStyle: {
+          opacity: 1,
+          transform: 'translateY(0)',
+        },
       });
     });
 
