@@ -163,3 +163,56 @@
     width: 100%;
   }
 }
+
+/* --- 트러블슈팅 4번째 블록(결과) --- */
+.ts-block:nth-of-type(4) .ts-label::before {
+  content: '📈';
+}
+.ts-block:nth-of-type(4) {
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  background: rgba(124, 58, 237, 0.06);
+}
+
+/* --- 코드 발췌 --- */
+.code-excerpt {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+}
+.code-excerpt code {
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* --- 수치 카드 --- */
+.metric-card {
+  height: 100%;
+  padding: 18px 10px;
+  border-radius: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+.metric-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #007bff;
+}
+.metric-value small {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 2px;
+}
+.metric-label {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #6c757d;
+}
